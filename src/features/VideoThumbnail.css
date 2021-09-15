@@ -1,0 +1,38 @@
+.container{
+  margin-top: 30px;
+}
+
+.thumbnail{
+  transition: transform 100ms ease-in;
+}
+
+.thumbnail:hover{
+  transform: scale(1.07);
+  mask-image: rgba(251, 251, 251, 0.35);
+}
+
+.title > h2{
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: 600;
+  margin-left: 25px;
+}
+
+.description > h4{
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-left: 25px;
+}
+
+.tags{
+  font-size: Large;
+  transition: transform 100ms ease-in;
+  margin-left: 25px;
+}
+
+.tags:hover{
+  transform: scale(1.07);
+  cursor: pointer;
+}

@@ -1,0 +1,9 @@
+<form onSubmit={onSubmit}>
+        <input type="text" value = {name} name="username" placeholder="Name" />
+        <input type="text" value = {role} name="role" placeholder="Role" />
+        <input type="text" value = {email} name="email" placeholder="Email" />
+        <input type="text" value = {linkedin} name="linkedin" placeholder="LinkedIn" />
+        <input type="file" value = {avatar} onChange={onFileChange} />
+
+        <button>Update</button>
+        <button onClick = {onDelete}>Delete</button>
