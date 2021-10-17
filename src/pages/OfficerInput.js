@@ -91,6 +91,8 @@ export const OfficerInput = ({officer}) => {
         <input type="file" onChange={onFileChange}/>
         <button onClick = {onUpdate}>Update</button>
         <button onClick = {onDelete}>Delete</button>
+
+        
     </div>
     );
 };
