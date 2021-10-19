@@ -1,5 +1,5 @@
 ### Cloning repository for local development
-##Using terminal
+## Using terminal
 * Install GitHub pages npm install gh-pages --save-dev
 
 * Clone the repository: clone https://github.com/cameron-keene/ACE_Website.git
@@ -14,27 +14,27 @@
 
 * Run updated project: npm start
 
-##Using GH desktop (assuming you also have Sublime Text)
-* Clone the repository
+## Using GH desktop (assuming you also have Sublime Text)
+Clone the repository
 
 * Current Repository > Add > Clone Repositories > URL > https://github.com/cameron-keene/ACE_Website.git
-* Create a personal branch
+Create a personal branch
 
 * Current Branch > New Branch > "branch_name" > Create Branch > (If prompted) Bring my changes to "branch_name" > Switch Branch
-* Edit files
+Edit files
 
 * On menu bar > Repository > Open in Sublime Text > (to add a NEW file to branch) OR git add . (to update ALL files in branch)
-* Commit to the branch and push it to the remote
+Commit to the branch and push it to the remote
 
-Commit to "branch_name" > Publish Branch > Push Origin
+* Commit to "branch_name" > Publish Branch > Push Origin
 Run updated project
 
-npm start
+* npm start
 Deploying Project to gh-pages
-npm run deploy
-commit/push to your branch
-merge to main branch
-result will show up on gh-pages in roughly 5-10 minutes
+* npm run deploy
+* commit/push to your branch
+* merge to main branch
+* result will show up on gh-pages in roughly 5-10 minutes
 
 # Getting Started with Create React App
 
