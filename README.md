@@ -1,4 +1,4 @@
-### Cloning repository for local development
+# Cloning repository for local development
 ## Using terminal
 * Install GitHub pages npm install gh-pages --save-dev
 
