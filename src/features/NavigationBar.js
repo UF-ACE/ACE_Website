@@ -11,7 +11,7 @@ class NavigationBar extends Component {
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Navbar.Brand href="#home" className="sticky-nav">
             {" "}
-            <Link className="nav-link" to="/ACE_Website/">
+            <Link className="nav-link" to="/">
               {" "}
               <img src={logo} width="65" height="30" alt="" />{" "}
             </Link>{" "}
@@ -21,13 +21,13 @@ class NavigationBar extends Component {
             <Nav className="ml-auto">
               <NavItem>
                 {" "}
-                <Link className="nav-link" to="/ACE_Website/About">
+                <Link className="nav-link" to="/About">
                   About us
                 </Link>{" "}
               </NavItem>
               <NavItem>
                 {" "}
-                <Link className="nav-link" to="/ACE_Website/Learn">
+                <Link className="nav-link" to="/Learn">
                   Learn
                 </Link>{" "}
               </NavItem>
