@@ -2,7 +2,7 @@
 ## Using terminal
 * Install GitHub pages npm install gh-pages --save-dev
 
-* Clone the repository: clone https://github.com/cameron-keene/ACE_Website.git
+* Clone the repository: clone https://github.com/UF-ACE/ACE_Website.git
 
 * Create a personal branch: git checkout -b <branch_name>
 
