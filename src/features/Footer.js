@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
 
-
 const Footer = () => {
   return (
     <footer className={styles.mt_5} bg="dark">
@@ -18,10 +17,10 @@ const Footer = () => {
             {/* TODO 
             Add Social Media Icons */}
             <Nav className="ml-auto" bg="dark">
-              <div className = "icons">
-                <SocialIcon url = "https://www.instagram.com/ace_uf/"></SocialIcon>
-                <SocialIcon url = "https://twitter.com/ace_uf/"></SocialIcon>
-                <SocialIcon url = "https://www.facebook.com/GatorACE"></SocialIcon>
+              <div className="icons">
+                <SocialIcon url="https://www.instagram.com/ace_uf/"></SocialIcon>
+                <SocialIcon url="https://twitter.com/ace_uf/"></SocialIcon>
+                <SocialIcon url="https://www.facebook.com/GatorACE"></SocialIcon>
               </div>
             </Nav>
           </Col>
@@ -30,19 +29,19 @@ const Footer = () => {
             <Nav className="ml-auto">
               <NavItem>
                 {" "}
-                <Link className="nav-link" to="/ACE_Website/About">
+                <Link className="nav-link" to="/About">
                   About us
                 </Link>{" "}
               </NavItem>
               <NavItem>
                 {" "}
-                <Link className="nav-link" to="/ACE_Website/Learn">
+                <Link className="nav-link" to="/Learn">
                   Learn
                 </Link>{" "}
               </NavItem>
               <NavItem>
                 {" "}
-                <Link className="nav-link" to="/ACE_Website/Admin">
+                <Link className="nav-link" to="/Admin">
                   Admin
                 </Link>{" "}
               </NavItem>
