@@ -69,6 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# View Website (Heroku Link)
+# View Website
 This project can be viewed at: https://uf-ace-website.herokuapp.com/#/
 
