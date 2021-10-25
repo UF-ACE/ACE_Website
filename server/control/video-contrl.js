@@ -1,8 +1,4 @@
-
-
-
 const Video = require('../models/video-model')
-
 
 getVideobyTitle = async (req, res) => {
     await Video.findOne({ _id: req.params.id }, (err, video) => {
@@ -33,17 +29,24 @@ getVideos = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+deleteVideoByTitle = async (req, res) => {
+    await VIdeo.findOneAndDelete({ _id: req.params.id }, (err, video) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
 
+        if (!video) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Video not found` })
+        }
 
-
-
-
-
-
-
-
+        return res.status(200).json({ success: true, data: video })
+    }).catch(err => console.log(err))
+}
 
 module.exports = {
     getVideos,
     getVideobyTitle,
+    deleteVideoByTitle,
 }

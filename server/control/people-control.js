@@ -1,6 +1,5 @@
 const Person = require('../models/person-model')
 
-
 getPersonByTitle = async (req, res) => {
     await Person.findOne({ _id: req.params.id }, (err, person) => {
         if (err) {
@@ -30,17 +29,24 @@ getPeople = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+deletePersonByName = async (req, res) => {
+    await Person.findOneAndDelete({ _id: req.params.id }, (err, people) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
 
+        if (!people) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Person not found` })
+        }
 
-
-
-
-
-
-
-
+        return res.status(200).json({ success: true, data: people })
+    }).catch(err => console.log(err))
+}
 
 module.exports = {
     getPeople,
     getPersonByTitle,
+    deletePersonByName,
 }
