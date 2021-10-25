@@ -3,7 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = require('./db/index')
-const movieRouter = require('./routes/movie-router')    // TODO
+const videoRouter = require('./routes/video-router')
+const personRouter = require('./routes/person-router')    
 
 const app = express()
 const apiPort = 3000
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.use('/api', movieRouter)    // TODO
+app.use('/api', videoRouter)
+app.use('/api', personRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
