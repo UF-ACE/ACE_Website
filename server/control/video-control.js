@@ -10,7 +10,7 @@ getVideobyTitle = async (req, res) => { // Find a single video with a given titl
         if (!video) {
             return res
                 .status(404)
-                .json({ success: false, error: `Video not found` })
+                .json({ success: false, error: 'Video not found' })
         }
         return res.status(200).json({ success: true, data: video })
     }).catch(err => console.log(err))
@@ -24,7 +24,7 @@ getVideos = async (req, res) => {   // Finds all videos
         if (!videos.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Videos not found` })
+                .json({ success: false, error: 'Videos not found' })
         }
         return res.status(200).json({ success: true, data: videos })
     }).catch(err => console.log(err))
@@ -44,7 +44,7 @@ getVideosbyTag = async(req, res) => {   // Finds all videos with a given tag
     }).catch(err => console.log(err))
 }
 
-updateVideo = async (req, res) => { // Finds and updates a video based on its title
+updateVideo = async (req, res) => { // Finds and updates a video with a given title
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -81,10 +81,57 @@ updateVideo = async (req, res) => { // Finds and updates a video based on its ti
     })
 }
 
+deleteVideobyTitle = async (req, res) => {  // Finds and deletes a video with a given title
+    await Video.findOneAndDelete({ title: req.params.title }, (err, video) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!video) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Video not found' })
+        }
+
+        return res.status(200).json({ success: true, data: video })
+    }).catch(err => console.log(err))
+}
+
+createVideo = async (req, res) => { // Creates a video entry
+    const body = req.body
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a video',
+        })
+    }
+    const video = new Video(body)
+    if (!video) {
+        return res.status(400).json({ success: false, error: err })
+    }
+    video
+        .save()
+        .then(() => {
+            return res.status(201).json({
+                success: true,
+                id: video._id,
+                message: 'Video created',
+            })
+        })
+        .catch(error => {
+            return res.status(400).json({
+                error,
+                message: 'Video not created',
+            })
+        })
+}
+
 
 module.exports = {
     getVideos,
     getVideobyTitle,
     getVideosbyTag,
     updateVideo,
+    deleteVideobyTitle,
+    createVideo,
 }

@@ -4,9 +4,9 @@ const VideoCtrl = require('../control/video-control')
 
 const router = express.Router()
 
-//router.post('/movie', MovieCtrl.createMovie)
+router.post('/video', VideoCtrl.createVideo)
 router.put('/video/:title', VideoCtrl.updateVideo)
-//router.delete('/movie/:id', MovieCtrl.deleteMovie)
+router.delete('/video/:title', VideoCtrl.deleteVideobyTitle)
 router.get('/video/:title', VideoCtrl.getVideobyTitle)
 router.get('/videos', VideoCtrl.getVideos)
 router.get('/videos/:tag', VideoCtrl.getVideosbyTag)
