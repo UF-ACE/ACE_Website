@@ -16,7 +16,6 @@ function AddOfficersPage() {
               <input type="file" />
 
               <button className="submit_button">Submit</button>
-              <button className="submit_button">Submit</button>
             </form>
           </div>
 
