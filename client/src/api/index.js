@@ -17,6 +17,13 @@ export const getPeoplebyTitle = title => api.get(`/people/${title}`)
 export const updatePerson = (name, payload) => api.put(`/person/${name}`, payload)
 export const deletePersonbyName = name => api.delete(`/person/${name}`)
 export const getPersonbyTitle = title => api.get(`/person/${title}`)
+export const getPersonbyEmail = email => api.get(`/person/${email}`)
+
+export const createSponsor = payload => api.post(`/sponsor`, payload)
+export const getSponsors = () => api.get(`/sponsors`)
+export const getSponsorbyName = name => api.get(`/sponsor/${name}`)
+export const updateSponsor = (name, payload) => api.put(`/sponsor/${name}`, payload)
+export const deleteSponsorbyName = name => api.delete(`/sponsor/${name}`)
 
 const apis = {
     createVideo,
@@ -31,6 +38,12 @@ const apis = {
     updatePerson,
     deletePersonbyName,
     getPersonbyTitle,
+    getPersonbyEmail,
+    createSponsor,
+    getSponsors,
+    getSponsorbyName,
+    updateSponsor,
+    deleteSponsorbyName,
 }
 
 export default apis

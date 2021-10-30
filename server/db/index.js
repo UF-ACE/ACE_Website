@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-const uri = "mongodb+srv://admin:thisisatest@realmcluster.vxfv2.mongodb.net/ACESite?retryWrites=true&w=majority"
+require('dotenv').config()
+const uri = process.env.URI
 
 mongoose
     .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

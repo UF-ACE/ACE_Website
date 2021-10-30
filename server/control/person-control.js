@@ -16,6 +16,21 @@ getPersonbyTitle = async (req, res) => {    // Finds a single person with a give
     }).catch(err => console.log(err))
 }
 
+getPersonbyEmail = async (req, res) => {    // Finds a single person with a given email
+    await Person.findOne({ email: req.params.email }, (err, person) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!person) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Person not found' })
+        }
+        return res.status(200).json({ success: true, data: person })
+    }).catch(err => console.log(err))
+}
+
 getPeople = async (req, res) => {   // Finds all people
     await Person.find({}, (err, people) => {
         if (err) {
@@ -132,6 +147,7 @@ createPerson = async (req, res) => {    // Create a person entry
 module.exports = {
     getPeople,
     getPersonbyTitle,
+    getPersonbyEmail,
     getPeoplebyTitle,
     updatePerson,
     deletePersonbyName,
