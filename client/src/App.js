@@ -8,9 +8,8 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./features/Footer.js";
 import LearnPage from "./pages/LearnPage.js";
-import AddOfficersPage from "./pages/AddOfficersPage.js";
+import AddOfficersPage from "./pages/AdminDashboard/AddOfficersPage.js";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import AddLearnPage from "./pages/AddLearnPage";
 
 function App() {
   return (
@@ -33,9 +32,6 @@ function App() {
             </Route>
             <Route path="/Admin">
               <AddOfficersPage />
-            </Route>
-            <Route path="/AdminLearn">
-              <AddLearnPage />
             </Route>
           </Switch>
         </div>
