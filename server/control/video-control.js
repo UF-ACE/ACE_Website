@@ -61,7 +61,6 @@ updateVideo = async (req, res) => { // Finds and updates a video with a given ti
         }
         video.title = body.title
         video.link = body.link
-        video.description = body.description
         video.tags = body.tags
         video
             .save()
