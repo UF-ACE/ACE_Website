@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import firebase from "./firebase";
 import { VideoInput } from './VideoInput';
 import VideoThumbnail from "../features/VideoThumbnail";
-import "./AddOfficersPage.css";
+import "./AdminDashboard/AddOfficersPage.css";
 import "./LearnPage.css";
 import { NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -24,7 +24,7 @@ function AddLearnPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
-    const description = e.target.description.value;
+    const description = e.target.description.value
     const tag = e.target.tag.value;
     const videoID = e.target.videoID.value;
     if (!title) {
