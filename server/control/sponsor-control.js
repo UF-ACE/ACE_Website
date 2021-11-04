@@ -30,7 +30,7 @@ getSponsors = async (req, res) => {     // Finds all sponsors
     }).catch(err => console.log(err))
 }
 
-updateSponsor = async (req, res) => { // Finds and updates a sponsor with a given name
+updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with a given name
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -112,11 +112,68 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
         })
 }
 
+updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique database ID
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Sponsor.findOne({ _id: req.params.id }, (err, sponsor) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Sponsor not found!',
+            })
+        }
+        sponsor.name = body.name
+        sponsor.description = body.description
+        sponsor.linkedin = body.linkedin
+        sponsor.link = body.link
+        sponsor
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: sponsor._id,
+                    message: 'Sponsor updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Sponsor not updated!',
+                })
+            })
+    })
+}
+
+deleteSponsorbyID = async (req, res) => {
+    await Sponsor.findOneAndDelete({ _id: req.params.id }, (err, sponsor) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!sponsor) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Sponsor not found` })
+        }
+
+        return res.status(200).json({ success: true, data: sponsor })
+    }).catch(err => console.log(err))
+}
+
 
 module.exports = {
     getSponsors,
     getSponsorbyName,
-    updateSponsor,
+    updateSponsorbyName,
+    updateSponsorbyID,
     deleteSponsorbyName,
+    deleteSponsorbyID,
     createSponsor,
 }

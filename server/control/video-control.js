@@ -44,7 +44,7 @@ getVideosbyTag = async(req, res) => {   // Finds all videos with a given tag
     }).catch(err => console.log(err))
 }
 
-updateVideo = async (req, res) => { // Finds and updates a video with a given title
+updateVideobyTitle = async (req, res) => { // Finds and updates a video with a given title
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -60,6 +60,7 @@ updateVideo = async (req, res) => { // Finds and updates a video with a given ti
             })
         }
         video.title = body.title
+        video.description = body.description
         video.link = body.link
         video.tags = body.tags
         video
@@ -125,12 +126,70 @@ createVideo = async (req, res) => { // Creates a video entry
         })
 }
 
+updateVideobyID = async (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Video.findOne({ _id: req.params.id }, (err, video) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Video not found!',
+            })
+        }
+        video.title = body.title
+        video.description = body.description
+        video.link = body.link
+        video.tags = body.tags
+        video
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: video._id,
+                    message: 'Video updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Video not updated!',
+                })
+            })
+    })
+}
+
+deleteVideobyID = async (req, res) => {
+    await Video.findOneAndDelete({ _id: req.params.id }, (err, video) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!video) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Video not found` })
+        }
+
+        return res.status(200).json({ success: true, data: video })
+    }).catch(err => console.log(err))
+}
+
+
 
 module.exports = {
     getVideos,
     getVideobyTitle,
     getVideosbyTag,
-    updateVideo,
+    updateVideobyTitle,
+    updateVideobyID,
+    deleteVideobyID,
     deleteVideobyTitle,
     createVideo,
 }
