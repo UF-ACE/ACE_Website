@@ -1,0 +1,70 @@
+.test_input{
+    padding-bottom: 100px;
+}
+.input_form  {
+    margin-left: 40px;
+}
+.input_form > * > *{
+    padding: 10px;
+    margin-right: 4px;
+    position: relative;
+    /* background-color: red; */
+}
+.submit_button{
+    
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 5px !important;
+    border-color: white;
+    margin-right:5px;
+    padding: 10px;
+    background-color: #282c33;
+    color: white;
+}
+.submit_button:hover{
+    
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 5px !important;
+    border-color: white;
+    margin-right:5px;
+    padding: 10px;
+    background-color: white;
+    color: #282c33;
+}
+.modify_page{
+    padding-top: 150px;
+}
+.inputFile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputFile + label{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 5px !important;
+    border-color: white;
+    margin-right:5px;
+    padding: 10px;
+    background-color: #282c33;
+    color: white;
+}
+.inputFile + label:hover{
+    
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border: 5px !important;
+    border-color: white;
+    margin-right:5px;
+    padding: 10px;
+    background-color: white;
+    color: #282c33;
+}
