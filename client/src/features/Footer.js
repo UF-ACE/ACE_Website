@@ -41,7 +41,18 @@ const Footer = () => {
                 </Button>
               </Row>
           </Col>
-          <Col className="p-0" md={3}>
+          <Col className="p-0" md={6}>
+            <Row>
+              <h1>Admin Login</h1>
+              <div className="test_input">
+                <div className="input_form">
+                    <form>
+                      <input type="text" name="name" placeholder="Password" />
+                      <button className="submit_button">Submit</button>
+                    </form>
+                  </div>
+                </div>
+            </Row>
             <h5>Association of Software Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}

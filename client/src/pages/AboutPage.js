@@ -21,14 +21,14 @@ function AboutPage() {
   return (
     <div className="aboutpage">
       <h1> Founded in 2014</h1>
-      <h3>
+      <p>
         The Association of Computer Engineers serves as a community dedicated to
         representing the union of computer science and electrical engineering.
         We provide an opportunity for students at the University of Florida to
         develop their technical skills, learn from upperclassmen, and develop as
         professionals. Come out to one of our events and meet an amazing group
         of students to help you through your academic journey.
-      </h3>
+      </p>
 
       <h2>Sponsors</h2>
       <div className="about_sponsors">
