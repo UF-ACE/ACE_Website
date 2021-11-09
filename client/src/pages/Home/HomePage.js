@@ -10,7 +10,7 @@ function HomePage() {
       <div className={styles.callToAction}>
         <h1 className={styles.h1}>
           Forget your classes office hours, just{"  "}
-          <img className={styles.img} src={logo} />
+          <img className={styles.img} src={logo} alt="ACE Logo" />
           {"  "} it
         </h1>
       </div>
