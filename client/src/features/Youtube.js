@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 require('dotenv').config();
 const APIKey = process.env.REACT_APP_YOUTUBE_API_KEY //API key
-const channelID = process.env.REACT_APP_CHANNEL_ID //Youtube Channel ID
+const channelID = UCGGG_yIpk2LKlmNA498Y8Hg
 const resultMax = 50;
 
 const selfURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelID}&maxResults=${resultMax}&order=date&key=${APIKey}`
