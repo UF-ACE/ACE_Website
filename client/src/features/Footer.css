@@ -1,3 +1,4 @@
+/*
 .footer > ul {
 	display: inline-grid;
 	grid-auto-flow: row;
@@ -33,8 +34,9 @@
 	animation: wave-animation 0.3s infinite;
   }
   
-  /* below is just for demo styling */
+  below is just for demo styling 
   
+  /*
   .footer {
 	display: flex;
 	height: 30vh;
@@ -63,3 +65,5 @@
 	color: #eeeeee;
 	margin-top: -15px !important;
   }
+
+  */

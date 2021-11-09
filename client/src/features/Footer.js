@@ -12,37 +12,47 @@ const Footer = () => {
       <Container fluid={true}>
         <Row className="border-top justify-content-between p-3">
           <Col>
-          <h5>Contact Us</h5>
-              <Row className="mb-3">
-                <Form.Group className="mr-3">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control size="sm" type="text"/>
-                </Form.Group>
-                <Form.Group className="ml-3">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control size="sm" type="text"/>
-                </Form.Group>
-              </Row>
-              <Row>
-                <Form.Group>
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control size="sm" type="email" placeholder="example@example.com" />
-                </Form.Group> 
-              </Row>
-              <Row>
-                <Form.Group>
-                  <Form.Label className="mr-3">Message</Form.Label>
-                  <Form.Control as="textarea" size="sm" type="text" style={{width: "35vw", height: "100px"}}/>
-                </Form.Group>
-              </Row>
-              <Row>
-                <Button variant="primary" type="submit" className="text-center mb-3">
-              Submit
-                </Button>
-              </Row>
+            {/*This should be a component*/}
+            <h5>Contact Us</h5>
+            <Row className="mb-3">
+              <Form.Group className="mr-3">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control size="sm" type="text" />
+              </Form.Group>
+              <Form.Group className="ml-3">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control
+                  size="sm"
+                  type="email"
+                  placeholder="example@example.com"
+                />
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group>
+                <Form.Label className="mr-3">Message</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  size="sm"
+                  type="text"
+                  style={{ width: "35vw", height: "100px" }}
+                />
+              </Form.Group>
+            </Row>
+            <Row>
+              <Button
+                variant="primary"
+                type="submit"
+                className="text-center mb-3"
+              >
+                Submit
+              </Button>
+            </Row>
           </Col>
+          {/*This should be a component*/}
           <Col className="p-0" md={3}>
-            <h5>Association of Software Engineers</h5>
+            {/*This should be a component*/}
+            <h5>Association of Computer Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}
             <Nav className="ml-auto" bg="dark">
