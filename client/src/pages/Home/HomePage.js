@@ -16,7 +16,7 @@ function HomePage() {
       </div>
       <div className={styles.background_video}>
         {/*Make the embedId a .env variable*/}
-        <HomeYoutube embedId="kffacxfA7G4" />
+        <HomeYoutube embedId="wY55CdGx4H0" />
       </div>
       <h1 className={styles.h1}>Check out the events coming up this month!</h1>
       <div className={styles.background_video}>
