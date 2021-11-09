@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import { Nav, Form, Button } from "react-bootstrap";
 import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
@@ -48,7 +50,8 @@ const Footer = () => {
                 <div className="input_form">
                     <form>
                       <input type="text" name="name" placeholder="Password" />
-                      <button className="submit_button">Submit</button>
+                      
+                      <button className="submit_button"><Link to = "/Admin">Submit</Link></button>
                     </form>
                   </div>
                 </div>

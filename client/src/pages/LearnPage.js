@@ -2,6 +2,7 @@ import React from "react";
 import VideoThumbnail from "../features/VideoThumbnail";
 import "./LearnPage.css";
 import firebase from "./firebase";
+import Pagination from 'react-bootstrap/Pagination'
 
 function LearnPage() {
   const [videos, setVideos] = React.useState([]);
@@ -30,7 +31,7 @@ function LearnPage() {
             </div>
         ))}
 
-      <section id="pagination" class="d-flex justify-content-center">
+      {/* <section id="pagination" class="d-flex justify-content-center">
         <nav aria-label="...">
           <ul class="pagination">
             <li class="page-item disabled">
@@ -46,7 +47,18 @@ function LearnPage() {
             </li>
           </ul>
         </nav>
-      </section>
+      </section> */}
+
+      <Pagination className = "pagination">
+        <Pagination.First />
+        <Pagination.Prev />
+        <Pagination.Item active>{1}</Pagination.Item>
+        <Pagination.Item >{2}</Pagination.Item>
+        <Pagination.Item >{3}</Pagination.Item>
+        <Pagination.Ellipsis />
+        <Pagination.Next />
+        <Pagination.Last />
+      </Pagination>
     </div>
   );
 }
