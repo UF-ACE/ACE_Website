@@ -1,7 +1,7 @@
 .aboutpage {
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 30px;
-  text-align: center;
+  font-family: 'Times New Roman', serif;
 }
 .aboutpage > h5 {
   padding-top: 30px;
@@ -29,3 +29,16 @@
   padding-top: 30px;
   background-color: red;
 }
+
+.about_text > h2 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  font-weight: bold;
+  text-align: left;
+}
+
+.about_text > p {
+  font-size: 1rem;
+  text-align: left;
+}
+
