@@ -1,15 +1,14 @@
 import React from "react";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./features/NavigationBar";
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-// import ProjectsPage from './pages/ProjectsPage';
-import ContactPage from "./pages/ContactPage";
+import HomePage from "./pages/Home/HomePage";
+import AboutPage from "./pages/About/AboutPage";
 import Footer from "./features/Footer.js";
-import LearnPage from "./pages/LearnPage.js";
+import LearnPage from "./pages/Learn/LearnPage.js";
 import AddOfficersPage from "./pages/AdminDashboard/AddOfficersPage.js";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
@@ -26,9 +25,6 @@ function App() {
             </Route>
             <Route path="/Learn">
               <LearnPage />
-            </Route>
-            <Route path="/Contact">
-              <ContactPage />
             </Route>
             <Route path="/Admin">
               <AddOfficersPage />

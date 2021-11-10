@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./BackgroundImage.module.css";
-import image from "./background.png";
+import image from "../imgs/background.png";
 function BackgroundImage() {
   return (
     <div className={classes.BackgroundImage}>
