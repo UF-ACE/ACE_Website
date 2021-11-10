@@ -64,7 +64,7 @@
   width: 100%;
   background-color: #212529;
   line-height: 1.3;
-  font-family: Menlo, monospace;
+  font-family: 'Times New Roman', serif;
   text-decoration: none;
 }
 
@@ -85,3 +85,4 @@
   color: #eeeeee;
   margin-top: -15px !important;
 }
+

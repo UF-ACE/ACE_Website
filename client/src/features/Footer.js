@@ -41,11 +41,12 @@ const Footer = () => {
                 />
               </Form.Group>
             </Row>
-            <Row>
+            <Row xs={6}>
               <Button
-                variant="primary"
+                variant="secondary"
                 type="submit"
-                className="text-center mb-3"
+                size="sm"
+                className="text-center mt-3"
               >
                 Submit
               </Button>
@@ -58,8 +59,11 @@ const Footer = () => {
                 <div className="input_form">
                     <form>
                       <input type="text" name="name" placeholder="Password" />
-                      
-                      <button className="submit_button"><Link to = "/Admin">Submit</Link></button>
+                      <Button 
+                      variant="secondary"
+                      size="sm"
+                      type="submit"
+                      className="submit_button"><Link to = "/Admin">Submit</Link></Button>
                     </form>
                   </div>
                 </div>
