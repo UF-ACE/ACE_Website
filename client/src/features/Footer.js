@@ -5,13 +5,15 @@ import Col from "react-bootstrap/Col";
 import { Nav, Form, Button } from "react-bootstrap";
 import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
   return (
     <footer className={styles.mt_5} bg="dark">
       <Container fluid={true}>
         <Row className="border-top justify-content-between p-3">
-          <Col>
+        <Col>
             {/*This should be a component*/}
             <h5>Contact Us</h5>
             <Row className="mb-3">
@@ -39,20 +41,34 @@ const Footer = () => {
                 />
               </Form.Group>
             </Row>
-            <Row>
+            <Row xs={6}>
               <Button
-                variant="primary"
+                variant="secondary"
                 type="submit"
-                className="text-center mb-3"
+                size="sm"
+                className="text-center mt-3"
               >
                 Submit
               </Button>
             </Row>
           </Col>
-          {/*This should be a component*/}
-          <Col className="p-0" md={3}>
-            {/*This should be a component*/}
-            <h5>Association of Computer Engineers</h5>
+          <Col className="p-0" md={6}>
+            <Row>
+              <h1>Admin Login</h1>
+              <div className="test_input">
+                <div className="input_form">
+                    <form>
+                      <input type="text" name="name" placeholder="Password" />
+                      <Button 
+                      variant="secondary"
+                      size="sm"
+                      type="submit"
+                      className="submit_button"><Link to = "/Admin">Submit</Link></Button>
+                    </form>
+                  </div>
+                </div>
+            </Row>
+            <h5>Association of Software Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}
             <Nav className="ml-auto" bg="dark">

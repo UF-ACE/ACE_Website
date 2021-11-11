@@ -10,7 +10,6 @@ const selfURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&chann
 
 
 async function updateDatabase(link, title, description) {
-    var breakCondition = false;
     for (let i = 0; i < title.length; i++) {
         if (link[i] === "https://www.youtube.com/embed/undefined") {    // Bad video entry retrieved from YouTube
             i++;
@@ -20,7 +19,6 @@ async function updateDatabase(link, title, description) {
         await apis.getVideobyTitle(query) 
             .then(function({breakCondition}){   // Video is found (already exists in the database)
                 console.log('Video already exists');
-                breakCondition = true;
             }).catch(function(){    // Video was not found (does not exist in the database)
                 console.log('Creating database entry')
                 var entry = { title: title[i], description: description[i], link: link[i], tags: [] };
@@ -32,9 +30,6 @@ async function updateDatabase(link, title, description) {
                         console.log('Video could not be added')
                     })
             })
-            if (breakCondition) {
-                break;
-            }
     }
 }
 
