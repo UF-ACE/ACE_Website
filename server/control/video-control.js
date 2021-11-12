@@ -2,7 +2,7 @@ const Video = require('../models/video-model')
 
 
 getVideobyTitle = async (req, res) => { // Find a single video with a given title
-    await Video.findOne({ title: req.params.title }, (err, video) => {
+    await Video.findOne({ $text: { $search: `\"${req.params.title}\"` } }, (err, video) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

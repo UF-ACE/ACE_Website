@@ -5,6 +5,8 @@ const db = require('./db/index')
 const videoRouter = require('./routes/video-router')
 const personRouter = require('./routes/person-router')    
 const sponsorRouter = require('./routes/sponsor-router')
+const tagRouter = require('./routes/sponsor-router')
+
 
 const app = express()
 const apiPort = 3000
@@ -22,5 +24,6 @@ app.get('/', (req, res) => {
 app.use('/api', videoRouter)
 app.use('/api', personRouter)
 app.use('/api', sponsorRouter)
+app.use('/api', tagRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

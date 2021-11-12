@@ -11,12 +11,13 @@ const selfURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&chann
 
 async function updateDatabase(link, title, description) {
     for (let i = 0; i < title.length; i++) {
-        if (title[i] === "UF ACE") {
+        if (link[i] === "https://www.youtube.com/embed/undefined") {    // Bad video entry retrieved from YouTube
             i++;
             continue;
         }
-        await apis.getVideobyTitle(title[i])
-            .then(function(){   // Video is found (already exists in the database)
+        var query = title[i].replaceAll('/', '%2f') 
+        await apis.getVideobyTitle(query) 
+            .then(function({breakCondition}){   // Video is found (already exists in the database)
                 console.log('Video already exists');
             }).catch(function(){    // Video was not found (does not exist in the database)
                 console.log('Creating database entry')
@@ -35,11 +36,9 @@ async function updateDatabase(link, title, description) {
 class Youtube extends Component {
     
     clicked(){
-        
         fetch(selfURL)
             .then((response) => response.json ())
             .then((responseJson) => {
-                console.log(responseJson)
                 const link = responseJson.items.map(obj => "https://www.youtube.com/embed/"+obj.id.videoId)
                 const title = responseJson.items.map(obj => obj.snippet.title)
                 const description = responseJson.items.map(obj => obj.snippet.description)
@@ -52,8 +51,6 @@ class Youtube extends Component {
             })
     }      
 
-    
-    
     render(){
           
         return(
