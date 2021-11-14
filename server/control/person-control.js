@@ -79,6 +79,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
+        person.imageURL = body.imageURL
         person.password = body.password
         person
             .save()
@@ -165,6 +166,7 @@ updatePersonbyID = async (req, res) => {
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
+        person.imageURL = body.imageURL;
         person.password = body.password
         person
             .save()
