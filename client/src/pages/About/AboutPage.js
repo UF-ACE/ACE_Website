@@ -96,7 +96,7 @@ class AboutPage extends Component {
   componentDidMount = async () => {
     this.setState({isLoadingOfficers: true, isLoadingSponsors: true})
 
-    await api.getPeople().then(officers => {
+    await api.getPeoplebyOfficer(true).then(officers => {
       this.setState({
         officers: officers.data.data,
         isLoadingOfficers: false,
