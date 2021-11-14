@@ -1,7 +1,5 @@
-//import React from "react";
 import "./AboutPage.css";
 import React, { Component } from 'react'
-import ReactTable from 'react-table'
 import ProfileSponsor from "../../features/ProfileSponsor.js";
 import ProfileOfficer from "../../features/ProfileOfficer.js";
 //import jpm_logo from "../imgs/jpm-logo.jpg";
@@ -88,51 +86,82 @@ class AboutPage extends Component {
         names: [],
         sponsors: [],
         columns: [],
-        isLoading: false,
+        isLoadingOfficers: false,
+        isLoadingSponsors: false,
     }
   }
 
   on
 
   componentDidMount = async () => {
-    this.setState({isLoading: true})
+    this.setState({isLoadingOfficers: true, isLoadingSponsors: true})
 
     await api.getPeople().then(officers => {
       this.setState({
         officers: officers.data.data,
-        isLoading: false,
+        isLoadingOfficers: false,
       })
     })
 
-    /*this.setState({isLoading: true})
 
     await api.getSponsors().then(sponsors =>{
       this.setState({
         sponsors: sponsors.data.data,
-        isLoading: false,
+        isLoadingSponsors: false,
       })
-    })*/
+    })
   }
 
   render() {
 
-    if (this.state.isLoading)
+    if (this.state.isLoadingOfficers)
     {
       return null;
     }
 
-    //var officerNames = this.state.officers.map(names => <div> {names}</div>);
-    const officers = this.state.officers;
-    const officerProfiles = officers.map((officer) =>
-      <div key = {officer._id}>
-        <ProfileOfficer
-        title = {officer.title}
-        name = {officer.name}
-        linkedin = {officer.linkedin}
-        email = {officer.email}
-        />
-      </div>  
-    )
+    let officers;
+    let officerProfiles;
+    let sponsors;
+    let sponsorProfiles;
+
+    if (this.state.officers.length != 0)
+    {
+      officers = this.state.officers;
+      officerProfiles = officers.map((officer) =>
+        <div key = {officer._id}>
+          <ProfileOfficer
+          title = {officer.title}
+          name = {officer.name}
+          linkedin = {officer.linkedin}
+          email = {officer.email}
+          />
+        </div>
+      )     
+    }
+    else
+    {
+      officers = null;
+      officerProfiles = null;
+    }
+
+    if (this.state.sponsors.length != 0)
+    {
+      sponsors = this.state.sponsors;
+      sponsorProfiles = sponsors.map((sponsor) =>
+        <div key = {sponsor._id}>
+          <ProfileSponsor
+            src = {sponsor.name}
+            description = {sponsor.description}
+            linkedin = {sponsor.linkedin}
+            site = {sponsor.site}
+          />
+        </div>  
+      )
+    }
+
+
+
+    
 
     return(
       <div className = "AboutPage">
@@ -145,13 +174,16 @@ class AboutPage extends Component {
           professionals. Come out to one of our events and meet an amazing group
           of students to help you through your academic journey.
         </h3>
+        <h2>Sponsors</h2>
+        <div className = "about_sponsors">
+          {sponsorProfiles}
+        </div>
         <h2>Officers</h2>
         <div className="about_officers">
-          <div className="about_officers">
-              {officerProfiles}
-          </div>
-              
-          </div>
+            {officerProfiles}  
+        </div>
+        
+
       </div>  
       
 
