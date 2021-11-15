@@ -121,10 +121,11 @@ class AboutPage extends Component {
       officerProfiles = officers.map((officer) =>
         <div key = {officer._id}>
           <ProfileOfficer
-          title = {officer.title}
-          name = {officer.name}
-          linkedin = {officer.linkedin}
-          email = {officer.email}
+            src = {officer.imageURL}
+            title = {officer.title}
+            name = {officer.name}
+            linkedin = {officer.linkedin}
+            email = {officer.email}
           />
         </div>
       )     
@@ -149,7 +150,7 @@ class AboutPage extends Component {
         </div>  
       )
     }
-    
+
     return(
       <div className = "AboutPage">
         <h1> Founded in 2014</h1>
