@@ -83,15 +83,11 @@ class AboutPage extends Component {
     super(props);
     this.state = {
         officers: [],
-        names: [],
         sponsors: [],
-        columns: [],
         isLoadingOfficers: false,
         isLoadingSponsors: false,
     }
   }
-
-  on
 
   componentDidMount = async () => {
     this.setState({isLoadingOfficers: true, isLoadingSponsors: true})
@@ -114,17 +110,12 @@ class AboutPage extends Component {
 
   render() {
 
-    if (this.state.isLoadingOfficers)
-    {
-      return null;
-    }
-
     let officers;
     let officerProfiles;
     let sponsors;
     let sponsorProfiles;
 
-    if (this.state.officers.length != 0)
+    if (!this.state.isLoadingOfficers && this.state.officers.length != 0)
     {
       officers = this.state.officers;
       officerProfiles = officers.map((officer) =>
@@ -144,7 +135,7 @@ class AboutPage extends Component {
       officerProfiles = null;
     }
 
-    if (this.state.sponsors.length != 0)
+    if (!this.state.isLoadingSponsors && this.state.sponsors.length != 0)
     {
       sponsors = this.state.sponsors;
       sponsorProfiles = sponsors.map((sponsor) =>
