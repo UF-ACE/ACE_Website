@@ -149,11 +149,7 @@ class AboutPage extends Component {
         </div>  
       )
     }
-
-
-
     
-
     return(
       <div className = "AboutPage">
         <h1> Founded in 2014</h1>
