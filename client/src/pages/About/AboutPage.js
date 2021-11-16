@@ -81,6 +81,7 @@ class AboutPage extends Component {
         <div key = {alumnus._id}>
           <ProfileOfficer
             src = {alumnus.imageURL}
+            title = {alumnus.title}
             name = {alumnus.name}
             linkedin = {alumnus.linkedin}
             email = {alumnus.email}
