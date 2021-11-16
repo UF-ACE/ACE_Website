@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import apis from "../api/index"
-require('dotenv').config();
+
+require('dotenv').config()
 const APIKey = process.env.REACT_APP_YOUTUBE_API_KEY //API key
 const channelID = 'UCGGG_yIpk2LKlmNA498Y8Hg' //Web Channel ID
 const resultMax = 50;

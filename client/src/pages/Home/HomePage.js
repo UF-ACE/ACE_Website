@@ -5,6 +5,8 @@ import Youtube from "../../features/Youtube";
 import logo from "../../imgs/logo-min.png";
 import styles from "./HomePage.module.css";
 
+require('dotenv').config()
+
 function HomePage() {
   return (
     <div className={styles.homepage}>
@@ -17,7 +19,7 @@ function HomePage() {
       </div>
       <div className={styles.background_video}>
         {/*Make the embedId a .env variable*/}
-        <HomeYoutube embedId="wY55CdGx4H0" />
+        <HomeYoutube embedId={ process.env.REACT_APP_HOME_VIDEO_EMBED_ID } />
       </div>
       <h1 className={styles.h1}>Check out the events coming up this month!</h1>
       <div className={styles.background_video}>
