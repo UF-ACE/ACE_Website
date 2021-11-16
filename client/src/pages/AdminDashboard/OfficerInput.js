@@ -104,11 +104,106 @@ import api from "../../api"
 class OfficerInput extends Component {
     constructor(props) {
         super(props);
+
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeTitle = this.onChangeTitle.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
+
         this.state = {
             officers: [],
-            //officer: 
+            officer: null,
+            name: '',
+            title: '',
+            email: '',
+            linkedin: '',
         }
-      }
+    }
+
+    onChangeName(e) {
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    onChangeTitle(e) {
+        this.setState({
+            title: e.target.value
+        });
+    }
+
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+    onChangeLinkedin(e) {
+        this.setState({
+            linkedin: e.target.value
+        });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const officer = {
+            name: this.state.name,
+            title: this.state.title,
+            email: this.state.email,
+            linkedin: this.state.linkedin
+        }
+
+        console.log(officer.name);
+
+        window.location = '/';
+    }
+
+    render() {
+        return (
+            <div className = "officer_input">
+                <form onSubmit = {this.onSubmit}>
+                    <div className = "form-group">
+                        <label>Name:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.name}
+                            onChange={this.onChangeName}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Title:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.title}
+                            onChange={this.onChangeTitle}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Email:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.onChangeEmail}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Linkedin:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.linkedin}
+                            onChange={this.onChangeLinkedin}
+                        />
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
 }
 
 export default OfficerInput;
