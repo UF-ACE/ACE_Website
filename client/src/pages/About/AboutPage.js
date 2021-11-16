@@ -2,11 +2,8 @@ import "./AboutPage.css";
 import React, { Component } from 'react'
 import ProfileSponsor from "../../features/ProfileSponsor.js";
 import ProfileOfficer from "../../features/ProfileOfficer.js";
-//import jpm_logo from "../imgs/jpm-logo.jpg";
 import api, { getPeoplebyOfficer } from "../../api/index.js"
-import styled from 'styled-components'
-import axios from 'axios'
-//import 'react-table/react-table.css'
+import styles from "./AboutPage.css";
 
 
 /*function AboutPage() {
@@ -142,7 +139,8 @@ class AboutPage extends Component {
       sponsorProfiles = sponsors.map((sponsor) =>
         <div key = {sponsor._id}>
           <ProfileSponsor
-            src = {sponsor.name}
+            //imageURL = {sponsor.imageURL}
+            name = {sponsor.name}
             description = {sponsor.description}
             linkedin = {sponsor.linkedin}
             site = {sponsor.site}
@@ -152,7 +150,7 @@ class AboutPage extends Component {
     }
 
     return(
-      <div className = "AboutPage">
+      <div className = {styles.AboutPage}>
         <h1> Founded in 2014</h1>
         <h3>
           The Association of Computer Engineers serves as a community dedicated to
