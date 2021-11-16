@@ -5,94 +5,33 @@ import ProfileOfficer from "../../features/ProfileOfficer.js";
 import api, { getPeoplebyOfficer } from "../../api/index.js"
 import styles from "./AboutPage.css";
 
-
-/*function AboutPage() {
-  //const [officers, setOfficers] = React.useState([]);
-
-  /*React.useEffect( () => {
-    const db = firebase.firestore();
-    return db.collection('officers').onSnapshot((snapshot) => {
-      const officersData = [];
-      snapshot.forEach(doc => officersData.push({ ...doc.data(), id: doc.id }));
-      setOfficers(officersData);
-    });
-}, []);
-
-  const sponsors = api.getSponsors();
-  const officers = api.getPeoplebyOfficer();
- 
-
-  return (
-    <div className="aboutpage">
-      <h1> Founded in 2014</h1>
-      <h3>
-        The Association of Computer Engineers serves as a community dedicated to
-        representing the union of computer science and electrical engineering.
-        We provide an opportunity for students at the University of Florida to
-        develop their technical skills, learn from upperclassmen, and develop as
-        professionals. Come out to one of our events and meet an amazing group
-        of students to help you through your academic journey.
-      </h3>
-      
-      <h2>Sponsors</h2>
-      <div className="about_sponsors">
-        {
-          /*<div key = {sponsors[0].id}>
-            <ProfileSponsor
-              src={sponsors[0].name}
-              description={sponsors[0].description}
-              linkedin={sponsors[0].linkedin}
-              site={sponsors[0].site}
-            />
-        </div>
-        }
-        
-      </div>
-
-      <h2>Officers</h2>
-      <div className="about_officers">
-        
-        <div className="about_officers">
-              {officers.map(function(officer) {
-
-              }
-                <div key = {officer.id}>
-                  <ProfileOfficer
-                    //src={(officer.avatar)}
-                    title = {officer.title}
-                    name = {officer.name}
-                    linkedin = {officer.linkedin}
-                    email = {officer.email}
-                  />
-                </div>
-              ))}
-      </div>
-
-      </div>
-    </div>
-  );
-}*/
-
-
-
 class AboutPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
         officers: [],
+        alumni: [],
         sponsors: [],
         isLoadingOfficers: false,
+        isLoadingAlumni: false,
         isLoadingSponsors: false,
     }
   }
 
   componentDidMount = async () => {
-    this.setState({isLoadingOfficers: true, isLoadingSponsors: true})
+    this.setState({isLoadingOfficers: true, isLoadingAlumni: true, isLoadingSponsors: true})
 
     await api.getPeoplebyOfficer(true).then(officers => {
       this.setState({
         officers: officers.data.data,
         isLoadingOfficers: false,
+      })
+    })
+
+    await api.getPeoplebyOfficer(false).then(alumni => {
+      this.setState({
+        alumni: alumni.data.data,
+        isLoadingAlumni: false,
       })
     })
 
@@ -111,6 +50,8 @@ class AboutPage extends Component {
     let officerProfiles;
     let sponsors;
     let sponsorProfiles;
+    let alumni;
+    let alumniProfiles;
 
     if (!this.state.isLoadingOfficers && this.state.officers.length != 0)
     {
@@ -131,6 +72,26 @@ class AboutPage extends Component {
     {
       officers = null;
       officerProfiles = null;
+    }
+
+    if (!this.state.isLoadingAlumni && this.state.alumni.length != 0)
+    {
+      alumni = this.state.alumni;
+      alumniProfiles = alumni.map((alumnus) =>
+        <div key = {alumnus._id}>
+          <ProfileOfficer
+            src = {alumnus.imageURL}
+            name = {alumnus.name}
+            linkedin = {alumnus.linkedin}
+            email = {alumnus.email}
+          />
+        </div>
+      )     
+    }
+    else
+    {
+      alumni = null;
+      alumniProfiles = null;
     }
 
     if (!this.state.isLoadingSponsors && this.state.sponsors.length != 0)
@@ -167,6 +128,10 @@ class AboutPage extends Component {
         <h2>Officers</h2>
         <div className="about_officers">
             {officerProfiles}  
+        </div>
+        <h2>Alumni</h2>
+        <div className="about_alumni">
+            {alumniProfiles}  
         </div>
         
 
