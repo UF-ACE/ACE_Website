@@ -35,7 +35,7 @@ class LearnPage extends Component{
         <div key = {video._id}>
           <div className = "videos">
             <VideoThumbnail 
-              embedId = {video.link} 
+              embedId = {video.link.substring(video.link.lastIndexOf('/') + 1)} 
               title = {video.title}  
               description = {video.description}
               tags= {video.tags}
