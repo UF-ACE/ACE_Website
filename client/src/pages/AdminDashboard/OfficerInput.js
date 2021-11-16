@@ -1,9 +1,9 @@
-import React from "react";
-import firebase from "./firebase";
+import React, { Component } from "react";
 import "./OfficerInput.css"
+import api from "../../api"
 
-export const OfficerInput = ({officer}) => {
-    const [name, setName] = React.useState(officer.name);
+/*export const OfficerInput = ({officer}) => {
+    /*const [name, setName] = React.useState(officer.name);
     const [role, setRole] = React.useState(officer.role);
     const [email, setEmail] = React.useState(officer.email);
     const [linkedin, setLinkedin] = React.useState(officer.linkedin);
@@ -11,7 +11,7 @@ export const OfficerInput = ({officer}) => {
 
 
     const onUpdate = () => {
-        console.log(fileUrl);
+        /*console.log(fileUrl);
         if (fileUrl != null){
             const db = firebase.firestore();
             // need way to store previous name
@@ -47,20 +47,24 @@ export const OfficerInput = ({officer}) => {
             });
         }
         
+
+
     }
 
     const onDelete = () => {
-        const db = firebase.firestore();
+        /*const db = firebase.firestore();
         db.collection('officers').doc(officer.id).delete();
+        
     }
     // for file upload
     const onFileChange = async (e) =>{
-        const file = e.target.files[0];
+        /*const file = e.target.files[0];
         const storageRef = firebase.storage().ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file);
         setFileUrl( await fileRef.getDownloadURL());
         console.log(fileRef.getDownloadURL());
+        
       }
 
     return (<div className = "officer_input">
@@ -71,7 +75,7 @@ export const OfficerInput = ({officer}) => {
             }}
         />
         <input 
-            value = {role} 
+            value = {title} 
             onChange = {(e) => {
                 setRole(e.target.value);
             }}
@@ -95,4 +99,111 @@ export const OfficerInput = ({officer}) => {
         
     </div>
     );
-};
+};*/
+
+class OfficerInput extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeTitle = this.onChangeTitle.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
+
+        this.state = {
+            officers: [],
+            officer: null,
+            name: '',
+            title: '',
+            email: '',
+            linkedin: '',
+        }
+    }
+
+    onChangeName(e) {
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    onChangeTitle(e) {
+        this.setState({
+            title: e.target.value
+        });
+    }
+
+    onChangeEmail(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+    onChangeLinkedin(e) {
+        this.setState({
+            linkedin: e.target.value
+        });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const officer = {
+            name: this.state.name,
+            title: this.state.title,
+            email: this.state.email,
+            linkedin: this.state.linkedin
+        }
+
+        console.log(officer.name);
+
+        window.location = '/';
+    }
+
+    render() {
+        return (
+            <div className = "officer_input">
+                <form onSubmit = {this.onSubmit}>
+                    <div className = "form-group">
+                        <label>Name:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.name}
+                            onChange={this.onChangeName}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Title:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.title}
+                            onChange={this.onChangeTitle}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Email:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={this.onChangeEmail}
+                        />
+                    </div>
+                    <div className = "form-group">
+                        <label>Linkedin:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.linkedin}
+                            onChange={this.onChangeLinkedin}
+                        />
+                    </div>
+                </form>
+            </div>
+        )
+    }
+
+}
+
+export default OfficerInput;

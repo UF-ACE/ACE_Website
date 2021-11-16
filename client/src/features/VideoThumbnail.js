@@ -10,8 +10,9 @@ function Thumbnail({ embedId, title, description, tags }) {
         <Row>
           <Col>
             <div class = "thumbnail">
-                <a href={"https://www.youtube.com/watch?v=" + embedId}
-                rel="noopener noreferrer" target="_blank">
+                <a href={"https://www.youtube.com/embed/" + embedId}
+                rel="noopener noreferrer" target="_blank"
+                >
                 <img src={"http://img.youtube.com/vi/" + embedId + '/0.jpg'}
                   alt={title} class="img-fluid rounded"/>
                 </a>

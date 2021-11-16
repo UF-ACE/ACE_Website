@@ -55,7 +55,7 @@ getPeoplebyOfficer = async(req, res) => {   // Finds all people whose officer bo
                 .status(404)
                 .json({ success: false, error: 'People not found' })
         }
-        return res.status(200).json({ success: true, data: videos })
+        return res.status(200).json({ success: true, data: people })
     }).catch(err => console.log(err))
 }
 
@@ -79,6 +79,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
+        person.imageURL = body.imageURL
         person.password = body.password
         person
             .save()
@@ -165,6 +166,7 @@ updatePersonbyID = async (req, res) => {
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
+        person.imageURL = body.imageURL;
         person.password = body.password
         person
             .save()
