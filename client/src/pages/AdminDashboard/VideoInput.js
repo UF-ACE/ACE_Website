@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
+import Youtube from "../../features/Youtube"
 import api from "../../api"
 class VideoInput extends Component {
     constructor(props) {
@@ -100,9 +101,9 @@ class VideoInput extends Component {
                         />
                     </div>
                 </form> */}
-                   <h3>Add Video</h3>
+                   {/* <h3>Add Video</h3> */}
                     <div className="test_input">
-                    <div className="input_form">
+                    {/* <div className="input_form">
                         <form>
                         <input type="text" name="title" placeholder="Title" />
                         <input type="text" name="link" placeholder="Link" />
@@ -110,7 +111,12 @@ class VideoInput extends Component {
                         <input type="text" name="Tags" placeholder="Tags" />
                         <button className="submit_button">Submit</button>
                         </form>
-                    </div>
+                    </div> */}
+
+
+                    
+                    {/*Do not click API Call too many times */}
+                    <Youtube />
 
                     <h3>Current Videos</h3>
                     <div className="input_form">
