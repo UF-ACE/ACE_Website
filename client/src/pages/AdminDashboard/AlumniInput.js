@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
-class VideoInput extends Component {
+class AlumniInput extends Component {
     constructor(props) {
         super(props);
 
@@ -100,34 +100,42 @@ class VideoInput extends Component {
                         />
                     </div>
                 </form> */}
-                   <h3>Add Video</h3>
-                    <div className="test_input">
-                    <div className="input_form">
-                        <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
-                        <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
-                        <button className="submit_button">Submit</button>
-                        </form>
-                    </div>
+                <h3>Add Alumni</h3>
+                <div className="test_input">
+                <div className="input_form">
+                    <form>
+                    <input type="text" name="name" placeholder="Name" />
+                    <input type="text" name="title" placeholder="Title" />
+                    <input type="text" name="email" placeholder="Email" />
+                    <input type="text" name="linkedin" placeholder="LinkedIn" />
+                    <input type="text" name="password" placeholder="Password" />
+                    <input type="file" name="file" id="file" class = "inputFile"/>
+                    <label for="file">File</label>
+                    {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
+                    <button className="submit_button">Submit</button>
+                    </form>
+                </div>
 
-                    <h3>Current Videos</h3>
-                    <div className="input_form">
-                        <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
-                        <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
-                        <button className="submit_button">Update</button>
-                        <button className="submit_button">Delete</button>
-                        </form>
-                    </div>
-                    </div>
+                <h3>Current Alumni</h3>
+                <div className="input_form">
+                    <form>
+                    <input type="text" name="name" placeholder="Name" />
+                    <input type="text" name="title" placeholder="Title" />
+                    <input type="text" name="email" placeholder="Email" />
+                    <input type="text" name="linkedin" placeholder="LinkedIn" />
+                    <input type="text" name="password" placeholder="Password" />
+                    {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
+                    <input type="file" name="file" id="file" class = "inputFile"/>
+                    <label for="file">File</label>
+                    <button className="submit_button">Update</button>
+                    <button className="submit_button">Delete</button>
+                    </form>
+                </div>
+                </div>
             </div>
         )
     }
 
 }
 
-export default VideoInput;
+export default AlumniInput;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
-class VideoInput extends Component {
+class SponsorInput extends Component {
     constructor(props) {
         super(props);
 
@@ -100,25 +100,25 @@ class VideoInput extends Component {
                         />
                     </div>
                 </form> */}
-                   <h3>Add Video</h3>
+                    <h3>Add Sponsors</h3>
                     <div className="test_input">
                     <div className="input_form">
                         <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
+                        <input type="text" name="name" placeholder="Name" />
                         <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
+                        <input type="text" name="linkedin" placeholder="LinkedIn" />
+                        <input type="text" name="link" placeholder="Link" />
                         <button className="submit_button">Submit</button>
                         </form>
                     </div>
 
-                    <h3>Current Videos</h3>
+                    <h3>Current Sponsors</h3>
                     <div className="input_form">
                         <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
+                        <input type="text" name="name" placeholder="Name" />
                         <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
+                        <input type="text" name="linkedin" placeholder="LinkedIn" />
+                        <input type="text" name="link" placeholder="Link" />
                         <button className="submit_button">Update</button>
                         <button className="submit_button">Delete</button>
                         </form>
@@ -130,4 +130,4 @@ class VideoInput extends Component {
 
 }
 
-export default VideoInput;
+export default SponsorInput;

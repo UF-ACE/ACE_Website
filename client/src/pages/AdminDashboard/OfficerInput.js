@@ -162,7 +162,7 @@ class OfficerInput extends Component {
     render() {
         return (
             <div className = "officer_input">
-                <form onSubmit = {this.onSubmit}>
+                {/* <form onSubmit = {this.onSubmit}>
                     <div className = "form-group">
                         <label>Name:</label>
                         <input
@@ -199,7 +199,39 @@ class OfficerInput extends Component {
                             onChange={this.onChangeLinkedin}
                         />
                     </div>
-                </form>
+                </form> */}
+                <h3>Add Officer</h3>
+                          <div className="test_input">
+                            <div className="input_form">
+                              <form>
+                                <input type="text" name="name" placeholder="Name" />
+                                <input type="text" name="title" placeholder="Title" />
+                                <input type="text" name="email" placeholder="Email" />
+                                <input type="text" name="linkedin" placeholder="LinkedIn" />
+                                <input type="text" name="password" placeholder="Password" />
+                                <input type="file" name="file" id="file" class = "inputFile"/>
+                                <label for="file">File</label>
+                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
+                                <button className="submit_button">Submit</button>
+                              </form>
+                            </div>
+
+                            <h3>Current Officers</h3>
+                            <div className="input_form">
+                              <form>
+                              <input type="text" name="name" placeholder="Name" />
+                                <input type="text" name="title" placeholder="Title" />
+                                <input type="text" name="email" placeholder="Email" />
+                                <input type="text" name="linkedin" placeholder="LinkedIn" />
+                                <input type="text" name="password" placeholder="Password" />
+                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
+                                <input type="file" name="file" id="file" class = "inputFile"/>
+                                <label for="file">File</label>
+                                <button className="submit_button">Update</button>
+                                <button className="submit_button">Delete</button>
+                              </form>
+                            </div>
+                          </div>
             </div>
         )
     }
