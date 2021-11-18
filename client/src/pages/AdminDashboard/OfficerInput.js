@@ -109,6 +109,7 @@ class OfficerInput extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
         this.state = {
             officers: [],
@@ -117,7 +118,14 @@ class OfficerInput extends Component {
             title: '',
             email: '',
             linkedin: '',
+            password: '',
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            officers: ['test officer'],
+        })
     }
 
     onChangeName(e) {
@@ -144,19 +152,38 @@ class OfficerInput extends Component {
         });
     }
 
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
         const officer = {
             name: this.state.name,
+            officer: true,
             title: this.state.title,
             email: this.state.email,
-            linkedin: this.state.linkedin
+            linkedin: this.state.linkedin,
+            password: this.state.password,
+            imageURL: 'https://drive.google.com/uc?export=view&id=1u-lbMSSkZwguS-qo_QJTPTPG5i6bh4d7'
         }
 
-        console.log(officer.name);
+        console.log(officer);
 
-        window.location = '/';
+        api.createPerson(officer).then(res =>
+            console.log(res.data),
+            this.setState({
+                name: '',
+                title: '',
+                email: '',
+                linkedin: '',
+                password: ''
+            })
+        ) 
+        //window.location = '/Admin#/Admin';
     }
 
     render() {
@@ -203,13 +230,48 @@ class OfficerInput extends Component {
                 <h3>Add Officer</h3>
                           <div className="test_input">
                             <div className="input_form">
-                              <form>
-                                <input type="text" name="name" placeholder="Name" />
-                                <input type="text" name="title" placeholder="Title" />
-                                <input type="text" name="email" placeholder="Email" />
-                                <input type="text" name="linkedin" placeholder="LinkedIn" />
-                                <input type="text" name="password" placeholder="Password" />
-                                <input type="file" name="file" id="file" class = "inputFile"/>
+                              <form onSubmit = {this.onSubmit.bind(this)}>
+                                <input 
+                                    type="text"
+                                    name="name" 
+                                    placeholder="Name"
+                                    value = {this.state.name}
+                                    onChange = {this.onChangeName.bind(this)}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="title" 
+                                    placeholder="Title"
+                                    value = {this.state.title}
+                                    onChange = {this.onChangeTitle.bind(this)}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="email" 
+                                    placeholder="Email"
+                                    value = {this.state.email}
+                                    onChange = {this.onChangeEmail.bind(this)}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="linkedin" 
+                                    placeholder="LinkedIn" 
+                                    value = {this.state.linkedin}
+                                    onChange = {this.onChangeLinkedin.bind(this)}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="password" 
+                                    placeholder="Password" 
+                                    value = {this.state.password}
+                                    onChange = {this.onChangePassword}
+                                />
+                                <input 
+                                    type="file" 
+                                    name="file" 
+                                    id="file" 
+                                    class = "inputFile"
+                                />
                                 <label for="file">File</label>
                                 {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
                                 <button className="submit_button">Submit</button>
