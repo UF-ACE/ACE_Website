@@ -16,22 +16,8 @@ getVideobyTitle = async (req, res) => { // Find a single video with a given titl
     }).catch(err => console.log(err))
 }
 
-getVideos = async (req, res) => {   // Finds all videos
-    await Video.find({}, (err, videos) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
-        }
-        if (!videos.length) {
-            return res
-                .status(404)
-                .json({ success: false, error: 'Videos not found' })
-        }
-        return res.status(200).json({ success: true, data: videos })
-    }).catch(err => console.log(err))
-}
-
-getVideosbyTag = async(req, res) => {   // Finds all videos with a given tag
-    await Video.find({ tags: req.params.tag }, (err, videos) => {
+getVideos = async (req, res) => {   // Finds all videos (not blacklisted)
+    await Video.find({ blacklisted: false }, (err, videos) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -63,6 +49,7 @@ updateVideobyTitle = async (req, res) => { // Finds and updates a video with a g
         video.description = body.description
         video.link = body.link
         video.tags = body.tags
+        video.blacklisted = body.blacklisted
         video
             .save()
             .then(() => {
@@ -147,6 +134,7 @@ updateVideobyID = async (req, res) => {
         video.description = body.description
         video.link = body.link
         video.tags = body.tags
+        video.blacklisted = body.blacklisted
         video
             .save()
             .then(() => {
@@ -181,15 +169,41 @@ deleteVideobyID = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+blacklistVideo = async (req, res) => {  // Blacklists a video identified by database ID
+    Video.findOne({ _id: req.params.id }, (err, video) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Video not found!',
+            })
+        }
+        video.blacklisted = true;
+        video
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: video._id,
+                    message: 'Video updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Video not updated!',
+                })
+            })
+    })
+}
 
 
 module.exports = {
     getVideos,
     getVideobyTitle,
-    getVideosbyTag,
     updateVideobyTitle,
     updateVideobyID,
     deleteVideobyID,
     deleteVideobyTitle,
     createVideo,
+    blacklistVideo
 }

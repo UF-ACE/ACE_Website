@@ -6,7 +6,7 @@ const Video = new Schema(
         title: { type: String, required: true },
         description: {type: String, required: false },
         link: { type: String, required: true },
-        tags: { type: [String], required: true }
+        blacklisted: {type: Boolean, required: true}
     },
     { timestamps: true },
 )

@@ -18,11 +18,11 @@ async function updateDatabase(link, title, description) {
         }
         var query = title[i].replaceAll('/', '%2f') 
         await apis.getVideobyTitle(query) 
-            .then(function({breakCondition}){   // Video is found (already exists in the database)
+            .then(function(){   // Video is found (already exists in the database)
                 console.log('Video already exists');
             }).catch(function(){    // Video was not found (does not exist in the database)
                 console.log('Creating database entry')
-                var entry = { title: title[i], description: description[i], link: link[i], tags: [] };
+                var entry = { title: title[i], description: description[i], link: link[i], blacklisted: false };
                 apis.createVideo(entry)
                     .then(function() {
                         console.log('Successfully added video to database')
