@@ -11,12 +11,22 @@ const selfURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&chann
 
 
 async function updateDatabase(link, title, description) {
+    // Uncomment the following to delete all videos in the database before pulling from Youtube:
+    /*
+    const videos = await apis.getVideos().then(res => res.data)
+    for (let i = 0; i < videos.data.length; i++) {
+        apis.deleteVideobyID(videos.data[i]._id)
+    }
+    */
+
     for (let i = 0; i < title.length; i++) {
         if (link[i] === "https://www.youtube.com/embed/undefined") {    // Bad video entry retrieved from YouTube
             i++;
             continue;
         }
-        var query = title[i].replaceAll('/', '%2f') 
+        // Replace incompatible characters in URL:
+        var query = title[i].replaceAll('/', '%2f')
+        query = query.replaceAll('#', '%23')
         await apis.getVideobyTitle(query) 
             .then(function(){   // Video is found (already exists in the database)
                 console.log('Video already exists');

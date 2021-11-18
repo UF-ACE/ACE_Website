@@ -24,6 +24,7 @@ function HomePage() {
       <h1 className={styles.h1}>Check out the events coming up this month!</h1>
       <div className={styles.background_video}>
         <HomeCalendar />
+        <Youtube />
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ class LearnPage extends Component{
   componentDidMount = async () => {
     this.setState({isLoading: true})
 
-    await api.getVideos().then(videos => {
+    await api.getVideosbyBlacklist().then(videos => {
       this.setState({
         videos: videos.data.data,
         isLoading: false,

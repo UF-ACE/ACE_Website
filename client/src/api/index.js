@@ -6,7 +6,9 @@ const api = axios.create({
 
 export const createVideo = payload => api.post(`/video`, payload)
 export const getVideos = () => api.get(`/videos`)
-export const blacklistVideo = id => api.put(`/video/${id}`)
+export const getVideosbyBlacklist = () => api.get(`/videos/BL`)
+export const blacklistVideo = id => api.put(`/video/BL/${id}`)
+export const unblacklistVideo = id => api.put(`/video/UBL/${id}`)
 export const updateVideobyTitle = (title, payload) => api.put(`/video/${title}`, payload)
 export const updateVideobyID = (id, payload) => api.put(`/video/${id}`, payload)
 export const deleteVideobyID = id => api.delete(`/video/${id}`)
@@ -34,7 +36,9 @@ export const deleteSponsorbyName = name => api.delete(`/sponsor/${name}`)
 const apis = {
     createVideo,
     getVideos,
+    getVideosbyBlacklist,
     blacklistVideo,
+    unblacklistVideo,
     updateVideobyTitle,
     updateVideobyID,
     deleteVideobyID,
