@@ -1,7 +1,6 @@
 import React from "react";
 import HomeCalendar from "../../features/HomeCalendar";
 import HomeYoutube from "../../features/HomeYoutube";
-import Youtube from "../../features/Youtube"
 import logo from "../../imgs/logo-min.png";
 import styles from "./HomePage.module.css";
 
@@ -24,7 +23,6 @@ function HomePage() {
       <h1 className={styles.h1}>Check out the events coming up this month!</h1>
       <div className={styles.background_video}>
         <HomeCalendar />
-        <Youtube />
       </div>
     </div>
   );
