@@ -116,7 +116,6 @@ class OfficerInput extends Component {
                 imageURL: '',
             })
         ) 
-        //window.location = '/Admin#/Admin';
     }
 
     render() {
@@ -173,9 +172,9 @@ class OfficerInput extends Component {
                               </form>
                             </div>
 
-                            <h3>Current Officers</h3>
-                            <div className="input_form">
-                              <form>
+                <h3>Current Officers</h3>
+                        <div className="input_form">
+                            <form>
                               <input type="text" name="name" placeholder="Name" />
                                 <input type="text" name="title" placeholder="Title" />
                                 <input type="text" name="email" placeholder="Email" />
