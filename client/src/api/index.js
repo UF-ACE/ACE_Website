@@ -7,6 +7,9 @@ const api = axios.create({
 })
 */
 
+// Comment out the following for local testing:
+const api = axios.create({ baseURL: '', })
+
 export const createVideo = payload => api.post(`/video`, payload)
 export const getVideos = () => api.get(`/videos`)
 export const getVideosbyBlacklist = () => api.get(`/videos/BL`)
