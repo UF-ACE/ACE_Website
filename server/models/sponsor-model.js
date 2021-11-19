@@ -6,7 +6,8 @@ const Sponsor = new Schema(
         name: { type: String, required: true },
         description: { type: String, required: true },
         linkedin: { type: String, required: true },
-        link: { type: String, required: true }
+        link: { type: String, required: true },
+        imageURL: { type: String, required: true }
     },
     { timestamps: true },
 )

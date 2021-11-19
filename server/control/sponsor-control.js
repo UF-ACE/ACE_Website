@@ -49,6 +49,7 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
+        sponsor.imageURL = body.imageURL
         sponsor
             .save()
             .then(() => {
@@ -133,6 +134,7 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
+        sponsor.imageURL = body.imageURL
         sponsor
             .save()
             .then(() => {
