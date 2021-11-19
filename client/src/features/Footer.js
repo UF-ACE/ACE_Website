@@ -37,7 +37,7 @@ const Footer = () => {
                   as="textarea"
                   size="sm"
                   type="text"
-                  style={{ width: "35vw", height: "100px" }}
+                  style={{ width: "43vw", height: "100px" }}
                 />
               </Form.Group>
             </Row>
@@ -68,7 +68,7 @@ const Footer = () => {
                   </div>
                 </div>
             </Row>
-            <h5>Association of Software Engineers</h5>
+            <h5>Association of Computer Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}
             <Nav className="ml-auto" bg="dark">
