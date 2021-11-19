@@ -107,7 +107,7 @@ class AboutPage extends Component {
             name = {sponsor.name}
             description = {sponsor.description}
             linkedin = {sponsor.linkedin}
-            site = {sponsor.site}
+            link = {sponsor.link}
           />
         </div>  
       )

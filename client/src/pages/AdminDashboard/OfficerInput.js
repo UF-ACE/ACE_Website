@@ -71,8 +71,6 @@ class OfficerInput extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        
-
         //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
         //will contain the substring drive.google.com/file
         let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
