@@ -110,6 +110,8 @@ class OfficerInput extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeImageURL = this.onChangeImageURL.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             officers: [],
@@ -119,6 +121,7 @@ class OfficerInput extends Component {
             email: '',
             linkedin: '',
             password: '',
+            imageURL: '',
         }
     }
 
@@ -158,6 +161,12 @@ class OfficerInput extends Component {
         });
     }
 
+    onChangeImageURL(e) {
+        this.setState({
+            imageURL: e.target.value
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -168,7 +177,7 @@ class OfficerInput extends Component {
             email: this.state.email,
             linkedin: this.state.linkedin,
             password: this.state.password,
-            imageURL: 'https://drive.google.com/uc?export=view&id=1u-lbMSSkZwguS-qo_QJTPTPG5i6bh4d7'
+            imageURL: this.state.imageURL,
         }
 
         console.log(officer);
@@ -180,7 +189,8 @@ class OfficerInput extends Component {
                 title: '',
                 email: '',
                 linkedin: '',
-                password: ''
+                password: '',
+                imageURL: '',
             })
         ) 
         //window.location = '/Admin#/Admin';
@@ -230,34 +240,34 @@ class OfficerInput extends Component {
                 <h3>Add Officer</h3>
                           <div className="test_input">
                             <div className="input_form">
-                              <form onSubmit = {this.onSubmit.bind(this)}>
+                              <form onSubmit = {this.onSubmit}>
                                 <input 
                                     type="text"
                                     name="name" 
                                     placeholder="Name"
                                     value = {this.state.name}
-                                    onChange = {this.onChangeName.bind(this)}
+                                    onChange = {this.onChangeName}
                                 />
                                 <input 
                                     type="text" 
                                     name="title" 
                                     placeholder="Title"
                                     value = {this.state.title}
-                                    onChange = {this.onChangeTitle.bind(this)}
+                                    onChange = {this.onChangeTitle}
                                 />
                                 <input 
                                     type="text" 
                                     name="email" 
                                     placeholder="Email"
                                     value = {this.state.email}
-                                    onChange = {this.onChangeEmail.bind(this)}
+                                    onChange = {this.onChangeEmail}
                                 />
                                 <input 
                                     type="text" 
                                     name="linkedin" 
                                     placeholder="LinkedIn" 
                                     value = {this.state.linkedin}
-                                    onChange = {this.onChangeLinkedin.bind(this)}
+                                    onChange = {this.onChangeLinkedin}
                                 />
                                 <input 
                                     type="text" 
@@ -267,12 +277,12 @@ class OfficerInput extends Component {
                                     onChange = {this.onChangePassword}
                                 />
                                 <input 
-                                    type="file" 
-                                    name="file" 
-                                    id="file" 
-                                    class = "inputFile"
+                                    type="text" 
+                                    name="imageURL" 
+                                    placeholder="imageURL"
+                                    value = {this.state.imageURL}
+                                    onChange = {this.onChangeImageURL}
                                 />
-                                <label for="file">File</label>
                                 {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
                                 <button className="submit_button">Submit</button>
                               </form>
