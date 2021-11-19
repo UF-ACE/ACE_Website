@@ -1,7 +1,8 @@
 import axios from 'axios'
 
+const port = process.env.PORT || 3000
 const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
+    baseURL: 'http://localhost:' + port + '/api',
 })
 
 export const createVideo = payload => api.post(`/video`, payload)
