@@ -170,6 +170,13 @@ class OfficerInput extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        
+
+        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
+        //will contain the substring drive.google.com/file
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+
+
         const officer = {
             name: this.state.name,
             officer: true,
@@ -180,6 +187,21 @@ class OfficerInput extends Component {
             imageURL: this.state.imageURL,
         }
 
+        if (googleDriveImage)
+        {
+            //If we have an image from the google drive, we need to get the imageID from
+            //it so that we can properly display it.  The imageID can be found between the
+            //second to last and last parentheses in a google drive link.
+            let imageID = this.state.imageURL;
+            imageID = imageID.substr(0, imageID.lastIndexOf('/'));
+            imageID = imageID.substr(imageID.lastIndexOf('/') + 1);
+
+            //This is the root string for a google drive image that displays the image properly
+            const rootString = "https://drive.google.com/uc?export=view&id=";
+
+            officer.imageURL = rootString + imageID;
+        }
+        
         console.log(officer);
 
         api.createPerson(officer).then(res =>
