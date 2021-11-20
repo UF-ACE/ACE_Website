@@ -97,9 +97,6 @@ class AlumniInput extends Component {
                     </form>
                 </div>
             </Row>
-
-
-
           )     
         }
         else

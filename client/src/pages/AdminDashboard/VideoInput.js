@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import "./OfficerInput.css"
-import Youtube from "../../features/Youtube"
-// import api from "../../api"
+import "./OfficerInput.css";
+import Youtube from "../../features/Youtube";
+import api from "../../api";
+import Row from "react-bootstrap/Row";
+
 class VideoInput extends Component {
     constructor(props) {
         super(props);
@@ -12,14 +14,25 @@ class VideoInput extends Component {
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
 
         this.state = {
-            officers: [],
-            officer: null,
+            videos: [],
+            video: null,
             name: '',
             title: '',
             email: '',
             linkedin: '',
+            isLoading: false,
         }
     }
+    componentDidMount = async () => {
+        this.setState({isLoading: true})
+    
+        await api.getVideosbyBlacklist().then(videos => {
+          this.setState({
+            videos: videos.data.data,
+            isLoading: false,
+          })
+        })
+      }
 
     onChangeName(e) {
         this.setState({
@@ -61,6 +74,34 @@ class VideoInput extends Component {
     }
 
     render() {
+        let videos;
+        let videoDivs;
+
+        if (!this.state.isLoading && this.state.videos.length !== 0)
+        {
+        videos = this.state.videos;
+        videoDivs = videos.map((video) =>
+            <Row>
+                <div className="input_form" key = {video._id}>
+                    <form>
+                        <input type="text" name="title" placeholder="Title" value = {video.title} className = "update_input"/>
+                        <input type="text" name="link" placeholder="Link" value = {video.link} className = "update_input"/>
+                        <input type="text" name="description" placeholder="Description" value = {video.description} className = "update_input"/>
+                        <input type="text" name="Tags" placeholder="Tags" value = {video.tags} className = "update_input"/>
+                        <button className="submit_button">Update</button>
+                        <button className="submit_button">Delete</button>
+                    </form>
+                </div>
+            </Row>
+        )
+        }
+        else
+        {
+        videos = null;
+        videoDivs = null;
+        }
+
+
         return (
             <div className = "officer_input">
                 {/* <form onSubmit = {this.onSubmit}>
@@ -119,16 +160,7 @@ class VideoInput extends Component {
                     <Youtube />
 
                     <h3>Current Videos</h3>
-                    <div className="input_form">
-                        <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
-                        <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
-                        <button className="submit_button">Update</button>
-                        <button className="submit_button">Delete</button>
-                        </form>
-                    </div>
+                    {videoDivs}
                     </div>
             </div>
         )
