@@ -80,7 +80,7 @@ class SponsorInput extends Component {
 
         let officers;
         let officerProfiles;
-        if (!this.state.isLoadingAlumni && this.state.officers.length !== 0)
+        if (!this.state.isLoadingSponsors && this.state.officers.length !== 0)
         {
           officers = this.state.officers;
           officerProfiles = officers.map((officer) =>
@@ -175,6 +175,7 @@ class SponsorInput extends Component {
 
                     <h3>Current Sponsors</h3>
                     {officerProfiles}
+                    
                     </div>
             </div>
         )
