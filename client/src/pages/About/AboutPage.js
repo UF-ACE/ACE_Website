@@ -2,9 +2,7 @@ import "./AboutPage.css";
 import React, { Component } from 'react'
 import ProfileSponsor from "../../features/ProfileSponsor.js";
 import ProfileOfficer from "../../features/ProfileOfficer.js";
-import api, { getPeoplebyOfficer } from "../../api/index.js"
-import styles from "./AboutPage.css";
-import Container from "react-bootstrap/Container";
+import api from "../../api/index.js"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -56,7 +54,7 @@ class AboutPage extends Component {
     let alumni;
     let alumniProfiles;
 
-    if (!this.state.isLoadingOfficers && this.state.officers.length != 0)
+    if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
     {
       officers = this.state.officers;
       officerProfiles = officers.map((officer) =>
@@ -77,7 +75,7 @@ class AboutPage extends Component {
       officerProfiles = null;
     }
 
-    if (!this.state.isLoadingAlumni && this.state.alumni.length != 0)
+    if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
     {
       alumni = this.state.alumni;
       alumniProfiles = alumni.map((alumnus) =>
@@ -98,7 +96,7 @@ class AboutPage extends Component {
       alumniProfiles = null;
     }
 
-    if (!this.state.isLoadingSponsors && this.state.sponsors.length != 0)
+    if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
     {
       sponsors = this.state.sponsors;
       sponsorProfiles = sponsors.map((sponsor) =>
@@ -115,7 +113,7 @@ class AboutPage extends Component {
     }
 
     return(
-      <div className = {styles.AboutPage}>
+      <div className = "aboutpage">
         <Row>
           <Col>
           <div className = "about_description">

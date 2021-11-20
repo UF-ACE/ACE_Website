@@ -25,6 +25,8 @@
   object-fit: cover;
   min-width: 100px;
   min-height: 100px;
+  max-width: 250px;
+  max-height: 200px;
 }
 
 .profile {
