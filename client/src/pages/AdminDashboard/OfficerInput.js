@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
+import Row from "react-bootstrap/Row";
+
 
 /*export const OfficerInput = ({officer}) => {
     /*const [name, setName] = React.useState(officer.name);
@@ -101,6 +103,7 @@ import api from "../../api"
     );
 };*/
 
+
 class OfficerInput extends Component {
     constructor(props) {
         super(props);
@@ -117,7 +120,19 @@ class OfficerInput extends Component {
             title: '',
             email: '',
             linkedin: '',
+            isLoadingOfficers: false,
         }
+    }
+
+    componentDidMount = async () => {
+        this.setState({isLoadingOfficers: true})
+    
+        await api.getPeoplebyOfficer(true).then(officers => {
+          this.setState({
+            officers: officers.data.data,
+            isLoadingOfficers: false,
+          })
+        })
     }
 
     onChangeName(e) {
@@ -160,6 +175,45 @@ class OfficerInput extends Component {
     }
 
     render() {
+        let officers;
+        let officerProfiles;
+        if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
+        {
+          officers = this.state.officers;
+          officerProfiles = officers.map((officer) =>
+            
+          
+            // Loading an input form for each officer and loading it with the data pertaining to each officer
+            <Row>
+                <div className="input_form" key = {officer._id}>
+                    <form>
+                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
+                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
+                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
+                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
+                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                    <input type="file" name="file" id="file" class = "inputFile"/>
+                    <label for="file" className="submit_button">File</label>
+                    <button className="submit_button">Update</button>
+                    <button className="submit_button">Delete</button>
+                    </form>
+                </div>
+            </Row>
+
+
+
+          )     
+        }
+        else
+        {
+          officers = null;
+          officerProfiles = null;
+        }
+
+
+
+
+
         return (
             <div className = "officer_input">
                 {/* <form onSubmit = {this.onSubmit}>
@@ -211,26 +265,11 @@ class OfficerInput extends Component {
                                 <input type="text" name="password" placeholder="Password" />
                                 <input type="file" name="file" id="file" class = "inputFile"/>
                                 <label for="file">File</label>
-                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
                                 <button className="submit_button">Submit</button>
                               </form>
                             </div>
-
                             <h3>Current Officers</h3>
-                            <div className="input_form">
-                              <form>
-                              <input type="text" name="name" placeholder="Name" />
-                                <input type="text" name="title" placeholder="Title" />
-                                <input type="text" name="email" placeholder="Email" />
-                                <input type="text" name="linkedin" placeholder="LinkedIn" />
-                                <input type="text" name="password" placeholder="Password" />
-                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
-                                <input type="file" name="file" id="file" class = "inputFile"/>
-                                <label for="file">File</label>
-                                <button className="submit_button">Update</button>
-                                <button className="submit_button">Delete</button>
-                              </form>
-                            </div>
+                            {officerProfiles}
                           </div>
             </div>
         )

@@ -4,6 +4,7 @@
     position: relative;
 }
 
+
 .officer_input > button{
     
     position: relative;
@@ -27,4 +28,13 @@
     padding: 10px;
     background-color: white;
     color: #282c33;
+}
+
+
+.input_form{
+    margin-bottom: 15px;
+}
+
+.update_input{
+    width: 185px;
 }
