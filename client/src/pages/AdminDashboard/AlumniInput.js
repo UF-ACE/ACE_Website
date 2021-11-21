@@ -29,9 +29,9 @@ class AlumniInput extends Component {
     componentDidMount = async () => {
         this.setState({isLoadingAlumni: true})
     
-        await api.getPeoplebyOfficer(false).then(officers => {
+        await api.getPeoplebyOfficer(false).then(alumni => {
           this.setState({
-            officers: officers.data.data,
+            alumni: alumni.data.data,
             isLoadingAlumni: false,
           })
         })
@@ -123,22 +123,22 @@ class AlumniInput extends Component {
 
     render() {
 
-        let officers;
-        let officerProfiles;
-        if (!this.state.isLoadingAlumni && this.state.officers.length !== 0)
+        let alumni;
+        let alumniProfiles;
+        if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
         {
-          officers = this.state.officers;
-          officerProfiles = officers.map((officer) =>
+          alumni = this.state.alumni;
+          alumniProfiles = alumni.map((alumni) =>
             
-            // Loading an input form for each officer and loading it with the data pertaining to each officer
+            // Loading an input form for each alumni and loading it with the data pertaining to each alumni
             <Row>
-                <div className="input_form" key = {officer._id}>
+                <div className="input_form" key = {alumni._id}>
                     <form>
-                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                    <input type="text" name="name" placeholder="Name" value = {alumni.name} className = "update_input"/>
+                    <input type="text" name="title" placeholder="Title" value = {alumni.title} className = "update_input"/>
+                    <input type="text" name="email" placeholder="Email" value = {alumni.email} className = "update_input"/>
+                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {alumni.linkedin} className = "update_input"/>
+                    <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/>
                     <input type="file" name="file" id="file" class = "inputFile"/>
                     <label for="file" className="submit_button">File</label>
                     <button className="submit_button">Update</button>
@@ -150,8 +150,8 @@ class AlumniInput extends Component {
         }
         else
         {
-          officers = null;
-          officerProfiles = null;
+          alumni = null;
+          alumniProfiles = null;
         }
 
 
@@ -209,7 +209,7 @@ class AlumniInput extends Component {
                             </div>
 
                 <h3>Current Alumni</h3>
-                    {officerProfiles}
+                    {alumniProfiles}
 
                 </div>
             </div>

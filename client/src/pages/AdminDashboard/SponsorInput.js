@@ -27,9 +27,9 @@ class SponsorInput extends Component {
     componentDidMount = async () => {
         this.setState({isLoadingSponsors: true})
         
-        await api.getSponsors().then(officers =>{
+        await api.getSponsors().then(sponsors =>{
           this.setState({
-            officers: officers.data.data,
+            sponsors: sponsors.data.data,
             isLoadingSponsors: false,
           })
         })
@@ -116,12 +116,12 @@ class SponsorInput extends Component {
     render() {
 
 
-        let officers;
-        let officerProfiles;
-        if (!this.state.isLoadingSponsors && this.state.officers.length !== 0)
+        let sponsors;
+        let sponsorProfiles;
+        if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
         {
-          officers = this.state.officers;
-          officerProfiles = officers.map((officer) =>
+          sponsors = this.state.sponsors;
+          sponsorProfiles = sponsors.map((sponsor) =>
             
             // Loading an input form for each officer and loading it with the data pertaining to each officer
             <Row>
@@ -139,12 +139,12 @@ class SponsorInput extends Component {
                     </form>
                 </div> */}
 
-                <div className="input_form" key = {officer._id}>
+                <div className="input_form" key = {sponsor._id}>
                     <form>
-                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="description" placeholder="Description" value = {officer.description} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="link" placeholder="Link" value = {officer.site} className = "update_input"/>
+                    <input type="text" name="name" placeholder="Name" value = {sponsor.name} className = "update_input"/>
+                    <input type="text" name="description" placeholder="Description" value = {sponsor.description} className = "update_input"/>
+                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {sponsor.linkedin} className = "update_input"/>
+                    <input type="text" name="link" placeholder="Link" value = {sponsor.site} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
@@ -154,8 +154,8 @@ class SponsorInput extends Component {
         }
         else
         {
-          officers = null;
-          officerProfiles = null;
+          sponsors = null;
+          sponsorProfiles = null;
         }
 
 
@@ -206,7 +206,7 @@ class SponsorInput extends Component {
                             </div>
 
                     <h3>Current Sponsors</h3>
-                    {officerProfiles}
+                    {sponsorProfiles}
                     
                     </div>
             </div>
