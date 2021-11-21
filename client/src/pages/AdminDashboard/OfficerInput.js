@@ -163,63 +163,64 @@ class OfficerInput extends Component {
 
         return (
             <div className = "officer_input">
-                            <h3>Add Officer</h3>
-                            <div className="input_form">
-                              <form onSubmit = {this.onSubmit}>
-                                <input 
-                                    type="text"
-                                    name="name" 
-                                    placeholder="Name"
-                                    value = {this.state.name}
-                                    onChange = {this.onChangeName}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="title" 
-                                    placeholder="Title"
-                                    value = {this.state.title}
-                                    onChange = {this.onChangeTitle}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="email" 
-                                    placeholder="Email"
-                                    value = {this.state.email}
-                                    onChange = {this.onChangeEmail}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="linkedin" 
-                                    placeholder="LinkedIn" 
-                                    value = {this.state.linkedin}
-                                    onChange = {this.onChangeLinkedin}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="password" 
-                                    placeholder="Password" 
-                                    value = {this.state.password}
-                                    onChange = {this.onChangePassword}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="imageURL" 
-                                    placeholder="imageURL"
-                                    value = {this.state.imageURL}
-                                    onChange = {this.onChangeImageURL}
-                                    className = "update_input"
-                                />
-                                <button className="submit_button">Submit</button>
-                                </form>
+                <h3>Add Officer</h3>
+                <div className="input_form">
+                    <form onSubmit = {this.onSubmit}>
+                    <input 
+                        type="text"
+                        name="name" 
+                        placeholder="Name"
+                        value = {this.state.name}
+                        onChange = {this.onChangeName}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="title" 
+                        placeholder="Title"
+                        value = {this.state.title}
+                        onChange = {this.onChangeTitle}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="email" 
+                        placeholder="Email"
+                        value = {this.state.email}
+                        onChange = {this.onChangeEmail}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="linkedin" 
+                        placeholder="LinkedIn" 
+                        value = {this.state.linkedin}
+                        onChange = {this.onChangeLinkedin}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="password" 
+                        placeholder="Password" 
+                        value = {this.state.password}
+                        onChange = {this.onChangePassword}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="imageURL" 
+                        placeholder="imageURL"
+                        value = {this.state.imageURL}
+                        onChange = {this.onChangeImageURL}
+                        className = "update_input"
+                    />
+                    <button className="submit_button">Submit</button>
+                    </form>
 
-                                <h3>Current Officers</h3>
-                                {officerProfiles}
-                    </div>
+                    <h3>Current Officers</h3>
+                    {officerProfiles}
+                </div>
+
             </div>
         )
     }
