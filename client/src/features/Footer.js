@@ -73,7 +73,7 @@ const Footer = () => {
                   </div>
                 </div>
             </Row>
-            <h5>Association of Software Engineers</h5>
+            <h5>Association of Computer Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}
             <Nav className="ml-auto" bg="dark">

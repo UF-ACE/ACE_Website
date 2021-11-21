@@ -99,14 +99,16 @@ class AboutPage extends Component {
     if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
     {
       sponsors = this.state.sponsors;
+
+      console.log(this.state.sponsors[0]);
       sponsorProfiles = sponsors.map((sponsor) =>
         <div key = {sponsor._id}>
           <ProfileSponsor
-            //imageURL = {sponsor.imageURL}
+            src = {sponsor.imageURL}
             name = {sponsor.name}
             description = {sponsor.description}
             linkedin = {sponsor.linkedin}
-            site = {sponsor.site}
+            link = {sponsor.link}
           />
         </div>  
       )

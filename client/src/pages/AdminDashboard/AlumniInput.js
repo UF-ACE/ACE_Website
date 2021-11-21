@@ -11,15 +11,19 @@ class AlumniInput extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeImageURL = this.onChangeImageURL.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            officers: [],
-            officer: null,
+            alumni: [],
+            alumnus: null,
             name: '',
             title: '',
             email: '',
             linkedin: '',
-            isLoadingAlumni: false,
+            password: '',
+            imageURL: '',
         }
     }
     componentDidMount = async () => {
@@ -57,19 +61,64 @@ class AlumniInput extends Component {
         });
     }
 
+    onChangePassword(e) {
+        this.setState({
+            password: e.target.value
+        });
+    }
+
+    onChangeImageURL(e) {
+        this.setState({
+            imageURL: e.target.value
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
-        const officer = {
+        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
+        //will contain the substring drive.google.com/file
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+
+
+        const alumnus = {
             name: this.state.name,
+            officer: false,
             title: this.state.title,
             email: this.state.email,
-            linkedin: this.state.linkedin
+            linkedin: this.state.linkedin,
+            password: this.state.password,
+            imageURL: this.state.imageURL,
         }
 
-        console.log(officer.name);
+        if (googleDriveImage)
+        {
+            //If we have an image from the google drive, we need to get the imageID from
+            //it so that we can properly display it.  The imageID can be found between the
+            //second to last and last parentheses in a google drive link.
+            let imageID = this.state.imageURL;
+            imageID = imageID.substr(0, imageID.lastIndexOf('/'));
+            imageID = imageID.substr(imageID.lastIndexOf('/') + 1);
 
-        window.location = '/';
+            //This is the root string for a google drive image that displays the image properly
+            const rootString = "https://drive.google.com/uc?export=view&id=";
+
+            alumnus.imageURL = rootString + imageID;
+        }
+        
+        console.log(alumnus);
+
+        api.createPerson(alumnus).then(res =>
+            console.log(res.data),
+            this.setState({
+                name: '',
+                title: '',
+                email: '',
+                linkedin: '',
+                password: '',
+                imageURL: '',
+            })
+        ) 
     }
 
     render() {
@@ -107,60 +156,57 @@ class AlumniInput extends Component {
 
 
         return (
-            <div className = "officer_input">
-                {/* <form onSubmit = {this.onSubmit}>
-                    <div className = "form-group">
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.name}
-                            onChange={this.onChangeName}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.title}
-                            onChange={this.onChangeTitle}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Email:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.email}
-                            onChange={this.onChangeEmail}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Linkedin:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.linkedin}
-                            onChange={this.onChangeLinkedin}
-                        />
-                    </div>
-                </form> */}
+            <div className = "alumnus_input">
                 <h3>Add Alumni</h3>
-                <div className="test_input">
-                <div className="input_form">
-                    <form>
-                    <input type="text" name="name" placeholder="Name" />
-                    <input type="text" name="title" placeholder="Title" />
-                    <input type="text" name="email" placeholder="Email" />
-                    <input type="text" name="linkedin" placeholder="LinkedIn" />
-                    <input type="text" name="password" placeholder="Password" />
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file">File</label>
-                    {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
-                    <button className="submit_button">Submit</button>
-                    </form>
-                </div>
+                          <div className="test_input">
+                            <div className="input_form">
+                              <form onSubmit = {this.onSubmit}>
+                                <input 
+                                    type="text"
+                                    name="name" 
+                                    placeholder="Name"
+                                    value = {this.state.name}
+                                    onChange = {this.onChangeName}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="title" 
+                                    placeholder="Title"
+                                    value = {this.state.title}
+                                    onChange = {this.onChangeTitle}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="email" 
+                                    placeholder="Email"
+                                    value = {this.state.email}
+                                    onChange = {this.onChangeEmail}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="linkedin" 
+                                    placeholder="LinkedIn" 
+                                    value = {this.state.linkedin}
+                                    onChange = {this.onChangeLinkedin}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="password" 
+                                    placeholder="Password" 
+                                    value = {this.state.password}
+                                    onChange = {this.onChangePassword}
+                                />
+                                <input 
+                                    type="text" 
+                                    name="imageURL" 
+                                    placeholder="imageURL"
+                                    value = {this.state.imageURL}
+                                    onChange = {this.onChangeImageURL}
+                                />
+                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
+                                <button className="submit_button">Submit</button>
+                              </form>
+                            </div>
 
                 <h3>Current Alumni</h3>
                     {officerProfiles}
