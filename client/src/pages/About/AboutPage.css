@@ -7,10 +7,12 @@
   padding-top: 30px;
   padding-bottom: 30px;
 }
-.aboutpage > h2 {
-  border-radius: 10px;
-  padding-top: 30px;
+.aboutpage h2 {
+  font-weight: bold;
+  margin-bottom: 25px;
 }
+
+
 .about_sponsors {
   padding-top: 30px;
   display: flex;
@@ -18,16 +20,19 @@
   justify-content: center;
 }
 .about_officers {
-  margin-bottom: 30px;
+  margin-bottom: 45px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.alumni_dropdown {
-  padding-top: 30px;
-  background-color: red;
+.about_alumni {
+  margin-bottom: 45px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .about_text > h2 {

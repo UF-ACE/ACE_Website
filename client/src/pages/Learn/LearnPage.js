@@ -16,7 +16,7 @@ class LearnPage extends Component{
   componentDidMount = async () => {
     this.setState({isLoading: true})
 
-    await api.getVideos().then(videos => {
+    await api.getVideosbyBlacklist().then(videos => {
       this.setState({
         videos: videos.data.data,
         isLoading: false,
@@ -28,7 +28,7 @@ class LearnPage extends Component{
     let videos;
     let videoDivs;
 
-    if (!this.state.isLoading && this.state.videos.length != 0)
+    if (!this.state.isLoading && this.state.videos.length !== 0)
     {
       videos = this.state.videos;
       videoDivs = videos.map((video) =>
@@ -52,7 +52,6 @@ class LearnPage extends Component{
 
     return(
       <div className = "learnpage">
-        <h1>Videos</h1>
         {videoDivs}
         <Pagination className = "pagination">
           <Pagination.First />

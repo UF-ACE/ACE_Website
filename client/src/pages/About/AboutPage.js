@@ -2,8 +2,9 @@ import "./AboutPage.css";
 import React, { Component } from 'react'
 import ProfileSponsor from "../../features/ProfileSponsor.js";
 import ProfileOfficer from "../../features/ProfileOfficer.js";
-import api, { getPeoplebyOfficer } from "../../api/index.js"
-import styles from "./AboutPage.css";
+import api from "../../api/index.js"
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 class AboutPage extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class AboutPage extends Component {
     let alumni;
     let alumniProfiles;
 
-    if (!this.state.isLoadingOfficers && this.state.officers.length != 0)
+    if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
     {
       officers = this.state.officers;
       officerProfiles = officers.map((officer) =>
@@ -74,7 +75,7 @@ class AboutPage extends Component {
       officerProfiles = null;
     }
 
-    if (!this.state.isLoadingAlumni && this.state.alumni.length != 0)
+    if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
     {
       alumni = this.state.alumni;
       alumniProfiles = alumni.map((alumnus) =>
@@ -95,7 +96,7 @@ class AboutPage extends Component {
       alumniProfiles = null;
     }
 
-    if (!this.state.isLoadingSponsors && this.state.sponsors.length != 0)
+    if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
     {
       sponsors = this.state.sponsors;
 
@@ -114,30 +115,50 @@ class AboutPage extends Component {
     }
 
     return(
-      <div className = {styles.AboutPage}>
-        <h1> Founded in 2014</h1>
-        <h3>
-          The Association of Computer Engineers serves as a community dedicated to
-          representing the union of computer science and electrical engineering.
-          We provide an opportunity for students at the University of Florida to
-          develop their technical skills, learn from upperclassmen, and develop as
-          professionals. Come out to one of our events and meet an amazing group
-          of students to help you through your academic journey.
-        </h3>
-        <h2>Sponsors</h2>
-        <div className = "about_sponsors">
-          {sponsorProfiles}
-        </div>
-        <h2>Officers</h2>
-        <div className="about_officers">
-            {officerProfiles}  
-        </div>
-        <h2>Alumni</h2>
-        <div className="about_alumni">
-            {alumniProfiles}  
-        </div>
-        
+      <div className = "aboutpage">
+        <Row>
+          <Col>
+          <div className = "about_description">
+            <h1> Founded in 2014</h1>
+            <h3>
+              The Association of Computer Engineers serves as a community dedicated to
+              representing the union of computer science and electrical engineering.
+              We provide an opportunity for students at the University of Florida to
+              develop their technical skills, learn from upperclassmen, and develop as
+              professionals. Come out to one of our events and meet an amazing group
+              of students to help you through your academic journey.
+            </h3>
+          </div>
+          </Col> 
+          
+        </Row>
+        <Row> 
+          <Col>
+          <h2>Sponsors</h2>
+          <div className = "about_sponsors">
+            {sponsorProfiles}
+          </div>
+          </Col>
+        </Row>
+        <Row> 
+          <Col>
+          <h2>Officers</h2>
+          <div className="about_officers">
+              {officerProfiles}  
+          </div>
+          </Col>
+        </Row>
+        <Row> 
+          <Col>
+          <h2>Alumni</h2>
+          <div className="about_alumni">
+              {alumniProfiles}  
+          </div>
+          </Col>
+        </Row>
 
+
+         
       </div>  
       
 

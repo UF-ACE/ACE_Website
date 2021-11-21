@@ -16,8 +16,8 @@ getVideobyTitle = async (req, res) => { // Find a single video with a given titl
     }).catch(err => console.log(err))
 }
 
-getVideos = async (req, res) => {   // Finds all videos (not blacklisted)
-    await Video.find({ blacklisted: false }, (err, videos) => {
+getVideos = async (req, res) => {   // Finds all videos
+    await Video.find({ }, (err, videos) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -196,6 +196,46 @@ blacklistVideo = async (req, res) => {  // Blacklists a video identified by data
     })
 }
 
+unblacklistVideo = async (req, res) => {  // Blacklists a video identified by database ID
+    Video.findOne({ _id: req.params.id }, (err, video) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'Video not found!',
+            })
+        }
+        video.blacklisted = false;
+        video
+            .save()
+            .then(() => {
+                return res.status(200).json({
+                    success: true,
+                    id: video._id,
+                    message: 'Video updated!',
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'Video not updated!',
+                })
+            })
+    })
+}
+
+getVideosbyBlacklist = async (req, res) => {   // Finds all videos (not blacklisted)
+    await Video.find({ blacklisted: false }, (err, videos) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!videos.length) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Videos not found' })
+        }
+        return res.status(200).json({ success: true, data: videos })
+    }).catch(err => console.log(err))
+}
 
 module.exports = {
     getVideos,
@@ -205,5 +245,7 @@ module.exports = {
     deleteVideobyID,
     deleteVideobyTitle,
     createVideo,
-    blacklistVideo
+    blacklistVideo,
+    unblacklistVideo,
+    getVideosbyBlacklist
 }
