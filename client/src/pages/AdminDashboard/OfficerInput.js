@@ -139,8 +139,7 @@ class OfficerInput extends Component {
                     <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
                     <input type="text" name="password" placeholder="Password" value = {officer.password} className = "update_input"/>
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file" className="submit_button">File</label>
+                    <input type="text" name="imageURL" placeholder="ImageURL" value = {officer.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
@@ -206,18 +205,15 @@ class OfficerInput extends Component {
                         onChange = {this.onChangePassword}
                         className = "update_input"
                     />
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file" className="submit_button">File</label>
                     <input 
-                        type="file" 
-                        id="file"
+                        type="text" 
+                        id="imageURL"
                         name="imageURL" 
                         placeholder="imageURL"
                         value = {this.state.imageURL}
                         onChange = {this.onChangeImageURL}
                         className = "update_input"
                     />
-                    <label for="imageURL" className="submit_button">File</label>
                     <button className="submit_button">Submit</button>
                     </form>
 
