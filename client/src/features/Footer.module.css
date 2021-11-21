@@ -1,3 +1,5 @@
+
+
 .mt_5 {
   background-color: #212529 !important;
   color: #eeeeee;
@@ -84,5 +86,9 @@
   background-color: #212529 !important;
   color: #eeeeee;
   margin-top: -15px !important;
+}
+
+.submit_button{
+  margin-left: -50px;
 }
 

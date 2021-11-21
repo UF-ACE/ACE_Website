@@ -37,7 +37,6 @@ const Footer = () => {
                   as="textarea"
                   size="sm"
                   type="text"
-                  style={{ width: "43vw", height: "100px" }}
                 />
               </Form.Group>
             </Row>
@@ -59,11 +58,17 @@ const Footer = () => {
                 <div className="input_form">
                     <form>
                       <input type="text" name="name" placeholder="Password" />
+                      <Link to = "/Admin" style = {{textDecoration: "none"}}>
                       <Button 
                       variant="secondary"
                       size="sm"
                       type="submit"
-                      className="submit_button"><Link to = "/Admin">Submit</Link></Button>
+                      className="submit_button">Submit
+                      </Button>
+                      
+                      
+                      </Link>
+                      
                     </form>
                   </div>
                 </div>
