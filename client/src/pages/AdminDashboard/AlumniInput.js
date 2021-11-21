@@ -14,10 +14,12 @@ class AlumniInput extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeImageURL = this.onChangeImageURL.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onUpdate = this.onUpdate.bind(this);
 
         this.state = {
             alumni: [],
             alumnus: null,
+            id: '',
             name: '',
             title: '',
             email: '',
@@ -34,6 +36,12 @@ class AlumniInput extends Component {
             alumni: alumni.data.data,
             isLoadingAlumni: false,
           })
+        })
+    }
+
+    setID(element_ID) {
+        this.setState({
+            id: element_ID
         })
     }
 
@@ -108,7 +116,7 @@ class AlumniInput extends Component {
         
         console.log(alumnus);
 
-        api.createPerson(alumnus).then(res =>
+        api.createPerson(this.state.id, alumnus).then(res =>
             console.log(res.data),
             this.setState({
                 name: '',
@@ -119,6 +127,44 @@ class AlumniInput extends Component {
                 imageURL: '',
             })
         ) 
+    }
+
+    onUpdate(e) {
+        e.preventDefault();
+
+        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
+        //will contain the substring drive.google.com/file
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+
+
+        const alumnus = {
+            name: this.state.name,
+            officer: false,
+            title: this.state.title,
+            email: this.state.email,
+            linkedin: this.state.linkedin,
+            password: this.state.password,
+            imageURL: this.state.imageURL,
+        }
+
+        if (googleDriveImage)
+        {
+            //If we have an image from the google drive, we need to get the imageID from
+            //it so that we can properly display it.  The imageID can be found between the
+            //second to last and last parentheses in a google drive link.
+            let imageID = this.state.imageURL;
+            imageID = imageID.substr(0, imageID.lastIndexOf('/'));
+            imageID = imageID.substr(imageID.lastIndexOf('/') + 1);
+
+            //This is the root string for a google drive image that displays the image properly
+            const rootString = "https://drive.google.com/uc?export=view&id=";
+
+            alumnus.imageURL = rootString + imageID;
+        }
+        
+        console.log(alumnus);
+
+        api.updatePersonbyID(alumnus).then(res => console.log(res.data))
     }
 
     render() {
@@ -133,15 +179,56 @@ class AlumniInput extends Component {
             // Loading an input form for each alumni and loading it with the data pertaining to each alumni
             <Row>
                 <div className="input_form" key = {alumni._id}>
-                    <form>
-                    <input type="text" name="name" placeholder="Name" value = {alumni.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {alumni.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {alumni.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {alumni.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/>
-                    <input type="text" name="imageURL" placeholder="ImageURL" value = {alumni.imageURL} className = "update_input"/>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
+                    <form onUpdate = {this.onUpdate}>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            placeholder="Name" 
+                            value = {alumni.name}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="title" 
+                            placeholder= {"Title: " + alumni.title} 
+                            value = {this.state.title}
+                            onChange = {this.onChangeTitle}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="email" 
+                            placeholder={"Email: " + alumni.email}
+                            value = {this.state.email}
+                            onChange = {this.onChangeEmail}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="linkedin" 
+                            placeholder={"LinkedIn: " + alumni.linkedin} 
+                            value = {this.state.linkedin}
+                            onChange = {this.onChangeLinkedin}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="password" 
+                            placeholder="Password"  
+                            value = {this.state.password}
+                            onChange = {this.onChangePassword}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="imageURL" 
+                            placeholder={"ImageURL: " + alumni.imageURL} 
+                            value = {this.state.imageURL}
+                            onChange = {this.onChangeImageURL}
+                            className = "update_input"
+                        />
+                        <button className="submit_button">Update</button>
+                        <button className="submit_button">Delete</button>
                     </form>
                 </div>
             </Row>
