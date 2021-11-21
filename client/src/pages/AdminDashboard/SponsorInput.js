@@ -144,7 +144,7 @@ class SponsorInput extends Component {
                     <input type="text" name="name" placeholder="Name" value = {sponsor.name} className = "update_input"/>
                     <input type="text" name="description" placeholder="Description" value = {sponsor.description} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {sponsor.linkedin} className = "update_input"/>
-                    <input type="text" name="link" placeholder="Link" value = {sponsor.site} className = "update_input"/>
+                    <input type="text" name="link" placeholder="Link" value = {sponsor.link} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
