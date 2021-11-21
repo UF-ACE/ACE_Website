@@ -7,7 +7,7 @@ const HomeYoutube = ({ embedId }) => (
     <iframe
       width="3000"
       height="800"
-      src={`https://www.youtube.com/embed/${embedId}?&autoplay=1&rel=0`}
+      src={`https://www.youtube.com/embed/${embedId}?&autoplay=1&rel=0&controls=0`}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture"
       allowFullScreen
