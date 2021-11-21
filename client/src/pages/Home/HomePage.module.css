@@ -1,9 +1,9 @@
 .homepage {
   text-align: center;
-  background-color: #073561;
   /*Height of nav bar*/
   margin-top: 74px;
-  font-family: sans-serif;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #283586;
 }
 
 .h1 {

@@ -1,7 +1,10 @@
 .aboutpage {
-  margin-top: 50px;
   padding: 30px;
-  font-family: sans-serif;
+  text-align: center;
+  /*Height of nav bar*/
+  margin-top: 74px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #283586;
 }
 .aboutpage > h5 {
   padding-top: 30px;
@@ -11,7 +14,6 @@
   font-weight: bold;
   margin-bottom: 25px;
 }
-
 
 .about_sponsors {
   padding-top: 30px;
@@ -39,11 +41,10 @@
   font-size: 1.5rem;
   text-transform: capitalize;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
 }
 
 .about_text > p {
   font-size: 1rem;
-  text-align: left;
+  text-align: center;
 }
-
