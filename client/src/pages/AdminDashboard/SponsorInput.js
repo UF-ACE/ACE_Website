@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
+import Row from "react-bootstrap/Row";
+
 class SponsorInput extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +24,17 @@ class SponsorInput extends Component {
             imageURL: '',
         }
     }
+    componentDidMount = async () => {
+        this.setState({isLoadingSponsors: true})
+        
+        await api.getSponsors().then(officers =>{
+          this.setState({
+            officers: officers.data.data,
+            isLoadingSponsors: false,
+          })
+        })
+      }
+
 
     onChangeName(e) {
         this.setState({
@@ -98,7 +111,54 @@ class SponsorInput extends Component {
         )    
     }
 
+
+
     render() {
+
+
+        let officers;
+        let officerProfiles;
+        if (!this.state.isLoadingSponsors && this.state.officers.length !== 0)
+        {
+          officers = this.state.officers;
+          officerProfiles = officers.map((officer) =>
+            
+            // Loading an input form for each officer and loading it with the data pertaining to each officer
+            <Row>
+                {/* <div className="input_form" key = {officer._id}>
+                    <form>
+                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
+                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
+                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
+                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
+                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                    <input type="file" name="file" id="file" class = "inputFile"/>
+                    <label for="file" className="submit_button">File</label>
+                    <button className="submit_button">Update</button>
+                    <button className="submit_button">Delete</button>
+                    </form>
+                </div> */}
+
+                <div className="input_form" key = {officer._id}>
+                    <form>
+                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
+                    <input type="text" name="description" placeholder="Description" value = {officer.description} className = "update_input"/>
+                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
+                    <input type="text" name="link" placeholder="Link" value = {officer.site} className = "update_input"/>
+                    <button className="submit_button">Update</button>
+                    <button className="submit_button">Delete</button>
+                    </form>
+                </div>
+            </Row>
+          )     
+        }
+        else
+        {
+          officers = null;
+          officerProfiles = null;
+        }
+
+
         return (
             <div className = "officer_input">
                     <h3>Add Sponsor</h3>
@@ -146,16 +206,8 @@ class SponsorInput extends Component {
                             </div>
 
                     <h3>Current Sponsors</h3>
-                    <div className="input_form">
-                        <form>
-                        <input type="text" name="name" placeholder="Name" />
-                        <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="linkedin" placeholder="LinkedIn" />
-                        <input type="text" name="link" placeholder="Link" />
-                        <button className="submit_button">Update</button>
-                        <button className="submit_button">Delete</button>
-                        </form>
-                    </div>
+                    {officerProfiles}
+                    
                     </div>
             </div>
         )

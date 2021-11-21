@@ -1,7 +1,6 @@
 import React from "react";
 import HomeCalendar from "../../features/HomeCalendar";
 import HomeYoutube from "../../features/HomeYoutube";
-import Youtube from "../../features/Youtube"
 import logo from "../../imgs/logo-min.png";
 import styles from "./HomePage.module.css";
 

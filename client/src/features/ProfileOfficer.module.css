@@ -6,7 +6,7 @@
   transition: transform 100ms ease-in;
   cursor: pointer;
   margin-top: 100px;
-  width: auto;
+  width: 400px;
   height: auto;
   text-align: center;
 }
@@ -25,6 +25,8 @@
   object-fit: cover;
   min-width: 100px;
   min-height: 100px;
+  max-width: 250px;
+  max-height: 200px;
 }
 
 .profile {

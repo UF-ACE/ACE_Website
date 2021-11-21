@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+var favicon = require('serve-favicon');
 const path = require('path')
 
 const db = require('./server/db/index')
@@ -9,7 +10,6 @@ const sponsorRouter = require('./server/routes/sponsor-router')
 const tagRouter = require('./server/routes/sponsor-router')
 
 const app = express()
-const apiPort = 3000
 
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
@@ -22,6 +22,7 @@ app.use('/api', personRouter)
 app.use('/api', sponsorRouter)
 app.use('/api', tagRouter)
 
+app.use(favicon(path.join(__dirname, 'client/build', 'favicon.ico'))); 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'))
