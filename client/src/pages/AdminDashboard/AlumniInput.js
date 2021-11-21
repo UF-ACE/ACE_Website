@@ -125,7 +125,7 @@ class AlumniInput extends Component {
 
         let officers;
         let officerProfiles;
-        if (!this.state.isLoadingAlumni && this.state.officers.length !== 0)
+        if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
         {
           officers = this.state.officers;
           officerProfiles = officers.map((officer) =>

@@ -138,7 +138,7 @@ class OfficerInput extends Component {
                     <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
                     <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                    <input type="text" name="password" placeholder="Password" value = {officer.password} className = "update_input"/>
                     <input type="file" name="file" id="file" class = "inputFile"/>
                     <label for="file" className="submit_button">File</label>
                     <button className="submit_button">Update</button>
@@ -164,72 +164,66 @@ class OfficerInput extends Component {
         return (
             <div className = "officer_input">
                 <h3>Add Officer</h3>
-                          <div className="test_input">
-                            <div className="input_form">
-                              <form onSubmit = {this.onSubmit}>
-                                <input 
-                                    type="text"
-                                    name="name" 
-                                    placeholder="Name"
-                                    value = {this.state.name}
-                                    onChange = {this.onChangeName}
-                                />
-                                <input 
-                                    type="text" 
-                                    name="title" 
-                                    placeholder="Title"
-                                    value = {this.state.title}
-                                    onChange = {this.onChangeTitle}
-                                />
-                                <input 
-                                    type="text" 
-                                    name="email" 
-                                    placeholder="Email"
-                                    value = {this.state.email}
-                                    onChange = {this.onChangeEmail}
-                                />
-                                <input 
-                                    type="text" 
-                                    name="linkedin" 
-                                    placeholder="LinkedIn" 
-                                    value = {this.state.linkedin}
-                                    onChange = {this.onChangeLinkedin}
-                                />
-                                <input 
-                                    type="text" 
-                                    name="password" 
-                                    placeholder="Password" 
-                                    value = {this.state.password}
-                                    onChange = {this.onChangePassword}
-                                />
-                                <input 
-                                    type="text" 
-                                    name="imageURL" 
-                                    placeholder="imageURL"
-                                    value = {this.state.imageURL}
-                                    onChange = {this.onChangeImageURL}
-                                />
-                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
-                                <button className="submit_button">Submit</button>
-                              </form>
-                            </div>
+                <div className="input_form">
+                    <form onSubmit = {this.onSubmit}>
+                    <input 
+                        type="text"
+                        name="name" 
+                        placeholder="Name"
+                        value = {this.state.name}
+                        onChange = {this.onChangeName}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="title" 
+                        placeholder="Title"
+                        value = {this.state.title}
+                        onChange = {this.onChangeTitle}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="email" 
+                        placeholder="Email"
+                        value = {this.state.email}
+                        onChange = {this.onChangeEmail}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="linkedin" 
+                        placeholder="LinkedIn" 
+                        value = {this.state.linkedin}
+                        onChange = {this.onChangeLinkedin}
+                        className = "update_input"
+                    />
+                    <input 
+                        type="text" 
+                        name="password" 
+                        placeholder="Password" 
+                        value = {this.state.password}
+                        onChange = {this.onChangePassword}
+                        className = "update_input"
+                    />
+                    <input type="file" name="file" id="file" class = "inputFile"/>
+                    <label for="file" className="submit_button">File</label>
+                    <input 
+                        type="file" 
+                        id="file"
+                        name="imageURL" 
+                        placeholder="imageURL"
+                        value = {this.state.imageURL}
+                        onChange = {this.onChangeImageURL}
+                        className = "update_input"
+                    />
+                    <label for="imageURL" className="submit_button">File</label>
+                    <button className="submit_button">Submit</button>
+                    </form>
 
-                <h3>Current Officers</h3>
-                        <div className="input_form">
-                            <form>
-                              <input type="text" name="name" placeholder="Name" />
-                                <input type="text" name="title" placeholder="Title" />
-                                <input type="text" name="email" placeholder="Email" />
-                                <input type="text" name="linkedin" placeholder="LinkedIn" />
-                                <input type="text" name="password" placeholder="Password" />
-                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
-                                <input type="file" name="file" id="file" class = "inputFile"/>
-                                <label for="file">File</label>
-                                <button className="submit_button">Update</button>
-                                <button className="submit_button">Delete</button>
-                              </form>
-                            </div>
-                          </div>
+                    <h3>Current Officers</h3>
+                    {officerProfiles}
+                </div>
             </div>
         )
     }
