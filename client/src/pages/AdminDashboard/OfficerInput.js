@@ -3,7 +3,6 @@ import "./OfficerInput.css"
 import api from "../../api"
 import Row from "react-bootstrap/Row";
 
-
 class OfficerInput extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,6 @@ class OfficerInput extends Component {
             imageURL: '',
         }
     }
-
     componentDidMount = async () => {
         this.setState({isLoadingOfficers: true})
     
