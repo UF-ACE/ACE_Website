@@ -125,19 +125,6 @@ class SponsorInput extends Component {
             
             // Loading an input form for each officer and loading it with the data pertaining to each officer
             <Row>
-                {/* <div className="input_form" key = {officer._id}>
-                    <form>
-                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file" className="submit_button">File</label>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
-                    </form>
-                </div> */}
 
                 <div className="input_form" key = {sponsor._id}>
                     <form>
