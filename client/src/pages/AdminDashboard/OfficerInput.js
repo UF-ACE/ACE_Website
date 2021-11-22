@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
 import Row from "react-bootstrap/Row";
+import OfficerUpdateDelete from "./OfficerUpdateDelete";
 
 class OfficerInput extends Component {
     constructor(props) {
@@ -26,16 +27,16 @@ class OfficerInput extends Component {
             imageURL: '',
         }
     }
-    componentDidMount = async () => {
-        this.setState({isLoadingOfficers: true})
+    // componentDidMount = async () => {
+    //     this.setState({isLoadingOfficers: true})
     
-        await api.getPeoplebyOfficer(true).then(officers => {
-          this.setState({
-            officers: officers.data.data,
-            isLoadingOfficers: false,
-          })
-        })
-    }
+    //     await api.getPeoplebyOfficer(true).then(officers => {
+    //       this.setState({
+    //         officers: officers.data.data,
+    //         isLoadingOfficers: false,
+    //       })
+    //     })
+    // }
 
     onChangeName(e) {
         this.setState({
@@ -122,109 +123,100 @@ class OfficerInput extends Component {
     }
 
     render() {
-        let officers;
-        let officerProfiles;
-        if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
-        {
-          officers = this.state.officers;
-          officerProfiles = officers.map((officer) =>
+        // let officers;
+        // let officerProfiles;
+        // if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
+        // {
+        //   officers = this.state.officers;
+        //   officerProfiles = officers.map((officer) =>
             
           
-            // Loading an input form for each officer and loading it with the data pertaining to each officer
-            <Row>
-                <div className="input_form" key = {officer._id}>
-                    <form>
-                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
-                    </form>
-                </div>
-            </Row>
-
-
-
-          )     
-        }
-        else
-        {
-          officers = null;
-          officerProfiles = null;
-        }
-
-
-
-
-
+        //     // Loading an input form for each officer and loading it with the data pertaining to each officer
+        //     <Row>
+        //         <div className="input_form" key = {officer._id}>
+        //             <form>
+        //             <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
+        //             <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
+        //             <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
+        //             <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
+        //             <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+        //             <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
+        //             <button className="submit_button">Update</button>
+        //             <button className="submit_button">Delete</button>
+        //             </form>
+        //         </div>
+        //     </Row>
+        //   )     
+        // }
+        // else
+        // {
+        //   officers = null;
+        //   officerProfiles = null;
+        // }
         return (
             <div className = "officer_input">
                 <Row>
-                <h3>Add Officer</h3>
-                <div className="input_form">
-                    <form onSubmit = {this.onSubmit}>
-                    <input 
-                        type="text"
-                        name="name" 
-                        placeholder="Name"
-                        value = {this.state.name}
-                        onChange = {this.onChangeName}
-                        className = "update_input"
-                    />
-                    <input 
-                        type="text" 
-                        name="title" 
-                        placeholder="Title"
-                        value = {this.state.title}
-                        onChange = {this.onChangeTitle}
-                        className = "update_input"
-                    />
-                    <input 
-                        type="text" 
-                        name="email" 
-                        placeholder="Email"
-                        value = {this.state.email}
-                        onChange = {this.onChangeEmail}
-                        className = "update_input"
-                    />
-                    <input 
-                        type="text" 
-                        name="linkedin" 
-                        placeholder="LinkedIn" 
-                        value = {this.state.linkedin}
-                        onChange = {this.onChangeLinkedin}
-                        className = "update_input"
-                    />
-                    <input 
-                        type="text" 
-                        name="password" 
-                        placeholder="Password" 
-                        value = {this.state.password}
-                        onChange = {this.onChangePassword}
-                        className = "update_input"
-                    />
-                    <input 
-                        type="text" 
-                        name="imageURL" 
-                        placeholder="imageURL"
-                        value = {this.state.imageURL}
-                        onChange = {this.onChangeImageURL}
-                        className = "update_input"
-                    />
-                    <button className="submit_button">Submit</button>
-                    </form>
+                    <h3>Add Officer</h3>
+                    <div className="input_form">
+                        <form onSubmit = {this.onSubmit}>
+                        <input 
+                            type="text"
+                            name="name" 
+                            placeholder="Name"
+                            value = {this.state.name}
+                            onChange = {this.onChangeName}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="title" 
+                            placeholder="Title"
+                            value = {this.state.title}
+                            onChange = {this.onChangeTitle}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="email" 
+                            placeholder="Email"
+                            value = {this.state.email}
+                            onChange = {this.onChangeEmail}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="linkedin" 
+                            placeholder="LinkedIn" 
+                            value = {this.state.linkedin}
+                            onChange = {this.onChangeLinkedin}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="password" 
+                            placeholder="Password" 
+                            value = {this.state.password}
+                            onChange = {this.onChangePassword}
+                            className = "update_input"
+                        />
+                        <input 
+                            type="text" 
+                            name="imageURL" 
+                            placeholder="imageURL"
+                            value = {this.state.imageURL}
+                            onChange = {this.onChangeImageURL}
+                            className = "update_input"
+                        />
+                        <button className="submit_button">Submit</button>
+                        </form>
 
-                </div>
+                    </div>
                 </Row>
-                <div className = "update_form">
+                {/* <div className = "update_form">
                     <h3>Current Officers</h3>
                         {officerProfiles}
-                </div>
-
-
+                </div> */}
+                <OfficerUpdateDelete />
             </div>
         )
     }

@@ -2,7 +2,7 @@ import VideoThumbnail from "../../features/VideoThumbnail";
 import "./LearnPage.css";
 import api from "../../api/index.js";
 import React, { Component } from "react";
-import Pagination from "react-bootstrap/Pagination";
+import Row from "react-bootstrap/Row";
 
 class LearnPage extends Component {
   constructor(props) {
@@ -33,12 +33,14 @@ class LearnPage extends Component {
       videoDivs = videos.map((video) => (
         <div key={video._id}>
           <div className="videos">
-            <VideoThumbnail
-              embedId={video.link.substring(video.link.lastIndexOf("/") + 1)}
-              title={video.title}
-              description={video.description}
-              tags={video.tags}
-            />
+            <Row>
+              <VideoThumbnail
+                embedId={video.link.substring(video.link.lastIndexOf("/") + 1)}
+                title={video.title}
+                description={video.description}
+                tags={video.tags}
+              />
+            </Row>
           </div>
         </div>
       ));
@@ -50,23 +52,19 @@ class LearnPage extends Component {
     return (
       <div className="learnpage">
         <div className="description">
-          <h1>ACE's Content Hub</h1>
-          <h3>
-            GBM's, workshops, speaker sessions, elections, and whatever else ACE
-            hosts and publishes!
-          </h3>
+          <Row>
+            <h1>ACE's Content Hub</h1>
+            <h3>
+              GBM's, workshops, speaker sessions, elections, and whatever else ACE
+              hosts and publishes!
+            </h3>
+          </Row>
+          <Row>
+          {videoDivs}
+
+          </Row>
+
         </div>
-        {videoDivs}
-        {/* <Pagination className = "pagination">
-          <Pagination.First />
-          <Pagination.Prev />
-          <Pagination.Item active>{1}</Pagination.Item>
-          <Pagination.Item >{2}</Pagination.Item>
-          <Pagination.Item >{3}</Pagination.Item>
-          <Pagination.Ellipsis />
-          <Pagination.Next />
-          <Pagination.Last />
-        </Pagination> */}
       </div>
     );
   }
