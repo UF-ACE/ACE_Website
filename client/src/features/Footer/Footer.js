@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Nav, Form, Button } from "react-bootstrap";
 import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
-import { Link } from "react-router-dom";
+import AdminLogin from "./AdminLogin";
 
 const Footer = () => {
   return (
@@ -48,24 +48,8 @@ const Footer = () => {
           </Col>
           <Col className="p-0" md={6}>
             <Row>
-              <h1>Admin Login</h1>
-              <div className="test_input">
-                <div className="input_form">
-                  <form>
-                    <input type="text" name="name" placeholder="Password" />
-                    <Link to="/Admin" style={{ textDecoration: "none" }}>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        type="submit"
-                        className="submit_button"
-                      >
-                        Submit
-                      </Button>
-                    </Link>
-                  </form>
-                </div>
-              </div>
+
+              <AdminLogin />
             </Row>
             <h5>Association of Computer Engineers</h5>
             {/* TODO 

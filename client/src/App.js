@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./features/NavigationBar";
 import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/About/AboutPage";
-import Footer from "./features/Footer.js";
+import Footer from "./features/Footer/Footer.js";
 import LearnPage from "./pages/Learn/LearnPage.js";
 import AdminPage from "./pages/AdminDashboard/AdminPage.js";
 
