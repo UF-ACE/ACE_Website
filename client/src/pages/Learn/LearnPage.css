@@ -1,9 +1,11 @@
 .learnpage {
   text-align: center;
   /*Height of nav bar*/
-  margin-top: 74px;
+  margin-top: 73px;
   font-family: "Courier New", Courier, monospace;
   background-color: #283586;
+  color: black;
+  font-weight: 700;
 }
 
 .videos {
@@ -18,7 +20,7 @@
   width: auto;
   height: auto;
   text-align: center;
-  background-color: white;
+  background-color: #f04e23;
 }
 
 .videos:hover {

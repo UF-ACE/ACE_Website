@@ -1,18 +1,23 @@
 .aboutpage {
-  padding: 30px;
   text-align: center;
   /*Height of nav bar*/
-  margin-top: 74px;
+  margin-top: 73px;
   font-family: "Courier New", Courier, monospace;
   background-color: #283586;
+  color: black;
 }
-.aboutpage > h5 {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
+
 .aboutpage h2 {
+  margin-top: 10px;
   font-weight: bold;
-  margin-bottom: 25px;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
 }
 
 .about_sponsors {
@@ -20,6 +25,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-bottom: 45px;
 }
 .about_officers {
   margin-bottom: 45px;

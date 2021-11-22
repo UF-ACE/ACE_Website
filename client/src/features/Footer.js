@@ -7,15 +7,14 @@ import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
 import { Link } from "react-router-dom";
 
-
 const Footer = () => {
   return (
     <footer className={styles.mt_5} bg="dark">
       <Container fluid={true}>
         <Row className="border-top justify-content-between p-3">
-        <Col>
+          <Col>
             {/*This should be a component*/}
-            <h5>Contact Us</h5>
+            <h3>Contact Us</h3>
             <Row className="mb-3">
               <Form.Group className="mr-3">
                 <Form.Label>Full Name</Form.Label>
@@ -33,11 +32,7 @@ const Footer = () => {
             <Row>
               <Form.Group>
                 <Form.Label className="mr-3">Message</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  size="sm"
-                  type="text"
-                />
+                <Form.Control as="textarea" size="sm" type="text" />
               </Form.Group>
             </Row>
             <Row xs={6}>
@@ -56,22 +51,21 @@ const Footer = () => {
               <h1>Admin Login</h1>
               <div className="test_input">
                 <div className="input_form">
-                    <form>
-                      <input type="text" name="name" placeholder="Password" />
-                      <Link to = "/Admin" style = {{textDecoration: "none"}}>
-                      <Button 
-                      variant="secondary"
-                      size="sm"
-                      type="submit"
-                      className="submit_button">Submit
+                  <form>
+                    <input type="text" name="name" placeholder="Password" />
+                    <Link to="/Admin" style={{ textDecoration: "none" }}>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        type="submit"
+                        className="submit_button"
+                      >
+                        Submit
                       </Button>
-                      
-                      
-                      </Link>
-                      
-                    </form>
-                  </div>
+                    </Link>
+                  </form>
                 </div>
+              </div>
             </Row>
             <h5>Association of Computer Engineers</h5>
             {/* TODO 
