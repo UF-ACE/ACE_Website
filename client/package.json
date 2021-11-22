@@ -13,8 +13,6 @@
     "ckey": "^1.0.2",
     "dotenv": "^10.0.0",
     "find-config": "^1.0.0",
-    "firebase": "^9.0.2",
-    "firestore-export-import": "^0.17.0",
     "mime": "^2.5.2",
     "path": "^0.12.7",
     "querystring": "^0.2.1",

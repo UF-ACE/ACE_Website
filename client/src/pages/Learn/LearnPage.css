@@ -1,28 +1,33 @@
-.learnpage{
-    margin-top: 100px;
-    font-family: sans-serif;
+.learnpage {
+  text-align: center;
+  /*Height of nav bar*/
+  margin-top: 73px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #283586;
+  color: black;
+  font-weight: 700;
 }
 
-.videos{
-    margin: 10px;
-    margin-left: 70px;
-    margin-right: 70px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
-    transition: transform 100ms ease-in;
-    margin-top: 30px;
-    width: auto;
-    height: auto;
-    text-align: center;
-    background-color: white;
-  }
-  
-  .videos:hover {
-    transform: scale(1.07);
-  }
-  .pagination{
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-  }
+.videos {
+  margin: 10px;
+  margin-left: 70px;
+  margin-right: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+  transition: transform 100ms ease-in;
+  margin-top: 30px;
+  width: auto;
+  height: auto;
+  text-align: center;
+  background-color: #f04e23;
+}
+
+.videos:hover {
+  transform: scale(1.07);
+}
+/* .pagination {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+} */

@@ -1,14 +1,16 @@
 .profile {
-  margin: 10px;
+  margin: 0px 10px 10px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
   transition: transform 100ms ease-in;
   cursor: pointer;
-  margin-top: 100px;
   width: 400px;
   height: auto;
   text-align: center;
+  padding: 20px;
+  padding-top: 20px;
+  background-color: #f04e23;
 }
 
 .profile:hover {
@@ -27,14 +29,6 @@
   min-height: 100px;
   max-width: 250px;
   max-height: 200px;
-}
-
-.profile {
-  margin-top: -9px;
-  border-radius: 10px;
-  padding: 20px;
-  padding-top: 20px;
-  border: 1;
 }
 
 .profile_info > h2 {

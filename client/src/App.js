@@ -8,7 +8,7 @@ import HomePage from "./pages/Home/HomePage";
 import AboutPage from "./pages/About/AboutPage";
 import Footer from "./features/Footer.js";
 import LearnPage from "./pages/Learn/LearnPage.js";
-import AddOfficersPage from "./pages/AdminDashboard/AddOfficersPage.js";
+import AdminPage from "./pages/AdminDashboard/AdminPage.js";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
               <LearnPage />
             </Route>
             <Route path="/Admin">
-              <AddOfficersPage />
+              <AdminPage />
             </Route>
           </Switch>
         </div>
