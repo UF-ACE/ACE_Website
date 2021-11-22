@@ -78,7 +78,7 @@ class OfficerInput extends Component {
 
         //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
         //will contain the substring drive.google.com/file
-        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") !== -1);
 
 
         const officer = {
@@ -139,8 +139,7 @@ class OfficerInput extends Component {
                     <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
                     <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file" className="submit_button">File</label>
+                    <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
@@ -163,6 +162,7 @@ class OfficerInput extends Component {
 
         return (
             <div className = "officer_input">
+                <Row>
                 <h3>Add Officer</h3>
                 <div className="input_form">
                     <form onSubmit = {this.onSubmit}>
@@ -217,9 +217,13 @@ class OfficerInput extends Component {
                     <button className="submit_button">Submit</button>
                     </form>
 
-                    <h3>Current Officers</h3>
-                    {officerProfiles}
                 </div>
+                </Row>
+                <div className = "update_form">
+                    <h3>Current Officers</h3>
+                        {officerProfiles}
+                </div>
+
 
             </div>
         )

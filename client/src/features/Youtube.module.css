@@ -1,11 +1,7 @@
-.officer_input > input{
-    padding: 10px;
-    margin-right: 4px;
-    position: relative;
-    width: 185px;
+.loadButton > button{
+    background-color: red;
 }
-
-.officer_input > button{
+.loadButton > button{
     
     position: relative;
     display: inline-block;
@@ -17,7 +13,7 @@
     background-color: #282c33;
     color: white;
 }
-.officer_input > button:hover{
+.loadButton > button:hover{
     
     position: relative;
     display: inline-block;
@@ -28,16 +24,4 @@
     padding: 10px;
     background-color: white;
     color: #282c33;
-}
-
-
-.input_form{
-    margin-bottom: 15px;
-}
-
-.update_input{
-    width: 165px;
-}
-.update_form{
-    margin-bottom: 25px;
 }

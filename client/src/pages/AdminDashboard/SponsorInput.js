@@ -71,7 +71,7 @@ class SponsorInput extends Component {
 
         //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
         //will contain the substring drive.google.com/file
-        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") !== -1);
 
 
         const sponsor = {
@@ -132,6 +132,7 @@ class SponsorInput extends Component {
                     <input type="text" name="description" placeholder="Description" value = {sponsor.description} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {sponsor.linkedin} className = "update_input"/>
                     <input type="text" name="link" placeholder="Link" value = {sponsor.link} className = "update_input"/>
+                    <input type="text" name="imageURL" placeholder="imageURL" value = {sponsor.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
@@ -158,6 +159,7 @@ class SponsorInput extends Component {
                                     placeholder="Name"
                                     value = {this.state.name}
                                     onChange = {this.onChangeName}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -165,6 +167,7 @@ class SponsorInput extends Component {
                                     placeholder="Description"
                                     value = {this.state.description}
                                     onChange = {this.onChangeDescription}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -172,6 +175,7 @@ class SponsorInput extends Component {
                                     placeholder="LinkedIn" 
                                     value = {this.state.linkedin}
                                     onChange = {this.onChangeLinkedin}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -179,6 +183,7 @@ class SponsorInput extends Component {
                                     placeholder="Link" 
                                     value = {this.state.link}
                                     onChange = {this.onChangeLink}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -186,6 +191,7 @@ class SponsorInput extends Component {
                                     placeholder="imageURL"
                                     value = {this.state.imageURL}
                                     onChange = {this.onChangeImageURL}
+                                    className = "update_input"
                                 />
                                 {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
                                 <button className="submit_button">Submit</button>
