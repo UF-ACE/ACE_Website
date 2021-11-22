@@ -139,8 +139,7 @@ class AlumniInput extends Component {
                     <input type="text" name="email" placeholder="Email" value = {alumni.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {alumni.linkedin} className = "update_input"/>
                     <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/>
-                    <input type="file" name="file" id="file" class = "inputFile"/>
-                    <label for="file" className="submit_button">File</label>
+                    <input type="text" name="imageURL" placeholder="ImageURL" value = {alumni.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
                     </form>
