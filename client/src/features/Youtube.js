@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import apis from "../api/index"
+import classes from "./Youtube.module.css";
 
 require('dotenv').config()
 const APIKey = process.env.REACT_APP_YOUTUBE_API_KEY //API key
@@ -65,7 +66,8 @@ class Youtube extends Component {
     render(){
           
         return(
-            <div className="generalWrapper">
+            <div className={classes.loadButton}>
+                
                 <button onClick={this.clicked}>Get Videos</button>
                       
             </div>

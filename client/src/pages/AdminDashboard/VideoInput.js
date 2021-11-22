@@ -104,63 +104,16 @@ class VideoInput extends Component {
 
         return (
             <div className = "officer_input">
-                {/* <form onSubmit = {this.onSubmit}>
-                    <div className = "form-group">
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.name}
-                            onChange={this.onChangeName}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Title:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.title}
-                            onChange={this.onChangeTitle}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Email:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.email}
-                            onChange={this.onChangeEmail}
-                        />
-                    </div>
-                    <div className = "form-group">
-                        <label>Linkedin:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={this.state.linkedin}
-                            onChange={this.onChangeLinkedin}
-                        />
-                    </div>
-                </form> */}
-                   {/* <h3>Add Video</h3> */}
-                    <div className="test_input">
-                    {/* <div className="input_form">
-                        <form>
-                        <input type="text" name="title" placeholder="Title" />
-                        <input type="text" name="link" placeholder="Link" />
-                        <input type="text" name="description" placeholder="Description" />
-                        <input type="text" name="Tags" placeholder="Tags" />
-                        <button className="submit_button">Submit</button>
-                        </form>
-                    </div> */}
-
-
-                    
-                    {/*Do not click API Call too many times */}
-                    <Youtube />
-
-                    <h3>Current Videos</h3>
-                    {videoDivs}
+                    <div className="test_input">            
+                        <Row>
+                            <h3>Load All Videos</h3>
+                            {/*Do not click API Call too many times */}
+                            <Youtube />
+                        </Row>
+                        <Row>
+                            <h3>Current Videos</h3>
+                            {videoDivs}
+                        </Row>
                     </div>
             </div>
         )

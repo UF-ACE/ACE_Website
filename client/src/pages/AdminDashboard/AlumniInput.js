@@ -78,7 +78,7 @@ class AlumniInput extends Component {
 
         //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
         //will contain the substring drive.google.com/file
-        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") != -1);
+        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") !== -1);
 
 
         const alumnus = {
@@ -166,6 +166,7 @@ class AlumniInput extends Component {
                                     placeholder="Name"
                                     value = {this.state.name}
                                     onChange = {this.onChangeName}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -173,6 +174,7 @@ class AlumniInput extends Component {
                                     placeholder="Title"
                                     value = {this.state.title}
                                     onChange = {this.onChangeTitle}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -180,6 +182,7 @@ class AlumniInput extends Component {
                                     placeholder="Email"
                                     value = {this.state.email}
                                     onChange = {this.onChangeEmail}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -187,6 +190,7 @@ class AlumniInput extends Component {
                                     placeholder="LinkedIn" 
                                     value = {this.state.linkedin}
                                     onChange = {this.onChangeLinkedin}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -194,6 +198,7 @@ class AlumniInput extends Component {
                                     placeholder="Password" 
                                     value = {this.state.password}
                                     onChange = {this.onChangePassword}
+                                    className = "update_input"
                                 />
                                 <input 
                                     type="text" 
@@ -201,6 +206,7 @@ class AlumniInput extends Component {
                                     placeholder="imageURL"
                                     value = {this.state.imageURL}
                                     onChange = {this.onChangeImageURL}
+                                    className = "update_input"
                                 />
                                 {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
                                 <button className="submit_button">Submit</button>
