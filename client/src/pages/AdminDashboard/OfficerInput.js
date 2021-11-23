@@ -191,14 +191,14 @@ class OfficerInput extends Component {
                             onChange = {this.onChangeLinkedin}
                             className = "update_input"
                         />
-                        <input 
+                        {/* <input 
                             type="text" 
                             name="password" 
                             placeholder="Password" 
                             value = {this.state.password}
                             onChange = {this.onChangePassword}
                             className = "update_input"
-                        />
+                        /> */}
                         <input 
                             type="text" 
                             name="imageURL" 
