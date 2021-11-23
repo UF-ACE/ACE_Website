@@ -146,6 +146,26 @@ class AboutPage extends Component {
             <div className={styles.about_alumni}>{alumniProfiles}</div>
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <div className={styles.footerSpace}>
+              <h2>The Builders</h2>
+              <div>
+                {/*Put a group image here*/}
+                <h3>
+                  This website was built by ACE's newly formed Website
+                  Committee. To explore the source code and contribute, go to to
+                  repository
+                </h3>
+                <div className={styles.link}>
+                  <a href="https://github.com/UF-ACE/ACE_Website">
+                    ACE Website Source Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </div>
     );
   }

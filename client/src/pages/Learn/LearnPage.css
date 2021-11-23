@@ -3,7 +3,7 @@
   /*Height of nav bar*/
   margin-top: 73px;
   font-family: "Courier New", Courier, monospace;
-  background-color: #283586;
+  background-color: #384595;
   color: black;
   font-weight: 700;
 }
@@ -31,6 +31,6 @@
   display: flex;
   justify-content: center;
 } */
-.learnpage{
+.learnpage {
   padding-bottom: 40px;
 }

@@ -10,10 +10,10 @@ function ProfileSponsor({ src, name, description, linkedin, link }) {
         <h2>{name}</h2>
         <h4>{description}</h4>
         <div className={styles.profile_icons}>
-          <SocialIcon url={linkedin} />
+          <SocialIcon url={linkedin} bgColor="#384595" />
         </div>
         <div className={styles.profile_icons}>
-          <SocialIcon url={link} />
+          <SocialIcon url={link} bgColor="#384595" />
         </div>
       </div>
     </div>

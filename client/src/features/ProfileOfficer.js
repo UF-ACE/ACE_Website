@@ -10,10 +10,10 @@ function ProfileOfficer({ src, title, name, linkedin, email }) {
         <h2>{title}</h2>
         <h4>{name}</h4>
         <div className={styles.profile_icons}>
-          <SocialIcon url={linkedin} />
+          <SocialIcon url={linkedin} bgColor="#384595" />
         </div>
         <div className={styles.profile_icons}>
-          <SocialIcon url={email} />
+          <SocialIcon url={email} bgColor="#384595" />
         </div>
       </div>
     </div>

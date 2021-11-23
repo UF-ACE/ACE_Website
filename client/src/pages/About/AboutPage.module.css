@@ -3,7 +3,7 @@
   /*Height of nav bar*/
   margin-top: 73px;
   font-family: "Courier New", Courier, monospace;
-  background-color: #283586;
+  background-color: #384595;
   color: black;
 }
 
@@ -12,12 +12,18 @@
   font-weight: bold;
 }
 
-h1 {
+h1,
+h3 {
   font-weight: bold;
 }
 
-h3 {
-  font-weight: bold;
+.footerSpace {
+  padding-bottom: 30px;
+}
+
+.link > * {
+  font-size: "xx-large";
+  color: "#f04e23";
 }
 
 .about_sponsors {
