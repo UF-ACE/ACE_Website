@@ -87,7 +87,7 @@ class VideoInput extends Component {
                         <input type="text" name="title" placeholder="Title" value = {video.title} className = "update_input"/>
                         <input type="text" name="link" placeholder="Link" value = {video.link} className = "update_input"/>
                         <input type="text" name="description" placeholder="Description" value = {video.description} className = "update_input"/>
-                        <input type="text" name="Tags" placeholder="Tags" value = {video.tags} className = "update_input"/>
+                        {/* <input type="text" name="Tags" placeholder="Tags" value = {video.tags} className = "update_input"/> */}
                         <button className="submit_button">Update</button>
                         <button className="submit_button">Delete</button>
                     </form>

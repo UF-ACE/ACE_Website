@@ -138,7 +138,7 @@ class OfficerUpdateDelete extends Component {
                     <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
                     <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                    {/* <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/> */}
                     <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
