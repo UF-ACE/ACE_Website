@@ -14,7 +14,8 @@ class OfficerUpdateDelete extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeImageURL = this.onChangeImageURL.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.onDelete = this.onDelete.bind(this);
+        
         this.state = {
             officers: [],
             officer: null,
@@ -35,6 +36,12 @@ class OfficerUpdateDelete extends Component {
             isLoadingOfficers: false,
           })
         })
+    }
+    onDelete(officer){
+        // alert("delete clicked: " + officer._id + " --  " + officer.name);
+        // api.deletePersonbyID(officer._id);
+        api.deletePersonbyName(officer.name);
+        window.location.reload(false);
     }
 
     onChangeName(e) {
@@ -134,14 +141,15 @@ class OfficerUpdateDelete extends Component {
             <Row>
                 <div className="input_form" key = {officer._id}>
                     <form>
-                    <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
-                    <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
+                        <h5>{officer._id}</h5>
+                        <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
+                        <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
+                        <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
+                        <input type="text" name="linkedin" placeholder="LinkedIn" value = {officer.linkedin} className = "update_input"/>
+                        <input type="text" name="password" placeholder="Password" value = {officer.name} className = "update_input"/>
+                        <input type="text" name="imageURL" placeholder="imageURL" value = {officer.imageURL} className = "update_input"/>
+                        <button className="submit_button">Update</button>
+                        <button className="submit_button" onClick={() => this.onDelete(officer)}>Delete</button>
                     </form>
                 </div>
             </Row>
