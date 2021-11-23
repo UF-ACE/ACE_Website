@@ -38,10 +38,13 @@ class OfficerUpdateDelete extends Component {
         })
     }
     onDelete(officer){
-        // alert("delete clicked: " + officer._id + " --  " + officer.name);
-        // api.deletePersonbyID(officer._id);
-        api.deletePersonbyName(officer.name);
-        window.location.reload(false);
+        if (window.confirm("Do you want to delete officer: " + officer.name)){
+            // api.deletePersonbyName(officer.name);
+            api.deletePersonbyID(officer._id);
+            // window.location.reload(true);
+        }
+        window.location.reload(true);
+
     }
 
     onChangeName(e) {
@@ -141,7 +144,6 @@ class OfficerUpdateDelete extends Component {
             <Row>
                 <div className="input_form" key = {officer._id}>
                     <form>
-                        <h5>{officer._id}</h5>
                         <input type="text" name="name" placeholder="Name" value = {officer.name} className = "update_input"/>
                         <input type="text" name="title" placeholder="Title" value = {officer.title} className = "update_input"/>
                         <input type="text" name="email" placeholder="Email" value = {officer.email} className = "update_input"/>
