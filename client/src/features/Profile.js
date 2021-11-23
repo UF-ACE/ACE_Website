@@ -10,6 +10,7 @@ function Profile({src, name, linkedin, github}){
 			<img src = {src} alt = "" />
 			<div className = {classes.profile_info}>
 				<h4>{name}</h4>
+				<h2>Test</h2>
 				<div className = {classes.profile_icons}>
 					<SocialIcon url= {linkedin} />
 				</div>
