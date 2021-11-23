@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Redirect, Route} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {Button } from "react-bootstrap";
 require("dotenv").config();
 
@@ -24,10 +24,7 @@ class AdminLogin extends Component{
         }
         else if (password === loginPassword){
             // alert("password correct - yoiu shall pass");
-            this.setState({ redirect: "/Admin" });
-            <Route path="/" render={() => <Redirect to = "/Admin"/>}/>
-
-
+            this.setState({ redirect: ("/" +  process.env.REACT_APP_ACEKingsOnly)});
         }else if (password !== loginPassword){
             alert("Invalid Password - please enter correct password");
             this.setState({ redirect: "/#" });
@@ -78,7 +75,6 @@ class AdminLogin extends Component{
                       </form>
                     </div>
                   </div>
-                    <h1>Result: {process.env.REACT_APP_URI}</h1>
             </div>
             )
         }
