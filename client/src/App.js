@@ -11,7 +11,7 @@ import LearnPage from "./pages/Learn/LearnPage.js";
 import AdminPage from "./pages/AdminDashboard/AdminPage.js";
 
 function App() {
-  let adminDashboardFilePath = "/" + process.env.REACT_APP_ACEKingsOnly;
+  let adminDashboardFilePath = "/" + process.env.REACT_APP_PASSWORD;
   return (
     <Router>
       <div className="app">
