@@ -18,13 +18,13 @@ class AdminLogin extends Component{
     }
     checkPassword(password){
         // const location = useLocation();
-        const loginPassword = process.env.REACT_APP_ACEKingsOnly;
+        const loginPassword = process.env.REACT_APP_PASSWORD;
         if(password === 'blankPassword'){
             alert("Please Enter Password");
         }
         else if (password === loginPassword){
             // alert("password correct - yoiu shall pass");
-            this.setState({ redirect: ("/" +  process.env.REACT_APP_ACEKingsOnly)});
+            this.setState({ redirect: ("/" +  process.env.REACT_APP_PASSWORD)});
         }else if (password !== loginPassword){
             alert("Invalid Password - please enter correct password");
             this.setState({ redirect: "/#" });
