@@ -11,6 +11,7 @@ import LearnPage from "./pages/Learn/LearnPage.js";
 import AdminPage from "./pages/AdminDashboard/AdminPage.js";
 
 function App() {
+  let adminDashboardFilePath = "/" + process.env.REACT_APP_ACEKingsOnly;
   return (
     <Router>
       <div className="app">
@@ -26,7 +27,7 @@ function App() {
             <Route path="/Learn">
               <LearnPage />
             </Route>
-            <Route path="/Admin">
+            <Route path={adminDashboardFilePath}>
               <AdminPage />
             </Route>
           </Switch>
