@@ -6,7 +6,7 @@
   transition: transform 100ms ease-in;
   cursor: pointer;
   width: 400px;
-  height: auto;
+  height: 500px;
   text-align: center;
   padding: 20px;
   padding-top: 20px;
@@ -26,7 +26,7 @@
   width: 45%;
   object-fit: cover;
   min-width: 100px;
-  min-height: 100px;
+  min-height: 200px;
   max-width: 250px;
   max-height: 200px;
 }

@@ -13,7 +13,7 @@ function ProfileOfficer({ src, title, name, linkedin, email }) {
           <SocialIcon url={linkedin} bgColor="#384595" />
         </div>
         <div className={styles.profile_icons}>
-          <SocialIcon url={email} bgColor="#384595" />
+          <SocialIcon url={"mailto:" + email} bgColor="#384595" />
         </div>
       </div>
     </div>
