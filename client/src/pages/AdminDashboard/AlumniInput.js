@@ -138,7 +138,7 @@ class AlumniInput extends Component {
                     <input type="text" name="title" placeholder="Title" value = {alumni.title} className = "update_input"/>
                     <input type="text" name="email" placeholder="Email" value = {alumni.email} className = "update_input"/>
                     <input type="text" name="linkedin" placeholder="LinkedIn" value = {alumni.linkedin} className = "update_input"/>
-                    {/* <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/> */}
+                    <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/>
                     <input type="text" name="imageURL" placeholder="ImageURL" value = {alumni.imageURL} className = "update_input"/>
                     <button className="submit_button">Update</button>
                     <button className="submit_button">Delete</button>
@@ -192,14 +192,14 @@ class AlumniInput extends Component {
                                     onChange = {this.onChangeLinkedin}
                                     className = "update_input"
                                 />
-                                {/* <input 
+                                <input 
                                     type="text" 
                                     name="password" 
                                     placeholder="Password" 
                                     value = {this.state.password}
                                     onChange = {this.onChangePassword}
                                     className = "update_input"
-                                /> */}
+                                />
                                 <input 
                                     type="text" 
                                     name="imageURL" 
