@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
 import Row from "react-bootstrap/Row";
-
+import SponsorUpdateDelete from "./SponsorUpdateDelete";
 class SponsorInput extends Component {
     constructor(props) {
         super(props);
@@ -109,48 +109,48 @@ class SponsorInput extends Component {
                 imageURL: '',
             })
         )    
+        window.location.reload(false);
     }
 
 
 
     render() {
-
-
-        let sponsors;
-        let sponsorProfiles;
-        if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
-        {
-          sponsors = this.state.sponsors;
-          sponsorProfiles = sponsors.map((sponsor) =>
+        // let sponsors;
+        // let sponsorProfiles;
+        // if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0)
+        // {
+        //   sponsors = this.state.sponsors;
+        //   sponsorProfiles = sponsors.map((sponsor) =>
             
-            // Loading an input form for each officer and loading it with the data pertaining to each officer
-            <Row>
+        //     // Loading an input form for each officer and loading it with the data pertaining to each officer
+        //     <Row>
 
-                <div className="input_form" key = {sponsor._id}>
-                    <form>
-                    <input type="text" name="name" placeholder="Name" value = {sponsor.name} className = "update_input"/>
-                    <input type="text" name="description" placeholder="Description" value = {sponsor.description} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {sponsor.linkedin} className = "update_input"/>
-                    <input type="text" name="link" placeholder="Link" value = {sponsor.link} className = "update_input"/>
-                    <input type="text" name="imageURL" placeholder="imageURL" value = {sponsor.imageURL} className = "update_input"/>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
-                    </form>
-                </div>
-            </Row>
-          )     
-        }
-        else
-        {
-          sponsors = null;
-          sponsorProfiles = null;
-        }
+        //         <div className="input_form" key = {sponsor._id}>
+        //             <form>
+        //             <input type="text" name="name" placeholder="Name" value = {sponsor.name} className = "update_input"/>
+        //             <input type="text" name="description" placeholder="Description" value = {sponsor.description} className = "update_input"/>
+        //             <input type="text" name="linkedin" placeholder="LinkedIn" value = {sponsor.linkedin} className = "update_input"/>
+        //             <input type="text" name="link" placeholder="Link" value = {sponsor.link} className = "update_input"/>
+        //             <input type="text" name="imageURL" placeholder="imageURL" value = {sponsor.imageURL} className = "update_input"/>
+        //             <button className="submit_button">Update</button>
+        //             <button className="submit_button">Delete</button>
+        //             </form>
+        //         </div>
+        //     </Row>
+        //   )     
+        // }
+        // else
+        // {
+        //   sponsors = null;
+        //   sponsorProfiles = null;
+        // }
 
 
         return (
             <div className = "officer_input">
                     <h3>Add Sponsor</h3>
                           <div className="test_input">
+                              <Row>
                             <div className="input_form">
                               <form onSubmit = {this.onSubmit}>
                                 <input 
@@ -197,10 +197,8 @@ class SponsorInput extends Component {
                                 <button className="submit_button">Submit</button>
                               </form>
                             </div>
-
-                    <h3>Current Sponsors</h3>
-                    {sponsorProfiles}
-                    
+                            </Row>
+                    <SponsorUpdateDelete />
                     </div>
             </div>
         )

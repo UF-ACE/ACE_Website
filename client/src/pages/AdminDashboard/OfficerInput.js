@@ -174,10 +174,6 @@ class OfficerInput extends Component {
 
                     </div>
                 </Row>
-                {/* <div className = "update_form">
-                    <h3>Current Officers</h3>
-                        {officerProfiles}
-                </div> */}
                 <OfficerUpdateDelete />
             </div>
         )
