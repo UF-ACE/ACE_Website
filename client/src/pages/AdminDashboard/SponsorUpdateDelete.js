@@ -125,7 +125,8 @@ class SponsorUpdateDelete extends Component {
             alert("Nothing to update")
         }
         else if (window.confirm("Do you want to update Sponsor: " + sponsor.name)){
-            api.updateSponsorbyID(sponsor._id, newSponsor);
+            // api.updateSponsorbyID(sponsor._id, newSponsor);
+            api.updateSponsorbyName(sponsor.name, newSponsor);
         }
         window.location.reload(true);
     }
