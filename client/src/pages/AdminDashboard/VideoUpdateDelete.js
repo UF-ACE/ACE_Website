@@ -80,6 +80,7 @@ class VideoUpdateDelete extends Component {
         }
         else if (window.confirm("Do you want to update Video: " + video.title)){
             api.updateVideobyID(video._id, newVideo);
+            // api.updateVideobyTitle(video.title, newVideo);
         }
         window.location.reload(true);
     }
