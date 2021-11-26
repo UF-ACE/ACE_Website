@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./OfficerInput.css"
-import api from "../../api"
 import Row from "react-bootstrap/Row";
+import api from "../../api"
+import AlumniUpdateDelete from "./AlumniUpdateDelete"
 
 class AlumniInput extends Component {
     constructor(props) {
@@ -25,6 +26,9 @@ class AlumniInput extends Component {
             password: '',
             imageURL: '',
         }
+    }
+    refreshPage(){
+        window.location.reload(false);
     }
     componentDidMount = async () => {
         this.setState({isLoadingAlumni: true})
@@ -122,44 +126,13 @@ class AlumniInput extends Component {
     }
 
     render() {
-
-        let alumni;
-        let alumniProfiles;
-        if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
-        {
-          alumni = this.state.alumni;
-          alumniProfiles = alumni.map((alumni) =>
-            
-            // Loading an input form for each alumni and loading it with the data pertaining to each alumni
-            <Row>
-                <div className="input_form" key = {alumni._id}>
-                    <form>
-                    <input type="text" name="name" placeholder="Name" value = {alumni.name} className = "update_input"/>
-                    <input type="text" name="title" placeholder="Title" value = {alumni.title} className = "update_input"/>
-                    <input type="text" name="email" placeholder="Email" value = {alumni.email} className = "update_input"/>
-                    <input type="text" name="linkedin" placeholder="LinkedIn" value = {alumni.linkedin} className = "update_input"/>
-                    <input type="text" name="password" placeholder="Password" value = {alumni.name} className = "update_input"/>
-                    <input type="text" name="imageURL" placeholder="ImageURL" value = {alumni.imageURL} className = "update_input"/>
-                    <button className="submit_button">Update</button>
-                    <button className="submit_button">Delete</button>
-                    </form>
-                </div>
-            </Row>
-          )     
-        }
-        else
-        {
-          alumni = null;
-          alumniProfiles = null;
-        }
-
-
         return (
             <div className = "alumnus_input">
-                <h3>Add Alumni</h3>
-                          <div className="test_input">
+                    <h3>Add Alumni</h3>
+                        <div className="test_input">
+                        <Row>
                             <div className="input_form">
-                              <form onSubmit = {this.onSubmit}>
+                                <form onSubmit = {this.onSubmit}>
                                 <input 
                                     type="text"
                                     name="name" 
@@ -208,15 +181,12 @@ class AlumniInput extends Component {
                                     onChange = {this.onChangeImageURL}
                                     className = "update_input"
                                 />
-                                {/* <input type = "checkbox" id = "isOfficer" name="isOfficer" value="Officer"/><label>Officer</label> */}
-                                <button className="submit_button">Submit</button>
-                              </form>
-                            </div>
-
-                <h3>Current Alumni</h3>
-                    {alumniProfiles}
-
-                </div>
+                                <button className="submit_button" onClick = {this.refreshPage}>Submit</button>
+                            </form>
+                        </div>
+                        </Row>
+                        <AlumniUpdateDelete />
+                    </div>
             </div>
         )
     }

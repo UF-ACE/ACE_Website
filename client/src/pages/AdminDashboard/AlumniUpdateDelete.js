@@ -3,7 +3,7 @@ import "./OfficerInput.css"
 import api from "../../api"
 import Row from "react-bootstrap/Row";
 
-class OfficerUpdateDelete extends Component {
+class AlumniUpdateDelete extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
@@ -28,7 +28,7 @@ class OfficerUpdateDelete extends Component {
     componentDidMount = async () => {
         this.setState({isLoadingOfficers: true})
     
-        await api.getPeoplebyOfficer(true).then(officers => {
+        await api.getPeoplebyOfficer(false).then(officers => {
           this.setState({
             officers: officers.data.data,
             isLoadingOfficers: false,
@@ -36,7 +36,7 @@ class OfficerUpdateDelete extends Component {
         })
     }
     onDelete(officer){
-        if (window.confirm("Do you want to delete officer: " + officer.name)){
+        if (window.confirm("Do you want to delete Alumni: " + officer.name)){
             api.deletePersonbyID(officer._id);
         }
         window.location.reload(true);
@@ -133,7 +133,7 @@ class OfficerUpdateDelete extends Component {
         if(!this.nameChanged && !this.titleChanged && !this.emailChanged && !this.linkedinChanged && !this.passwordChanged && !this.imageURLChanged){
             alert("Nothing to update")
         }
-        else if (window.confirm("Do you want to update officer: " + officer.name)){
+        else if (window.confirm("Do you want to update Alumni: " + officer.name)){
             api.updatePersonbyID(officer._id, newOfficer);
         }
         window.location.reload(true);
@@ -172,7 +172,7 @@ class OfficerUpdateDelete extends Component {
         return (
             <div className = "officer_input">
                 <div className = "update_form">
-                    <h3>Current Officers</h3>
+                    <h3>Current Alumni</h3>
                         {officerProfiles}
                 </div>
             </div>
@@ -181,4 +181,4 @@ class OfficerUpdateDelete extends Component {
 
 }
 
-export default OfficerUpdateDelete;
+export default AlumniUpdateDelete;
