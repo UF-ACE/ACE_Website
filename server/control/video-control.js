@@ -38,17 +38,21 @@ updateVideobyTitle = async (req, res) => { // Finds and updates a video with a g
             error: 'You must provide a body to update a video',
         })
     }
-    Video.findOne({ title: req.params.title }, (err, video) => {
+    Video.findOne({ $text: { $search: `\"${req.params.title}\"` } }, (err, video) => {
         if (err) {
             return res.status(404).json({
                 err,
                 message: 'Video not found',
             })
         }
+        if (video === null) {
+            return res.status(404).json({
+                message: 'Video not found',
+            })
+        }
         video.title = body.title
         video.description = body.description
         video.link = body.link
-        video.tags = body.tags
         video.blacklisted = body.blacklisted
         video
             .save()
@@ -133,7 +137,6 @@ updateVideobyID = async (req, res) => {
         video.title = body.title
         video.description = body.description
         video.link = body.link
-        video.tags = body.tags
         video.blacklisted = body.blacklisted
         video
             .save()
