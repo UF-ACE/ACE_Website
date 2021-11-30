@@ -15,8 +15,9 @@ class VideoUpdateDelete extends Component {
             videos: [],
             video: null,
             title: '',
-            link: '',
             description: '',
+            link: '',
+            blacklisted: false,
             isLoading: false,
         }
     }
@@ -32,7 +33,7 @@ class VideoUpdateDelete extends Component {
       }
     onDelete(video){
         if (window.confirm("Do you want to delete Video: " + video.title)){
-            api.deleteVideobyID(video._id);
+            // api.deleteVideobyID(video._id);
             api.blacklistVideo(video._id);
         }
         window.location.reload(true);
@@ -46,14 +47,14 @@ class VideoUpdateDelete extends Component {
     }
     onChangeLink(e) {
         this.setState({
-            title: e.target.value
+            link: e.target.value
         });
         this.linkChanged = true;
     }
 
     onChangeDescription(e) {
         this.setState({
-            email: e.target.value
+            description: e.target.value
         });
         this.descriptionChanged = true;
     }
@@ -63,8 +64,9 @@ class VideoUpdateDelete extends Component {
         //will contain the substring drive.google.com/file
         let newVideo = {
             title: this.state.title,
-            link: this.state.link,
             description: this.state.description,
+            link: this.state.link,
+            blacklisted: this.state.blacklisted,
         }
         if (!this.titleChanged){
             newVideo.title = video.title;
@@ -78,7 +80,7 @@ class VideoUpdateDelete extends Component {
         if(!this.titleChanged && !this.linkChanged && !this.descriptionChanged){
             alert("Nothing to update")
         }
-        else if (window.confirm("Do you want to update Video: " + video.title)){
+        else if (window.confirm("Do you want to update Video: " + video._id + " " + newVideo.title + " " + newVideo.description + " " + newVideo.blacklisted)){
             api.updateVideobyID(video._id, newVideo);
             // api.updateVideobyTitle(video.title, newVideo);
         }
