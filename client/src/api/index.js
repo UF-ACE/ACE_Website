@@ -1,9 +1,15 @@
 import axios from 'axios'
 
-const port = process.env.PORT || 3000
+// Uncomment the following for local testing (does not work when deploying)
+/*
 const api = axios.create({
-    baseURL: 'http://localhost:' + port + '/api',
+    baseURL: 'http://localhost:3000/api',
 })
+*/
+
+// Comment out the following for local testing:
+const api = axios.create({ baseURL: '/api', })
+
 
 export const createVideo = payload => api.post(`/video`, payload)
 export const getVideos = () => api.get(`/videos`)

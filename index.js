@@ -22,7 +22,6 @@ app.use('/api', personRouter)
 app.use('/api', sponsorRouter)
 app.use('/api', emailRouter)
 
-
 app.use(favicon(path.join(__dirname, 'client/build', 'favicon.ico'))); 
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.get('*', (req, res) => {
