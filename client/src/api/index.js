@@ -34,6 +34,10 @@ export const updateSponsorbyID = (id, payload) => api.put(`/sponsor/id/${id}`, p
 export const deleteSponsorbyID = id => api.delete(`/sponsor/id/${id}`)
 export const deleteSponsorbyName = name => api.delete(`/sponsor/${name}`)
 
+export const sendEmail = payload => api.post(`/email`, payload)
+export const logEmail = payload => api.post(`/email/db`, payload)
+export const getEmails = () => api.get(`/email/db`)
+
 const apis = {
     createVideo,
     getVideos,
@@ -61,6 +65,9 @@ const apis = {
     updateSponsorbyID,
     deleteSponsorbyID,
     deleteSponsorbyName,
+    sendEmail,
+    logEmail,
+    getEmails,
 }
 
 export default apis

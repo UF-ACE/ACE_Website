@@ -87,5 +87,6 @@
 }
 
 .submit_button {
-  margin-left: -50px;
+  height: 75px;
+  width: 150px;
 }
