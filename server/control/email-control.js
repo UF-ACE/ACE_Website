@@ -28,10 +28,10 @@ sendEmail = async (req, res) => {
     const message = req.body.message
 
     var mail = {
-        from: name + ' - ' + email,
+        from: name,
         to: process.env.REACT_APP_ACE_EMAIL,
-        subject: 'Contact Form Request',
-        html: message
+        subject: 'Website Contact',
+        html: `<b>Name: </b>${name}<br><b>Email: </b>${email}<br>` + message
     }
 
     transporter.sendMail(mail, (err, data) => {

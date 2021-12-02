@@ -1,13 +1,5 @@
 import axios from 'axios'
 
-// Uncomment the following for local testing (does not work when deploying)
-/*
-const api = axios.create({
-    baseURL: 'http://localhost:3000/api',
-})
-*/
-
-// Comment out the following for local testing:
 const api = axios.create({ baseURL: '/api', })
 
 

@@ -25,6 +25,9 @@ const ContactForm = () => {
             document.getElementById('name').value=''
             document.getElementById('email').value=''
             document.getElementById('message').value=''
+            setName('')
+            setEmail('')
+            setMessage('')
             alert("Your response has been recorded.")
         }
     }
