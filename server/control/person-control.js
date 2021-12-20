@@ -1,4 +1,6 @@
 const Person = require('../models/person-model')
+var fs = require('fs')
+var path = require('path')
 
 
 getPersonbyTitle = async (req, res) => {    // Finds a single person with a given title
@@ -79,7 +81,17 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
-        person.imageURL = body.imageURL
+        var img = null
+        if (req.file) {
+            img = {
+                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                contentType: 'image/png'
+            }
+        }
+        else {
+            img = body.img
+        }
+        person.image = img
         person.password = body.password
         person
             .save()
@@ -122,6 +134,10 @@ createPerson = async (req, res) => {    // Create a person entry
             success: false,
             error: 'You must provide a person',
         })
+    }
+    body.image = {
+        data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+        contentType: 'image/png'
     }
     const person = new Person(body)
     if (!person) {
@@ -166,7 +182,17 @@ updatePersonbyID = async (req, res) => {
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
-        person.imageURL = body.imageURL;
+        var img = null
+        if (req.file) {
+            img = {
+                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                contentType: 'image/png'
+            }
+        }
+        else {
+            img = body.img
+        }
+        person.image = img
         person.password = body.password
         person
             .save()

@@ -1,5 +1,6 @@
 const Sponsor = require('../models/sponsor-model')
-
+var fs = require('fs')
+var path = require('path')
 
 getSponsorbyName = async (req, res) => { // Find a single sponsor with a given name
     await Sponsor.findOne({ name: req.params.name }, (err, sponsor) => {
@@ -49,7 +50,17 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
-        sponsor.imageURL = body.imageURL
+        var img = null
+        if (req.file) {
+            img = {
+                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                contentType: 'image/png'
+            }
+        }
+        else {
+            img = body.img
+        }
+        sponsor.image = img
         sponsor
             .save()
             .then(() => {
@@ -91,6 +102,10 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
             success: false,
             error: 'You must provide a sponsor',
         })
+    }
+    body.image = {
+        data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+        contentType: 'image/png'
     }
     const sponsor = new Sponsor(body)
     if (!sponsor) {
@@ -134,7 +149,17 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
-        sponsor.imageURL = body.imageURL
+        var img = null
+        if (req.file) {
+            img = {
+                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                contentType: 'image/png'
+            }
+        }
+        else {
+            img = body.img
+        }
+        sponsor.image = img
         sponsor
             .save()
             .then(() => {

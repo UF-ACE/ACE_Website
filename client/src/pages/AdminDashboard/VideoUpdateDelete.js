@@ -7,6 +7,7 @@ class VideoUpdateDelete extends Component {
     constructor(props) {
         super(props);
 
+        this.onSubmit = this.onSubmit.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeLink = this.onChangeLink.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
@@ -19,8 +20,13 @@ class VideoUpdateDelete extends Component {
             link: '',
             blacklisted: false,
             isLoading: false,
+
+            titleChanged: false,
+            descChanged: false,
+            linkChanged: false,
         }
     }
+
     componentDidMount = async () => {
         this.setState({isLoading: true})
     
@@ -30,61 +36,65 @@ class VideoUpdateDelete extends Component {
             isLoading: false,
           })
         })
-      }
-    onDelete(video){
-        if (window.confirm("Do you want to delete Video: " + video.title)){
-            // api.deleteVideobyID(video._id);
-            api.blacklistVideo(video._id);
-        }
-        window.location.reload(true);
-
     }
+    
+    onDelete(video){
+        if (window.confirm("Do you want to delete video: " + video.title)){
+            api.deleteVideobyID(video._id).then(res => {
+                console.log(res.data)
+                window.location.reload()
+            })
+        }
+    }
+
     onChangeTitle(e) {
         this.setState({
             title: e.target.value,
+            titleChanged: true
         });
-        this.titleChanged = true;
     }
     onChangeLink(e) {
         this.setState({
-            link: e.target.value
+            link: e.target.value,
+            linkChanged: true
         });
-        this.linkChanged = true;
     }
-
     onChangeDescription(e) {
         this.setState({
-            description: e.target.value
+            description: e.target.value,
+            descChanged: true
         });
-        this.descriptionChanged = true;
     }
 
-    onUpdate(video) {
-        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
-        //will contain the substring drive.google.com/file
-        let newVideo = {
-            title: this.state.title,
-            description: this.state.description,
-            link: this.state.link,
-            blacklisted: this.state.blacklisted,
-        }
-        if (!this.titleChanged){
-            newVideo.title = video.title;
-        }
-        if (!this.linkChanged){
-            newVideo.link = video.link;
-        }
-        if (!this.descriptionChanged){
-            newVideo.description = video.description;
-        }
-        if(!this.titleChanged && !this.linkChanged && !this.descriptionChanged){
+    onSubmit = video => event =>  {
+        event.preventDefault()
+        if (!this.state.titleChanged && !this.state.linkChanged && !this.state.descChanged){
             alert("Nothing to update")
         }
-        else if (window.confirm("Do you want to update Video: " + video._id + " " + newVideo.title + " " + newVideo.description + " " + newVideo.blacklisted)){
-            api.updateVideobyID(video._id, newVideo);
-            // api.updateVideobyTitle(video.title, newVideo);
+        else {
+            let newVideo = {
+                title: this.state.title,
+                description: this.state.description,
+                link: this.state.link,
+                blacklisted: false,
+            }
+            if (!this.state.titleChanged){
+                newVideo.title = video.title;
+            }
+            if (!this.state.linkChanged){
+                newVideo.link = video.link;
+            }
+            if (!this.state.descChanged){
+                newVideo.description = video.description;
+            }
+            
+            if (window.confirm("Do you want to update video: " + newVideo.title)){
+                api.updateVideobyID(video._id, newVideo).then(res => {
+                    console.log(res.data)
+                    window.location.reload()
+                })
+            }
         }
-        window.location.reload(true);
     }
 
     render() {
@@ -98,12 +108,12 @@ class VideoUpdateDelete extends Component {
             // Loading an input form for each officer and loading it with the data pertaining to each officer
             <Row>
                 <div className="input_form" key = {video._id}>
-                    <form>
+                    <form onSubmit={this.onSubmit(video)}>
                         <input type="text" name="title" placeholder={video.title} className = "update_input" onChange = {this.onChangeTitle} />
                         <input type="text" name="link" placeholder={video.link} className = "update_input" onChange = {this.onChangeLink}/>
                         <input type="text" name="description" placeholder={video.description} className = "update_input" onChange = {this.onChangeDescription}/>
-                        <button className="submit_button" onClick={() => this.onUpdate(video)}>Update</button>
-                        <button className="submit_button" onClick={() => this.onDelete(video)}>Delete</button>
+                        <button className="submit_button">Update</button>
+                        <button type="button" className="submit_button" onClick={() => this.onDelete(video)}>Delete</button>
                     </form>
                 </div>
             </Row>

@@ -11,154 +11,159 @@ class AlumniUpdateDelete extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeImageURL = this.onChangeImageURL.bind(this);
-        this.onUpdate = this.onUpdate.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.state = {
-            officers: [],
-            officer: null,
+            alumni: [],
+            alumnus: null,
             name: '',
             title: '',
             email: '',
             linkedin: '',
             password: '',
-            imageURL: '',
+            image: null,
+
+            nameChanged: false,
+            titleChanged: false,
+            emailChanged: false,
+            linkedinChanged: false,
+            passwordChanged: false,
+            imageChanged: false,
         }
     }
     componentDidMount = async () => {
-        this.setState({isLoadingOfficers: true})
+        this.setState({isLoadingAlumni: true})
     
-        await api.getPeoplebyOfficer(false).then(officers => {
+        await api.getPeoplebyOfficer(false).then(alumni => {
           this.setState({
-            officers: officers.data.data,
-            isLoadingOfficers: false,
+            alumni: alumni.data.data,
+            isLoadingAlumni: false,
           })
         })
     }
-    onDelete(officer){
-        if (window.confirm("Do you want to delete Alumni: " + officer.name)){
-            api.deletePersonbyID(officer._id);
-        }
-        window.location.reload(true);
 
+    onDelete(alumnus){
+        if (window.confirm("Do you want to delete alumnus: " + alumnus.name)){
+            api.deletePersonbyID(alumnus._id).then(res => {
+                console.log(res.data)
+                window.location.reload()
+            })
+        }
     }
+
     onChangeName(e) {
         this.setState({
             name: e.target.value,
+            nameChanged: true
         });
-        this.nameChanged = true;
     }
     onChangeTitle(e) {
         this.setState({
-            title: e.target.value
+            title: e.target.value,
+            titleChanged: true
         });
-        this.titleChanged = true;
     }
-
     onChangeEmail(e) {
         this.setState({
-            email: e.target.value
+            email: e.target.value,
+            emailChanged: true
         });
-        this.emailChanged = true;
     }
-
     onChangeLinkedin(e) {
         this.setState({
-            linkedin: e.target.value
+            linkedin: e.target.value,
+            linkedinChanged: true
         });
-        this.linkedinChanged = true;
     }
-
     onChangePassword(e) {
         this.setState({
-            password: e.target.value
+            password: e.target.value,
+            passwordChanged: true
         });
-        this.passwordChanged = true;
+    }
+    onChangeImage(e) {
+        const file = e.target.files[0]
+        this.setState({ image: file, imageChanged: true }, () => { console.log(this.state.image) });
     }
 
-    onChangeImageURL(e) {
-        this.setState({
-            imageURL: e.target.value
-        });
-        this.imageURLChanged = true;
-    }
-
-    onUpdate(officer) {
-        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
-        //will contain the substring drive.google.com/file
-        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") !== -1);
-
-        let newOfficer = {
-            name: this.state.name,
-            officer: true,
-            title: this.state.title,
-            email: this.state.email,
-            linkedin: this.state.linkedin,
-            password: this.state.password,
-            imageURL: this.state.imageURL,
+    onSubmit = alumnus => event =>  {
+        event.preventDefault()
+        if (this.state.imageChanged && this.state.image.size > 16000000) {
+            alert("Size of picture must be <=16MB!")
         }
-        if (!this.nameChanged){
-            newOfficer.name = officer.name;
-        }
-        if (!this.titleChanged){
-            newOfficer.title = officer.title;
-        }
-        if (!this.emailChanged){
-            newOfficer.email = officer.email;
-        }
-        if (!this.linkedinChanged){
-            newOfficer.linkedin = officer.linkedin;
-        }
-        if (!this.passwordChanged){
-            newOfficer.password = officer.password;
-        }
-        if (!this.imageURLChanged){
-            newOfficer.imageURL = officer.imageURL;
-        }
-
-        if (googleDriveImage)
-        {
-            //If we have an image from the google drive, we need to get the imageID from
-            //it so that we can properly display it.  The imageID can be found between the
-            //second to last and last parentheses in a google drive link.
-            let imageID = this.state.imageURL;
-            imageID = imageID.substr(0, imageID.lastIndexOf('/'));
-            imageID = imageID.substr(imageID.lastIndexOf('/') + 1);
-
-            //This is the root string for a google drive image that displays the image properly
-            const rootString = "https://drive.google.com/uc?export=view&id=";
-
-            newOfficer.imageURL = rootString + imageID;
-        }
-        if(!this.nameChanged && !this.titleChanged && !this.emailChanged && !this.linkedinChanged && !this.passwordChanged && !this.imageURLChanged){
+        else if (!this.state.nameChanged && !this.state.titleChanged && !this.state.emailChanged && !this.state.linkedinChanged && !this.state.passwordChanged && !this.state.imageChanged){
             alert("Nothing to update")
         }
-        else if (window.confirm("Do you want to update Alumni: " + officer.name)){
-            api.updatePersonbyID(officer._id, newOfficer);
+        else {
+            let newAlumnus = new FormData()
+
+            if (!this.state.nameChanged){
+                newAlumnus.append('name', alumnus.name)
+            }
+            else {
+                newAlumnus.append('name', this.state.name)
+            }
+            newAlumnus.append('officer', false)
+            if (!this.state.titleChanged){
+                newAlumnus.append('title', alumnus.title)
+            }
+            else {
+                newAlumnus.append('title', this.state.title)
+            }
+            if (!this.state.emailChanged){
+                newAlumnus.append('email', alumnus.email)
+            }
+            else {
+                newAlumnus.append('email', this.state.email)
+            }
+            if (!this.state.linkedinChanged){
+                newAlumnus.append('linkedin', alumnus.linkedin)
+            }
+            else {
+                newAlumnus.append('linkedin', this.state.linkedin)
+            }
+            if (!this.state.passwordChanged){
+                newAlumnus.append('password', alumnus.password)
+            }
+            else {
+                newAlumnus.append('password', this.state.password)
+            }
+            if (!this.state.imageChanged){
+                newAlumnus.append('image', alumnus.image)
+            }
+            else {
+                newAlumnus.append('image', this.state.image, this.state.image.name)
+            }
+
+            if (window.confirm("Do you want to update alumnus: " + alumnus.name)){
+                api.updatePersonbyID(alumnus._id, newAlumnus).then(res => {
+                    console.log(res.data)
+                    window.location.reload()
+                })
+            }
         }
-        window.location.reload(true);
     }
 
     render() {
-        let officers;
-        let officerProfiles;
-        if (!this.state.isLoadingOfficers && this.state.officers.length !== 0)
+        let alumni;
+        let alumniProfiles;
+        if (!this.state.isLoadingAlumni && this.state.alumni.length !== 0)
         {
-          officers = this.state.officers;
-          officerProfiles = officers.map((officer) =>
-            
-            // Loading an input form for each officer and loading it with the data pertaining to each officer
+          alumni = this.state.alumni;
+          alumniProfiles = alumni.map((alumnus) =>
+            // Loading an input form for each alumnus and loading it with the data pertaining to each alumnus
             <Row>
-                <div className="input_form" key = {officer._id}>
-                    <form>
-                        <input type="text" name="name" placeholder={officer.name} className = "update_input" onChange = {this.onChangeName} />
-                        <input type="text" name="title" placeholder={officer.title} className = "update_input" onChange = {this.onChangeTitle}/>
-                        <input type="text" name="email" placeholder={officer.email} className = "update_input" onChange = {this.onChangeEmail}/>
-                        <input type="text" name="linkedin" placeholder={officer.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
-                        <input type="text" name="password" placeholder={officer.password} className = "update_input" onChange = {this.onChangePassword}/>
-                        <input type="text" name="imageURL" placeholder={officer.imageURL} className = "update_input" onChange = {this.onChangeImageURL}/>
-                        <button className="submit_button" onClick={() => this.onUpdate(officer)}>Update</button>
-                        <button className="submit_button" onClick={() => this.onDelete(officer)}>Delete</button>
+                <div className="input_form" key = {alumnus._id}>
+                    <form onSubmit={this.onSubmit(alumnus)}>
+                        <input type="text" name="name" placeholder={alumnus.name} className = "update_input" onChange = {this.onChangeName} />
+                        <input type="text" name="title" placeholder={alumnus.title} className = "update_input" onChange = {this.onChangeTitle}/>
+                        <input type="text" name="email" placeholder={alumnus.email} className = "update_input" onChange = {this.onChangeEmail}/>
+                        <input type="text" name="linkedin" placeholder={alumnus.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
+                        <input type="text" name="password" placeholder={alumnus.password} className = "update_input" onChange = {this.onChangePassword}/>
+                        <input type="file" name="image" onChange = {this.onChangeImage}/>
+                        <button className="submit_button">Update</button>
+                        <button type="button" className="submit_button" onClick={() => this.onDelete(alumnus)}>Delete</button>
                     </form>
                 </div>
             </Row>
@@ -166,14 +171,14 @@ class AlumniUpdateDelete extends Component {
         }
         else
         {
-          officers = null;
-          officerProfiles = null;
+          alumni = null;
+          alumniProfiles = null;
         }
         return (
             <div className = "officer_input">
                 <div className = "update_form">
                     <h3>Current Alumni</h3>
-                        {officerProfiles}
+                        {alumniProfiles}
                 </div>
             </div>
         )

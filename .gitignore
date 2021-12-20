@@ -11,6 +11,8 @@ node_modules/
 
 # production
 client/build
+/uploads/*
+!.gitkeep
 
 # misc
 .env

@@ -13,7 +13,7 @@ class AlumniInput extends Component {
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeImageURL = this.onChangeImageURL.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -24,12 +24,14 @@ class AlumniInput extends Component {
             email: '',
             linkedin: '',
             password: '',
-            imageURL: '',
+            image: null,
         }
     }
+
     refreshPage(){
         window.location.reload(false);
     }
+
     componentDidMount = async () => {
         this.setState({isLoadingAlumni: true})
     
@@ -71,58 +73,40 @@ class AlumniInput extends Component {
         });
     }
 
-    onChangeImageURL(e) {
-        this.setState({
-            imageURL: e.target.value
-        });
+    onChangeImage(e) {
+        const file = e.target.files[0]
+        this.setState({ image: file }, () => { console.log(this.state.image) });
     }
 
     onSubmit(e) {
         e.preventDefault();
-
-        //Looks to see if the image is from a google drive.  A google drive image that needs string manipulation
-        //will contain the substring drive.google.com/file
-        let googleDriveImage = (this.state.imageURL.indexOf("drive.google.com/file") !== -1);
-
-
-        const alumnus = {
-            name: this.state.name,
-            officer: false,
-            title: this.state.title,
-            email: this.state.email,
-            linkedin: this.state.linkedin,
-            password: this.state.password,
-            imageURL: this.state.imageURL,
+        if (this.state.image.size > 16000000) {
+            alert("Size of picture must be <=16MB!")
+            console.log(this.state.image.size)
         }
+        else {
+            let alumnus = new FormData()
+            alumnus.append('name', this.state.name)
+            alumnus.append('officer', false)
+            alumnus.append('title', this.state.title)
+            alumnus.append('email', this.state.email)
+            alumnus.append('linkedin', this.state.linkedin)
+            alumnus.append('password', this.state.password)
+            alumnus.append('image', this.state.image, this.state.image.name)
 
-        if (googleDriveImage)
-        {
-            //If we have an image from the google drive, we need to get the imageID from
-            //it so that we can properly display it.  The imageID can be found between the
-            //second to last and last parentheses in a google drive link.
-            let imageID = this.state.imageURL;
-            imageID = imageID.substr(0, imageID.lastIndexOf('/'));
-            imageID = imageID.substr(imageID.lastIndexOf('/') + 1);
-
-            //This is the root string for a google drive image that displays the image properly
-            const rootString = "https://drive.google.com/uc?export=view&id=";
-
-            alumnus.imageURL = rootString + imageID;
+            api.createPerson(alumnus).then(res => {
+                console.log(res.data)
+                this.setState({
+                    name: '',
+                    title: '',
+                    email: '',
+                    linkedin: '',
+                    password: '',
+                    image: null,
+                })
+                window.location.reload()
+            }) 
         }
-        
-        console.log(alumnus);
-
-        api.createPerson(alumnus).then(res =>
-            console.log(res.data),
-            this.setState({
-                name: '',
-                title: '',
-                email: '',
-                linkedin: '',
-                password: '',
-                imageURL: '',
-            })
-        ) 
     }
 
     render() {
@@ -174,19 +158,16 @@ class AlumniInput extends Component {
                                     className = "update_input"
                                 />
                                 <input 
-                                    type="text" 
-                                    name="imageURL" 
-                                    placeholder="imageURL"
-                                    value = {this.state.imageURL}
-                                    onChange = {this.onChangeImageURL}
-                                    className = "update_input"
+                                    type="file" 
+                                    name="image" 
+                                    onChange ={this.onChangeImage}
                                 />
-                                <button className="submit_button" onClick = {this.refreshPage}>Submit</button>
+                                <button className="submit_button">Submit</button>
                             </form>
                         </div>
-                        </Row>
-                        <AlumniUpdateDelete />
-                    </div>
+                    </Row>
+                    <AlumniUpdateDelete />
+                </div>
             </div>
         )
     }

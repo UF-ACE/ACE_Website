@@ -48,6 +48,13 @@ class AboutPage extends Component {
     });
   };
 
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));        
+    bytes.forEach((b) => binary += String.fromCharCode(b));       
+    return window.btoa(binary);
+  };
+
   render() {
     let officers;
     let officerProfiles;
@@ -60,13 +67,23 @@ class AboutPage extends Component {
       officers = this.state.officers;
       officerProfiles = officers.map((officer) => (
         <div key={officer._id}>
-          <ProfileOfficer
-            src={officer.imageURL}
-            title={officer.title}
-            name={officer.name}
-            linkedin={officer.linkedin}
-            email={officer.email}
-          />
+          {officer.image ? 
+            <ProfileOfficer
+              src={'data:' + officer.image.contentType + ';base64,' + this.arrayBufferToBase64(officer.image.data.data)}
+              title={officer.title}
+              name={officer.name}
+              linkedin={officer.linkedin}
+              email={officer.email}
+            />
+          :
+            <ProfileOfficer
+              src={officer.imageURL}
+              title={officer.title}
+              name={officer.name}
+              linkedin={officer.linkedin}
+              email={officer.email}
+            />
+        }
         </div>
       ));
     } else {
@@ -78,13 +95,23 @@ class AboutPage extends Component {
       alumni = this.state.alumni;
       alumniProfiles = alumni.map((alumnus) => (
         <div key={alumnus._id}>
-          <ProfileOfficer
-            src={alumnus.imageURL}
-            title={alumnus.title}
-            name={alumnus.name}
-            linkedin={alumnus.linkedin}
-            email={alumnus.email}
-          />
+          {alumnus.image ? 
+            <ProfileOfficer
+              src={'data:' + alumnus.image.contentType + ';base64,' + this.arrayBufferToBase64(alumnus.image.data.data)}
+              title={alumnus.title}
+              name={alumnus.name}
+              linkedin={alumnus.linkedin}
+              email={alumnus.email}
+            />
+          :
+            <ProfileOfficer
+              src={alumnus.imageURL}
+              title={alumnus.title}
+              name={alumnus.name}
+              linkedin={alumnus.linkedin}
+              email={alumnus.email}
+            />
+        }
         </div>
       ));
     } else {
@@ -98,13 +125,23 @@ class AboutPage extends Component {
       console.log(this.state.sponsors[0]);
       sponsorProfiles = sponsors.map((sponsor) => (
         <div key={sponsor._id}>
-          <ProfileSponsor
-            src={sponsor.imageURL}
-            name={sponsor.name}
-            description={sponsor.description}
-            linkedin={sponsor.linkedin}
-            link={sponsor.link}
-          />
+          {sponsor.image ? 
+            <ProfileSponsor
+              src={'data:' + sponsor.image.contentType + ';base64,' + this.arrayBufferToBase64(sponsor.image.data.data)}
+              name={sponsor.name}
+              description={sponsor.description}
+              linkedin={sponsor.linkedin}
+              link={sponsor.link}
+            />
+          :
+            <ProfileSponsor
+              src={sponsor.imageURL}
+              name={sponsor.name}
+              description={sponsor.description}
+              linkedin={sponsor.linkedin}
+              link={sponsor.link}
+            />
+        }
         </div>
       ));
     }
@@ -126,7 +163,6 @@ class AboutPage extends Component {
               </h3>
             </div>
           </Col>
-           
         </Row>
         <Row>
           <Col>
