@@ -20,7 +20,9 @@
 
 * Push the commit to your remote branch: git push --set-upstream origin <branch_name>
 
-* Run updated project: npm start
+* Run updated project: 
+    * `npm run dev`
+    * Go to: [http://localhost:3000](http://localhost:3000)
 
 ## Using GH desktop (assuming you also have Sublime Text)
 
@@ -48,9 +50,10 @@ Commit to the branch and push it to the remote
 
 * Commit to "branch_name" > Publish Branch > Push Origin
 
-Run updated project
+Run updated project: 
+* `npm run dev`
+* Go to: [http://localhost:3000](http://localhost:3000)
 
-* npm start
 Deploying Project to gh-pages
 * npm run deploy
 * commit/push to your branch
@@ -69,6 +72,8 @@ In the project's `/client` directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
+
+<b>Note that the 8000 port is only used for frontend testing. If testing is to include both backend and frontend, port 3000 should be used. </b>
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -135,16 +140,16 @@ This project can be viewed at: https://uf-ace-website.herokuapp.com/#/
 The codebase is organized into three separate areas: the root directory, and the client and server subdirectories.
 
 ## root
-This location contains files pertaining to the site's backend (a Node project). Important files are as follows:
+This location contains some files pertaining to the site's backend (a Node project). Important files are as follows:
 
 `.env_sample`: contains an outline of back-end environment variables. This structure should be copied to a `.env` file prior to backend development.
 
 `index.js`: the entry point of the Node project. Handles connecting to our database, establishing routes, and serving static pages. 
 
-`package.json`: contains backend dependencies and execution scripts. Note that `npm run dev` can be used for creating a production build from the React app contained in `/client`, and subsequently running that build from the backend.
+`package.json`: contains backend dependencies and execution scripts. Note that `npm run dev` can be used for creating a production build from the React app contained in `/client`, and subsequently running that build from the backend. The site will then be accessible at [http://localhost:3000](http://localhost:3000).
 
 ## client
-This directory is home to the React app. It contains, in `./src`, the project's front-end source code. This code is organized in a relatively straightforward manner. Noteworthy files include:
+This directory is home to the React app that serves as the site's frontend. It contains, in `./src`, the frontend source code. This code is organized in a relatively straightforward manner. Noteworthy files include:
 
  `/src/api/index.js`: contains frontend functions that make use of backend routing (via Axios).
 
@@ -155,7 +160,7 @@ This directory is home to the React app. It contains, in `./src`, the project's 
 `package.json`: contains, among other things, frontend dependencies and execution scripts. Note that these scripts must be called from within the client directory to be executed. `npm run build` is used to create a production build.
 
 ## server
-Contains code responsible for backend functionality. Contained file locations are:
+Contains code responsible for backend functionality and database communication. Contained file locations are:
 
 `/control`: contains functions for retrieving, editing, deleting, and creating each of the data types that are stored in our database.
 
@@ -166,6 +171,7 @@ Contains code responsible for backend functionality. Contained file locations ar
 `/routes`: specifies the routing behavior for each data type's functions (i.e. what URLs API calls should be directed to)
 
 # Notes
+- As noted above, production testing should call `npm run dev` to start both the frontend and backend. This will simulate the application's deployment environment. It will subsequently be accessible at [http://localhost:3000](http://localhost:3000).
 - The `/uploads` folder contains images uploaded via the admin dashboard. `.gitignore` specifies that the contents of this folder are not included in Git pushes, but the folder itself will always be present for local storage.
 
 - Images are stored in Mongo as array buffers encoded with base64. As such, they have to be decoded after they are retrieved and before they are displayed to the user.
