@@ -177,4 +177,4 @@ Contains code responsible for backend functionality and database communication. 
 - Images are stored in Mongo as array buffers encoded with base64. As such, they have to be decoded after they are retrieved and before they are displayed to the user.
     - For the same reason, we cannot store images larger than 16MB.
 
-- Emails sent via the footer's Contact Form are handled by NodeMailer. Basically, an ACE email address sends emails to itself that contains the respondent's name, email address, and message. Responses are also logged in the Mongo database.
+- Although the feature is currently unavailable due to security concerns, emails sent via the footer's Contact Form are handled by NodeMailer. Basically, an ACE email address sends emails to itself that contains the respondent's name, email address, and message. Responses are also logged in the Mongo database.

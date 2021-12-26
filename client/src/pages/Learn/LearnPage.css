@@ -6,6 +6,7 @@
   background-color: #384595;
   color: black;
   font-weight: 700;
+  overflow-x: hidden;
 }
 
 .videos {

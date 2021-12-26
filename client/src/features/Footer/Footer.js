@@ -12,15 +12,19 @@ const Footer = () => {
   return (
     <footer className={styles.mt_5} bg="dark">
       <Container fluid={true}>
-        <Row className="border-top justify-content-between p-3">
+        <Row className="border-top justify-content-between p-3 h-50">
           <Col>
-            <h3>Contact Us</h3>
+            <h1>Contact Us</h1>
             <ContactForm/>
           </Col>
           <Col className="p-0" md={6}>
             <Row>
               <AdminLogin />
             </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <h5>Association of Computer Engineers</h5>
             {/* TODO 
             Add Social Media Icons */}

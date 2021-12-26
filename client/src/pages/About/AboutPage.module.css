@@ -5,6 +5,7 @@
   font-family: "Courier New", Courier, monospace;
   background-color: #384595;
   color: black;
+  overflow-x: hidden;
 }
 
 .aboutpage h2 {

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 import {Button } from "react-bootstrap";
+import styles from "./Footer.module.css";
 require("dotenv").config();
 
 class AdminLogin extends Component{
@@ -69,7 +70,7 @@ class AdminLogin extends Component{
                         variant="secondary"
                         size="sm"
                         type="submit"
-                        className="submit_button"
+                        className={styles.submit_button}
                         onClick = {this.onClick}
                         >Submit</Button>
                       </form>
@@ -94,7 +95,7 @@ class AdminLogin extends Component{
                         variant="secondary"
                         size="sm"
                         type="submit"
-                        className="submit_button"
+                        className={styles.submit_button}
                         onClick = {this.onClick}
                         >Submit</Button>
                       </form>

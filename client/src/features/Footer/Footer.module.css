@@ -1,7 +1,10 @@
 .mt_5 {
   background-color: #212529 !important;
   color: white;
-  padding: 40px;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-bottom: 0px;
   display: flex;
   width: 100%;
   background-color: #212529;
@@ -16,7 +19,7 @@
 }
 .mt_5 > * > * > * > * > * > * > * > * {
   /* background-color: red; */
-  padding: 1px;
+  padding: 5px;
 }
 
 /* Added from Footer.css */
@@ -87,6 +90,27 @@
 }
 
 .submit_button {
-  height: 75px;
-  width: 150px;
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
 }
+
+.submit_button:hover {
+  color:#000000;
+  background-color:#FFFFFF;
+}
+
+  @media all and (max-width:30em){
+    .submit_button {
+      display:block;
+      margin:0.4em auto;
+    }
+} 

@@ -151,7 +151,7 @@ class AboutPage extends Component {
         <Row>
           <Col>
             <div className={styles.about_description}>
-              <h1> Founded in 2014</h1>
+              <h1>Founded in 2014</h1>
               <h3>
                 The Association of Computer Engineers serves as a community
                 dedicated to representing the union of computer science and
