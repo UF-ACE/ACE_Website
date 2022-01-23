@@ -43,6 +43,7 @@ async function updateDatabase(link, title, description) {
                     })
             })
     }
+    window.location.reload()
 }
 
 class Youtube extends Component {
@@ -58,8 +59,7 @@ class Youtube extends Component {
                 updateDatabase(link, title, description);   // Update the database with the retrieved videos
             })
             .catch((error) => {
-                console.log(error);
-
+                alert('Cannot fetch. Check that you are properly authenticated')
             })
     }      
 

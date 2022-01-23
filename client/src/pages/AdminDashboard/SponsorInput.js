@@ -89,6 +89,8 @@ class SponsorInput extends Component {
                     image: null,
                 })
                 window.location.reload()
+            }).catch(() => {
+                alert('Cannot create. Check that each field is filled out and you are properly authenticated')
             }) 
         }
     }

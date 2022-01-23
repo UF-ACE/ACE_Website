@@ -1,4 +1,5 @@
 const Person = require('../models/person-model')
+const TokenCtrl = require('../control/token-control')
 var fs = require('fs')
 var path = require('path')
 
@@ -62,6 +63,13 @@ getPeoplebyOfficer = async(req, res) => {   // Finds all people whose officer bo
 }
 
 updatePersonbyName = async (req, res) => {    // Finds and updates a person based on their name
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -92,7 +100,6 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
             img = body.img
         }
         person.image = img
-        person.password = body.password
         person
             .save()
             .then(() => {
@@ -112,6 +119,13 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
 }
 
 deletePersonbyName = async (req, res) => {  // Find and deletes a person with a given name
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Person.findOneAndDelete({ name: req.params.name }, (err, person) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -128,6 +142,13 @@ deletePersonbyName = async (req, res) => {  // Find and deletes a person with a 
 }
 
 createPerson = async (req, res) => {    // Create a person entry
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -161,8 +182,14 @@ createPerson = async (req, res) => {    // Create a person entry
 }
 
 updatePersonbyID = async (req, res) => {
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
-
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -193,7 +220,6 @@ updatePersonbyID = async (req, res) => {
             img = body.img
         }
         person.image = img
-        person.password = body.password
         person
             .save()
             .then(() => {
@@ -213,6 +239,13 @@ updatePersonbyID = async (req, res) => {
 }
 
 deletePersonbyID = async (req, res) => {
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Person.findOneAndDelete({ _id: req.params.id }, (err, person) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })

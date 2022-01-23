@@ -31,6 +31,12 @@ class NavigationBar extends Component {
                   Learn
                 </Link>{" "}
               </NavItem>
+              <NavItem>
+                {" "}
+                <Link className="nav-link" to="/Login">
+                  Login
+                </Link>{" "}
+              </NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

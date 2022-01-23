@@ -1,4 +1,5 @@
 const Video = require('../models/video-model')
+const TokenCtrl = require('../control/token-control')
 
 
 getVideobyTitle = async (req, res) => { // Find a single video with a given title
@@ -31,6 +32,13 @@ getVideos = async (req, res) => {   // Finds all videos
 }
 
 updateVideobyTitle = async (req, res) => { // Finds and updates a video with a given title
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -73,6 +81,13 @@ updateVideobyTitle = async (req, res) => { // Finds and updates a video with a g
 }
 
 deleteVideobyTitle = async (req, res) => {  // Finds and deletes a video with a given title
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Video.findOneAndDelete({ title: req.params.title }, (err, video) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -89,6 +104,13 @@ deleteVideobyTitle = async (req, res) => {  // Finds and deletes a video with a 
 }
 
 createVideo = async (req, res) => { // Creates a video entry
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -118,8 +140,14 @@ createVideo = async (req, res) => { // Creates a video entry
 }
 
 updateVideobyID = async (req, res) => {
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
-
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -157,6 +185,13 @@ updateVideobyID = async (req, res) => {
 }
 
 deleteVideobyID = async (req, res) => {
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Video.findOneAndDelete({ _id: req.params.id }, (err, video) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -173,6 +208,13 @@ deleteVideobyID = async (req, res) => {
 }
 
 blacklistVideo = async (req, res) => {  // Blacklists a video identified by database ID
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     Video.findOne({ _id: req.params.id }, (err, video) => {
         if (err) {
             return res.status(404).json({
@@ -200,6 +242,13 @@ blacklistVideo = async (req, res) => {  // Blacklists a video identified by data
 }
 
 unblacklistVideo = async (req, res) => {  // Blacklists a video identified by database ID
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     Video.findOne({ _id: req.params.id }, (err, video) => {
         if (err) {
             return res.status(404).json({

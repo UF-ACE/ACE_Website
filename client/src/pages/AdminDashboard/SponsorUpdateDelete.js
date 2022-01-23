@@ -35,6 +35,8 @@ class SponsorUpdateDelete extends Component {
             api.deleteSponsorbyID(sponsor._id).then(res => {
                 console.log(res.data)
                 window.location.reload()
+            }).catch(() => {
+                alert('Could not delete. Check that you are properly authenticated')
             })
         }
     }
@@ -125,6 +127,8 @@ class SponsorUpdateDelete extends Component {
                 api.updateSponsorbyID(sponsor._id, newSponsor).then(res => {
                     console.log(res.data)
                     window.location.reload()
+                }).catch(() => {
+                    alert('Could not update. Ensure that you are properly authenticated')
                 })
             }
         }

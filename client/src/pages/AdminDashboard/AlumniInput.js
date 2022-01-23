@@ -12,7 +12,6 @@ class AlumniInput extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -23,7 +22,6 @@ class AlumniInput extends Component {
             title: '',
             email: '',
             linkedin: '',
-            password: '',
             image: null,
         }
     }
@@ -67,12 +65,6 @@ class AlumniInput extends Component {
         });
     }
 
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
-    }
-
     onChangeImage(e) {
         const file = e.target.files[0]
         this.setState({ image: file }, () => { console.log(this.state.image) });
@@ -91,7 +83,6 @@ class AlumniInput extends Component {
             alumnus.append('title', this.state.title)
             alumnus.append('email', this.state.email)
             alumnus.append('linkedin', this.state.linkedin)
-            alumnus.append('password', this.state.password)
             alumnus.append('image', this.state.image, this.state.image.name)
 
             api.createPerson(alumnus).then(res => {
@@ -101,11 +92,12 @@ class AlumniInput extends Component {
                     title: '',
                     email: '',
                     linkedin: '',
-                    password: '',
                     image: null,
                 })
                 window.location.reload()
-            }) 
+            }).catch(() => {
+                alert('Cannot create. Check that each field is filled out and you are properly authenticated')
+            })
         }
     }
 
@@ -147,14 +139,6 @@ class AlumniInput extends Component {
                                     placeholder="LinkedIn" 
                                     value = {this.state.linkedin}
                                     onChange = {this.onChangeLinkedin}
-                                    className = "update_input"
-                                />
-                                <input 
-                                    type="text" 
-                                    name="password" 
-                                    placeholder="Password" 
-                                    value = {this.state.password}
-                                    onChange = {this.onChangePassword}
                                     className = "update_input"
                                 />
                                 <input 

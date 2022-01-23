@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api', })
+const api = axios.create({ 
+    baseURL: '/api',
+    headers: {
+        'token': sessionStorage.getItem('token')
+    }
+})
 
 
 export const createVideo = payload => api.post(`/video`, payload)
@@ -36,6 +41,10 @@ export const sendEmail = payload => api.post(`/email`, payload)
 export const logEmail = payload => api.post(`/email/db`, payload)
 export const getEmails = () => api.get(`/email/db`)
 
+export const login = (username, password) => api.get(`/login/${username}/${password}`)
+export const checkToken = token => api.get(`/token/${token}`)
+export const updateToken = payload => api.put('/token', payload)
+
 const apis = {
     createVideo,
     getVideos,
@@ -66,6 +75,9 @@ const apis = {
     sendEmail,
     logEmail,
     getEmails,
+    login,
+    checkToken,
+    updateToken,
 }
 
 export default apis

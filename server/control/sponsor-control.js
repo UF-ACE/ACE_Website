@@ -1,4 +1,5 @@
 const Sponsor = require('../models/sponsor-model')
+const TokenCtrl = require('../control/token-control')
 var fs = require('fs')
 var path = require('path')
 
@@ -32,6 +33,13 @@ getSponsors = async (req, res) => {     // Finds all sponsors
 }
 
 updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with a given name
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -80,6 +88,13 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
 }
 
 deleteSponsorbyName = async (req, res) => {  // Finds and deletes a sponsor with a given name
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Sponsor.findOneAndDelete({ name: req.params.name }, (err, sponsor) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
@@ -96,6 +111,13 @@ deleteSponsorbyName = async (req, res) => {  // Finds and deletes a sponsor with
 }
 
 createSponsor = async (req, res) => { // Creates a sponsor entry
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -129,8 +151,14 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
 }
 
 updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique database ID
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     const body = req.body
-
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -179,6 +207,13 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
 }
 
 deleteSponsorbyID = async (req, res) => {
+    const auth = await TokenCtrl.checkToken(req.headers.token)
+    if (!auth) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must be properly authenticated'
+        })
+    }
     await Sponsor.findOneAndDelete({ _id: req.params.id }, (err, sponsor) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })

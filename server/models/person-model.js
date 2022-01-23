@@ -8,8 +8,7 @@ const Person = new Schema(
         title: { type: String, required: true },
         email: { type: String, required: true },
         linkedin: { type: String, required: true },
-        image: { data: Buffer, contentType: String },
-        password: { type: String, required: true}
+        image: { data: Buffer, contentType: String }
     },
     { timestamps: true },
 )

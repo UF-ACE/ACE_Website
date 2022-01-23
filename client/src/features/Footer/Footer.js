@@ -5,7 +5,6 @@ import Col from "react-bootstrap/Col";
 import { Nav } from "react-bootstrap";
 import styles from "./Footer.module.css";
 import { SocialIcon } from "react-social-icons";
-import AdminLogin from "./AdminLogin";
 import ContactForm from "./ContactForm";
 
 const Footer = () => {
@@ -14,16 +13,11 @@ const Footer = () => {
       <Container fluid={true}>
         <Row className="border-top justify-content-between p-3 h-50">
           <Col>
-            <h1>Contact Us</h1>
-            <ContactForm/>
-          </Col>
-          <Col className="p-0" md={6}>
-            <Row>
-              <AdminLogin />
-            </Row>
+              <h1>Contact Us</h1>
+              <ContactForm/>
           </Col>
         </Row>
-        <Row>
+        <Row className="mt-4">
           <Col>
             <h5>Association of Computer Engineers</h5>
             {/* TODO 

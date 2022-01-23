@@ -43,6 +43,8 @@ class VideoUpdateDelete extends Component {
             api.deleteVideobyID(video._id).then(res => {
                 console.log(res.data)
                 window.location.reload()
+            }).catch(() => {
+                alert('Could not delete. Check that you are properly authenticated')
             })
         }
     }
@@ -92,6 +94,8 @@ class VideoUpdateDelete extends Component {
                 api.updateVideobyID(video._id, newVideo).then(res => {
                     console.log(res.data)
                     window.location.reload()
+                }).catch(() => {
+                    alert('Could not update. Ensure that you are properly authenticated')
                 })
             }
         }

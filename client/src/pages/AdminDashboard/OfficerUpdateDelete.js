@@ -10,7 +10,6 @@ class OfficerUpdateDelete extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeLinkedin = this.onChangeLinkedin.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeImage = this.onChangeImage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onDelete = this.onDelete.bind(this);
@@ -21,14 +20,12 @@ class OfficerUpdateDelete extends Component {
             title: '',
             email: '',
             linkedin: '',
-            password: '',
             image: null,
 
             nameChanged: false,
             titleChanged: false,
             emailChanged: false,
             linkedinChanged: false,
-            passwordChanged: false,
             imageChanged: false,
         }
     }
@@ -48,6 +45,8 @@ class OfficerUpdateDelete extends Component {
             api.deletePersonbyID(officer._id).then(res => {
                 console.log(res.data)
                 window.location.reload()
+            }).catch(() => {
+                alert('Could not delete. Check that you are properly authenticated')
             })
         }
     }
@@ -76,12 +75,6 @@ class OfficerUpdateDelete extends Component {
             linkedinChanged: true
         });
     }
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value,
-            passwordChanged: true
-        });
-    }
     onChangeImage(e) {
         const file = e.target.files[0]
         this.setState({ image: file, imageChanged: true }, () => { console.log(this.state.image) });
@@ -92,7 +85,7 @@ class OfficerUpdateDelete extends Component {
         if (this.state.imageChanged && this.state.image.size > 16000000) {
             alert("Size of picture must be <=16MB!")
         }
-        else if (!this.state.nameChanged && !this.state.titleChanged && !this.state.emailChanged && !this.state.linkedinChanged && !this.state.passwordChanged && !this.state.imageChanged){
+        else if (!this.state.nameChanged && !this.state.titleChanged && !this.state.emailChanged && !this.state.linkedinChanged && !this.state.imageChanged){
             alert("Nothing to update")
         }
         else {
@@ -123,12 +116,6 @@ class OfficerUpdateDelete extends Component {
             else {
                 newOfficer.append('linkedin', this.state.linkedin)
             }
-            if (!this.state.passwordChanged){
-                newOfficer.append('password', officer.password)
-            }
-            else {
-                newOfficer.append('password', this.state.password)
-            }
             if (!this.state.imageChanged){
                 newOfficer.append('image', officer.image)
             }
@@ -140,6 +127,8 @@ class OfficerUpdateDelete extends Component {
                 api.updatePersonbyID(officer._id, newOfficer).then(res => {
                     console.log(res.data)
                     window.location.reload()
+                }).catch(() => {
+                    alert('Could not update. Ensure that you are properly authenticated')
                 })
             }
         }
@@ -161,7 +150,6 @@ class OfficerUpdateDelete extends Component {
                         <input type="text" name="title" placeholder={officer.title} className = "update_input" onChange = {this.onChangeTitle}/>
                         <input type="text" name="email" placeholder={officer.email} className = "update_input" onChange = {this.onChangeEmail}/>
                         <input type="text" name="linkedin" placeholder={officer.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
-                        <input type="text" name="password" placeholder={officer.password} className = "update_input" onChange = {this.onChangePassword}/>
                         <input type="file" name="image" onChange = {this.onChangeImage}/>
                         <button className="submit_button">Update</button>
                         <button type="button" className="submit_button" onClick={() => this.onDelete(officer)}>Delete</button>

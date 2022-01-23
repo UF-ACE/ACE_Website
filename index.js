@@ -7,7 +7,9 @@ const db = require('./server/db/index')
 const videoRouter = require('./server/routes/video-router')
 const personRouter = require('./server/routes/person-router')    
 const sponsorRouter = require('./server/routes/sponsor-router')
-const emailRouter = require('./server/routes/email-router')
+//const emailRouter = require('./server/routes/email-router')
+const loginRouter = require('./server/routes/login-router')
+const tokenRouter = require('./server/routes/token-router')
 
 const app = express()
 
@@ -20,7 +22,9 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use('/api', videoRouter)
 app.use('/api', personRouter)
 app.use('/api', sponsorRouter)
-app.use('/api', emailRouter)
+//app.use('/api', emailRouter)
+app.use('/api', loginRouter)
+app.use('/api', tokenRouter)
 
 app.use(favicon(path.join(__dirname, 'client/build', 'favicon.ico'))); 
 app.use(express.static(path.join(__dirname, 'client/build')))
