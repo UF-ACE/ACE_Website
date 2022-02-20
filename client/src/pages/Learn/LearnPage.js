@@ -44,11 +44,13 @@ class LearnPage extends Component {
           </div>
         </div>
       ));
-    } else {
+      videoDivs.reverse()
+    } 
+    else {
       videos = null;
       videoDivs = null;
     }
-
+    
     return (
       <div className="learnpage">
         <div className="description">

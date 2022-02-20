@@ -5,6 +5,7 @@ import ProfileOfficer from "../../features/ProfileOfficer.js";
 import api from "../../api/index.js";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Loader from "./Loader"
 
 class AboutPage extends Component {
   constructor(props) {
@@ -67,23 +68,13 @@ class AboutPage extends Component {
       officers = this.state.officers;
       officerProfiles = officers.map((officer) => (
         <div key={officer._id}>
-          {officer.image ? 
-            <ProfileOfficer
-              src={'data:' + officer.image.contentType + ';base64,' + this.arrayBufferToBase64(officer.image.data.data)}
-              title={officer.title}
-              name={officer.name}
-              linkedin={officer.linkedin}
-              email={officer.email}
-            />
-          :
-            <ProfileOfficer
-              src={officer.imageURL}
-              title={officer.title}
-              name={officer.name}
-              linkedin={officer.linkedin}
-              email={officer.email}
-            />
-        }
+          <ProfileOfficer
+            src={'data:' + officer.image.contentType + ';base64,' + this.arrayBufferToBase64(officer.image.data.data)}
+            title={officer.title}
+            name={officer.name}
+            linkedin={officer.linkedin}
+            email={officer.email}
+          />
         </div>
       ));
     } else {
@@ -95,23 +86,13 @@ class AboutPage extends Component {
       alumni = this.state.alumni;
       alumniProfiles = alumni.map((alumnus) => (
         <div key={alumnus._id}>
-          {alumnus.image ? 
-            <ProfileOfficer
-              src={'data:' + alumnus.image.contentType + ';base64,' + this.arrayBufferToBase64(alumnus.image.data.data)}
-              title={alumnus.title}
-              name={alumnus.name}
-              linkedin={alumnus.linkedin}
-              email={alumnus.email}
-            />
-          :
-            <ProfileOfficer
-              src={alumnus.imageURL}
-              title={alumnus.title}
-              name={alumnus.name}
-              linkedin={alumnus.linkedin}
-              email={alumnus.email}
-            />
-        }
+          <ProfileOfficer
+            src={'data:' + alumnus.image.contentType + ';base64,' + this.arrayBufferToBase64(alumnus.image.data.data)}
+            title={alumnus.title}
+            name={alumnus.name}
+            linkedin={alumnus.linkedin}
+            email={alumnus.email}
+          />
         </div>
       ));
     } else {
@@ -121,27 +102,15 @@ class AboutPage extends Component {
 
     if (!this.state.isLoadingSponsors && this.state.sponsors.length !== 0) {
       sponsors = this.state.sponsors;
-
-      console.log(this.state.sponsors[0]);
       sponsorProfiles = sponsors.map((sponsor) => (
         <div key={sponsor._id}>
-          {sponsor.image ? 
-            <ProfileSponsor
-              src={'data:' + sponsor.image.contentType + ';base64,' + this.arrayBufferToBase64(sponsor.image.data.data)}
-              name={sponsor.name}
-              description={sponsor.description}
-              linkedin={sponsor.linkedin}
-              link={sponsor.link}
-            />
-          :
-            <ProfileSponsor
-              src={sponsor.imageURL}
-              name={sponsor.name}
-              description={sponsor.description}
-              linkedin={sponsor.linkedin}
-              link={sponsor.link}
-            />
-        }
+          <ProfileSponsor
+            src={'data:' + sponsor.image.contentType + ';base64,' + this.arrayBufferToBase64(sponsor.image.data.data)}
+            name={sponsor.name}
+            description={sponsor.description}
+            linkedin={sponsor.linkedin}
+            link={sponsor.link}
+          />
         </div>
       ));
     }
@@ -164,24 +133,31 @@ class AboutPage extends Component {
             </div>
           </Col>
         </Row>
-        <Row>
+        {
+          this.state.isLoadingAlumni || this.state.isLoadingOfficers || this.state.isLoadingSponsors ?
+            <Loader/>
+          :
           <Col>
-            <h2>Sponsors</h2>
-            <div className={styles.about_sponsors}>{sponsorProfiles}</div>
+            <Row>
+              <Col>
+                <h2>Sponsors</h2>
+                <div className={styles.about_sponsors}>{sponsorProfiles}</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <h2>Officers</h2>
+                <div className={styles.about_officers}>{officerProfiles}</div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <h2>Alumni</h2>
+                <div className={styles.about_alumni}>{alumniProfiles}</div>
+              </Col>
+            </Row>
           </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h2>Officers</h2>
-            <div className={styles.about_officers}>{officerProfiles}</div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h2>Alumni</h2>
-            <div className={styles.about_alumni}>{alumniProfiles}</div>
-          </Col>
-        </Row>
+        }
         <Row>
           <Col>
             <div className={styles.footerSpace}>
