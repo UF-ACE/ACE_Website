@@ -93,7 +93,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         if (req.file) {
             img = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-                contentType: 'image/png'
+                contentType: req.file.mimetype    
             }
         }
         else {
@@ -158,8 +158,9 @@ createPerson = async (req, res) => {    // Create a person entry
     }
     body.image = {
         data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-        contentType: 'image/png'
+        contentType: req.file.mimetype
     }
+    console.log(req.file)
     const person = new Person(body)
     if (!person) {
         return res.status(400).json({ success: false, error: err })
@@ -213,7 +214,7 @@ updatePersonbyID = async (req, res) => {
         if (req.file) {
             img = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-                contentType: 'image/png'
+                contentType: req.file.mimetype
             }
         }
         else {

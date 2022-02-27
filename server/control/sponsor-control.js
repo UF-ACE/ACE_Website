@@ -62,7 +62,7 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
         if (req.file) {
             img = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-                contentType: 'image/png'
+                contentType: req.file.mimetype
             }
         }
         else {
@@ -127,7 +127,7 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
     }
     body.image = {
         data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-        contentType: 'image/png'
+        contentType: req.file.mimetype
     }
     const sponsor = new Sponsor(body)
     if (!sponsor) {
@@ -181,7 +181,7 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
         if (req.file) {
             img = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
-                contentType: 'image/png'
+                contentType: req.file.mimetype
             }
         }
         else {

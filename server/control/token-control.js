@@ -3,7 +3,7 @@ var path = require('path')
 
 
 checkToken = async (userToken) => { 
-    const globToken = await Token.findOne({ _id: "61ec398abaa88092cd9470cf" })
+    const globToken = await Token.findOne({}, {}, {sort: {'created_at' : -1 } })
 
     if (globToken && globToken.token === userToken) {
         return Promise.resolve(true)
@@ -21,7 +21,7 @@ updateToken = async (req, res) => { // Only one valid token at a time - update i
         })
     }
 
-    Token.findOne({ _id: "61ec398abaa88092cd9470cf" }, (err, token) => {
+    Token.findOne({}, {}, {sort: {'created_at' : -1 } }, (err, token) => {
         if (err) {
             return res.status(404).json({
                 err,
