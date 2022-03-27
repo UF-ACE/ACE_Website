@@ -3,11 +3,11 @@ const TokenCtrl = require('../control/token-control')
 
 
 getVideobyTitle = async (req, res) => { // Find a single video with a given title
-    await Video.findOne({ $text: { $search: `\"${req.params.title}\"` } }, (err, video) => {
+    let title = req.body.title
+    await Video.findOne({ $text: { $search: `\"${title}\"` } }, (err, video) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
         if (!video) {
             return res
                 .status(404)
@@ -16,6 +16,24 @@ getVideobyTitle = async (req, res) => { // Find a single video with a given titl
         return res.status(200).json({ success: true, data: video })
     }).catch(err => console.log(err))
 }
+
+getVideosbyTitle = async (req, res) => {
+    let title = req.body.title
+    Video.find({$text:{$search : title}}, {score :{$meta: "textScore" }}).sort({score:{ $meta : 'textScore'}}).exec(function(err, videos) {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!videos) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Videos not found' })
+        }
+        return res.status(200).json({ success: true, data: videos })
+    });
+}
+
+//PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
+// https://stackoverflow.com/questions/18148166/find-document-with-array-that-contains-a-specific-value
 
 getVideos = async (req, res) => {   // Finds all videos
     await Video.find({ }, (err, videos) => {
@@ -112,6 +130,7 @@ createVideo = async (req, res) => { // Creates a video entry
         })
     }
     const body = req.body
+    console.log(body)
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -299,5 +318,6 @@ module.exports = {
     createVideo,
     blacklistVideo,
     unblacklistVideo,
-    getVideosbyBlacklist
+    getVideosbyBlacklist,
+    getVideosbyTitle
 }
