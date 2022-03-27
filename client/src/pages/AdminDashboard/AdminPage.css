@@ -1,5 +1,6 @@
 .AdminPage {
   font-family: sans-serif;
+  overflow-x: hidden;
 }
 .test_input {
   padding-bottom: 100px;

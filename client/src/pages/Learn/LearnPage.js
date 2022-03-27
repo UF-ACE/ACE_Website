@@ -44,7 +44,6 @@ class LearnPage extends Component {
           </div>
         </div>
       ));
-      videoDivs.reverse()
     } 
     else {
       videos = null;

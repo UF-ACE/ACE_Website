@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import apis from "../api/index"
 import classes from "./Youtube.module.css";
+var decode = require('decode-html');
 
 require('dotenv').config()
 const APIKey = process.env.REACT_APP_YOUTUBE_API_KEY //API key
@@ -25,15 +26,13 @@ async function updateDatabase(link, title, description) {
             i++;
             continue;
         }
-        // Replace incompatible characters in URL:
-        var query = title[i].replaceAll('/', '%2f')
-        query = query.replaceAll('#', '%23')
+        var query = { title: decode(title[i]) }
         await apis.getVideobyTitle(query) 
             .then(function(){   // Video is found (already exists in the database)
                 console.log('Video already exists');
             }).catch(function(){    // Video was not found (does not exist in the database)
                 console.log('Creating database entry')
-                var entry = { title: title[i], description: description[i], link: link[i], blacklisted: false };
+                var entry = { title: decode(title[i]), description: description[i], link: link[i], blacklisted: false };
                 apis.createVideo(entry)
                     .then(function() {
                         console.log('Successfully added video to database')
@@ -55,6 +54,8 @@ class Youtube extends Component {
                 const link = responseJson.items.map(obj => "https://www.youtube.com/embed/"+obj.id.videoId)
                 const title = responseJson.items.map(obj => obj.snippet.title)
                 const description = responseJson.items.map(obj => obj.snippet.description)
+                const dates = responseJson.items.map(obj => obj.snippet.publishedAt)
+                console.log(dates)
 
                 updateDatabase(link, title, description);   // Update the database with the retrieved videos
             })
