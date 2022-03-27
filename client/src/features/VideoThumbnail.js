@@ -29,12 +29,6 @@ function Thumbnail({ embedId, title, description, tags }) {
                 <h4>{description}</h4>
                 </div>
             </div>
-            <div class="row">
-              <div className="tags">
-                  <span class="badge badge-pill badge-primary">{tags}</span>
-              </div>
-            </div>
-          
           </Col>
         </Row>
     </Container>

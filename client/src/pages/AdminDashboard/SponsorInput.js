@@ -100,7 +100,7 @@ class SponsorInput extends Component {
         return (
             <div className = "officer_input">
                     <h3>Add Sponsor</h3>
-                          <div className="test_input">
+                          <div className="test_input d-grid gap-3">
                               <Row>
                             <div className="input_form">
                               <form onSubmit = {this.onSubmit}>

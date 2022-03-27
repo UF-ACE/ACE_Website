@@ -91,7 +91,7 @@ class OfficerInput extends Component {
 
     render() {
         return (
-            <div className = "officer_input">
+            <div className = "officer_input d-grid gap-3">
                 <Row>
                     <h3>Add Officer</h3>
                     <div className="input_form">

@@ -32,8 +32,20 @@ getVideosbyTitle = async (req, res) => {
     });
 }
 
-//PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
-// https://stackoverflow.com/questions/18148166/find-document-with-array-that-contains-a-specific-value
+getVideosbyTag = async (req, res) => {
+    let tagList = req.body.tags
+    await Video.find({ tags: { "$in" : tagList }}, (err, videos) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!videos) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'Videos not found' })
+        }
+        return res.status(200).json({ success: true, data: videos })
+    }).catch(err => console.log(err))
+}
 
 getVideos = async (req, res) => {   // Finds all videos
     await Video.find({ }, (err, videos) => {
@@ -80,6 +92,7 @@ updateVideobyTitle = async (req, res) => { // Finds and updates a video with a g
         video.description = body.description
         video.link = body.link
         video.blacklisted = body.blacklisted
+        video.tags = body.tags
         video
             .save()
             .then(() => {
@@ -110,7 +123,6 @@ deleteVideobyTitle = async (req, res) => {  // Finds and deletes a video with a 
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
         if (!video) {
             return res
                 .status(404)
@@ -185,6 +197,8 @@ updateVideobyID = async (req, res) => {
         video.description = body.description
         video.link = body.link
         video.blacklisted = body.blacklisted
+        video.tags = body.tags
+        console.log(video.tags)
         video
             .save()
             .then(() => {
@@ -319,5 +333,6 @@ module.exports = {
     blacklistVideo,
     unblacklistVideo,
     getVideosbyBlacklist,
-    getVideosbyTitle
+    getVideosbyTitle,
+    getVideosbyTag
 }

@@ -11,6 +11,7 @@ class VideoUpdateDelete extends Component {
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeLink = this.onChangeLink.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeTags = this.onChangeTags.bind(this)
 
         this.state = {
             videos: [],
@@ -18,12 +19,14 @@ class VideoUpdateDelete extends Component {
             title: '',
             description: '',
             link: '',
+            tgas: '',
             blacklisted: false,
             isLoading: false,
 
             titleChanged: false,
             descChanged: false,
             linkChanged: false,
+            tagsChanged: false,
         }
     }
 
@@ -67,10 +70,16 @@ class VideoUpdateDelete extends Component {
             descChanged: true
         });
     }
+    onChangeTags(e) {
+        this.setState({
+            tags: e.target.value,
+            tagsChanged: true
+        })
+    }
 
     onSubmit = video => event =>  {
         event.preventDefault()
-        if (!this.state.titleChanged && !this.state.linkChanged && !this.state.descChanged){
+        if (!this.state.titleChanged && !this.state.linkChanged && !this.state.descChanged && !this.state.tagsChanged) {
             alert("Nothing to update")
         }
         else {
@@ -79,6 +88,7 @@ class VideoUpdateDelete extends Component {
                 description: this.state.description,
                 link: this.state.link,
                 blacklisted: false,
+                tags: this.state.tags.split(',')
             }
             if (!this.state.titleChanged){
                 newVideo.title = video.title;
@@ -109,13 +119,14 @@ class VideoUpdateDelete extends Component {
             videos = this.state.videos;
             videoProfiles = videos.map((video) =>
             
-            // Loading an input form for each officer and loading it with the data pertaining to each officer
+            // Loading an input form for each video and loading it with the data pertaining to each video
             <Row>
                 <div className="input_form" key = {video._id}>
                     <form onSubmit={this.onSubmit(video)}>
                         <input type="text" name="title" placeholder={video.title} className = "update_input" onChange = {this.onChangeTitle} />
                         <input type="text" name="link" placeholder={video.link} className = "update_input" onChange = {this.onChangeLink}/>
                         <input type="text" name="description" placeholder={video.description} className = "update_input" onChange = {this.onChangeDescription}/>
+                        <input type="text" name="tagList" defaultValue={video.tags.join(',')} className="update_input" onChange={this.onChangeTags}/>
                         <button className="submit_button">Update</button>
                         <button type="button" className="submit_button" onClick={() => this.onDelete(video)}>Delete</button>
                     </form>

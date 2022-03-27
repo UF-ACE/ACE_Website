@@ -32,7 +32,7 @@ async function updateDatabase(link, title, description) {
                 console.log('Video already exists');
             }).catch(function(){    // Video was not found (does not exist in the database)
                 console.log('Creating database entry')
-                var entry = { title: decode(title[i]), description: description[i], link: link[i], blacklisted: false };
+                var entry = { title: decode(title[i]), description: description[i], link: link[i], blacklisted: false, tags: [] };
                 apis.createVideo(entry)
                     .then(function() {
                         console.log('Successfully added video to database')

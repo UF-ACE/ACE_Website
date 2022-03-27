@@ -19,6 +19,7 @@ export const deleteVideobyID = id => api.delete(`/video/id/${id}`)
 export const deleteVideobyTitle = title => api.delete(`/video/${title}`)
 export const getVideobyTitle = payload => api.post(`/video/search`, payload)
 export const getVideosbyTitle = payload => api.post(`/videos/search`, payload)
+export const getVideosbyTag = payload => api.port(`videos/tags`, payload)
 
 export const createPerson = payload => api.post(`/person`, payload, { headers: { 'content-type': 'multipart/form-data' } })
 export const getPeople = () => api.get(`/people`)
@@ -57,6 +58,8 @@ const apis = {
     deleteVideobyID,
     deleteVideobyTitle,
     getVideobyTitle,
+    getVideosbyTitle,
+    getVideosbyTag,
     createPerson,
     getPeople,
     getPeoplebyOfficer,

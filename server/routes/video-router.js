@@ -13,6 +13,7 @@ router.delete('/video/id/:id', VideoCtrl.deleteVideobyID)
 router.delete('/video/:title', VideoCtrl.deleteVideobyTitle)
 router.post('/video/search', VideoCtrl.getVideobyTitle)
 router.post('/videos/search', VideoCtrl.getVideosbyTitle)
+router.post('/videos/tags', VideoCtrl.getVideosbyTag)
 router.get('/videos', VideoCtrl.getVideos)
 router.get('/videos/BL', VideoCtrl.getVideosbyBlacklist)
 
