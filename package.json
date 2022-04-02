@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.5.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "decode-html": "^2.0.0",
@@ -23,6 +26,7 @@
     "nodemailer": "^6.7.2",
     "path": "^0.12.7",
     "react-html-email": "^3.0.0",
+    "react-quill": "^1.3.5",
     "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2"
   },

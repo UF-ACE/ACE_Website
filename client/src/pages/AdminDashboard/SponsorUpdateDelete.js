@@ -146,10 +146,10 @@ class SponsorUpdateDelete extends Component {
             <Row>
                 <div className="input_form" key = {sponsor._id}>
                     <form onSubmit={this.onSubmit(sponsor)}>
-                        <input type="text" name="name" placeholder={sponsor.name} className = "update_input" onChange = {this.onChangeName} />
-                        <input type="text" name="description" placeholder={sponsor.description} className = "update_input" onChange = {this.onChangeDescription}/>
-                        <input type="text" name="linkedin" placeholder={sponsor.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
-                        <input type="text" name="link" placeholder={sponsor.link} className = "update_input" onChange = {this.onChangeLink}/>
+                        <input type="text" name="name" defaultValue={sponsor.name} className = "update_input" onChange = {this.onChangeName} />
+                        <input type="text" name="description" defaultValue={sponsor.description} className = "update_input" onChange = {this.onChangeDescription}/>
+                        <input type="text" name="linkedin" defaultValue={sponsor.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
+                        <input type="text" name="link" defaultValue={sponsor.link} className = "update_input" onChange = {this.onChangeLink}/>
                         <input type="file" name="image" onChange = {this.onChangeImage}/>
                         <button className="submit_button">Update</button>
                         <button type="button" className="submit_button" onClick={() => this.onDelete(sponsor)}>Delete</button>

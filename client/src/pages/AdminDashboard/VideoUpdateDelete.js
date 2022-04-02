@@ -123,9 +123,9 @@ class VideoUpdateDelete extends Component {
             <Row>
                 <div className="input_form" key = {video._id}>
                     <form onSubmit={this.onSubmit(video)}>
-                        <input type="text" name="title" placeholder={video.title} className = "update_input" onChange = {this.onChangeTitle} />
-                        <input type="text" name="link" placeholder={video.link} className = "update_input" onChange = {this.onChangeLink}/>
-                        <input type="text" name="description" placeholder={video.description} className = "update_input" onChange = {this.onChangeDescription}/>
+                        <input type="text" name="title" defaultValue={video.title} className = "update_input" onChange = {this.onChangeTitle} />
+                        <input type="text" name="link" defaultValue={video.link} className = "update_input" onChange = {this.onChangeLink}/>
+                        <input type="text" name="description" defaultValue={video.description} className = "update_input" onChange = {this.onChangeDescription}/>
                         <input type="text" name="tagList" defaultValue={video.tags.join(',')} className="update_input" onChange={this.onChangeTags}/>
                         <button className="submit_button">Update</button>
                         <button type="button" className="submit_button" onClick={() => this.onDelete(video)}>Delete</button>

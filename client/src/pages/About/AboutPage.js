@@ -5,7 +5,7 @@ import ProfileOfficer from "../../features/ProfileOfficer.js";
 import api from "../../api/index.js";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Loader from "./Loader"
+import CircularProgress from '@mui/material/CircularProgress';
 
 class AboutPage extends Component {
   constructor(props) {
@@ -135,7 +135,7 @@ class AboutPage extends Component {
         </Row>
         {
           this.state.isLoadingAlumni || this.state.isLoadingOfficers || this.state.isLoadingSponsors ?
-            <Loader/>
+            <CircularProgress color="warning"/>
           :
           <Col>
             <Row>

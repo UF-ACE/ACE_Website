@@ -3,6 +3,8 @@ import "./LearnPage.css";
 import api from "../../api/index.js";
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
+import MultipleSelectChip from '../../features/TagSelect'
+
 
 class LearnPage extends Component {
   constructor(props) {
@@ -61,10 +63,11 @@ class LearnPage extends Component {
             </h3>
           </Row>
           <Row>
-          {videoDivs}
-
+            <MultipleSelectChip chipSelect={this}/>
           </Row>
-
+          <Row>
+          {videoDivs}
+          </Row>
         </div>
       </div>
     );

@@ -146,10 +146,10 @@ class OfficerUpdateDelete extends Component {
             <Row>
                 <div className="input_form" key = {officer._id}>
                     <form onSubmit={this.onSubmit(officer)}>
-                        <input type="text" name="name" placeholder={officer.name} className = "update_input" onChange = {this.onChangeName} />
-                        <input type="text" name="title" placeholder={officer.title} className = "update_input" onChange = {this.onChangeTitle}/>
-                        <input type="text" name="email" placeholder={officer.email} className = "update_input" onChange = {this.onChangeEmail}/>
-                        <input type="text" name="linkedin" placeholder={officer.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
+                        <input type="text" name="name" defaultValue={officer.name} className = "update_input" onChange = {this.onChangeName} />
+                        <input type="text" name="title" defaultValue={officer.title} className = "update_input" onChange = {this.onChangeTitle}/>
+                        <input type="text" name="email" defaultValue={officer.email} className = "update_input" onChange = {this.onChangeEmail}/>
+                        <input type="text" name="linkedin" defaultValue={officer.linkedin} className = "update_input" onChange = {this.onChangeLinkedin}/>
                         <input type="file" name="image" onChange = {this.onChangeImage}/>
                         <button className="submit_button">Update</button>
                         <button type="button" className="submit_button" onClick={() => this.onDelete(officer)}>Delete</button>
