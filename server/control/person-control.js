@@ -89,17 +89,12 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
-        var img = null
         if (req.file) {
-            img = {
+            person.image = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype    
             }
         }
-        else {
-            img = body.img
-        }
-        person.image = img
         person
             .save()
             .then(() => {
@@ -210,17 +205,12 @@ updatePersonbyID = async (req, res) => {
         person.title = body.title
         person.email = body.email
         person.linkedin = body.linkedin
-        var img = null
         if (req.file) {
-            img = {
+            person.image = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
         }
-        else {
-            img = body.img
-        }
-        person.image = img
         person
             .save()
             .then(() => {
