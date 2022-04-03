@@ -58,17 +58,12 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
-        var img = null
         if (req.file) {
-            img = {
+            sponsor.image = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
         }
-        else {
-            img = body.img
-        }
-        sponsor.image = img
         sponsor
             .save()
             .then(() => {
@@ -177,17 +172,12 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
         sponsor.description = body.description
         sponsor.linkedin = body.linkedin
         sponsor.link = body.link
-        var img = null
         if (req.file) {
-            img = {
+            sponsor.image = {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
         }
-        else {
-            img = body.img
-        }
-        sponsor.image = img
         sponsor
             .save()
             .then(() => {

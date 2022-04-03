@@ -198,7 +198,6 @@ updateVideobyID = async (req, res) => {
         video.link = body.link
         video.blacklisted = body.blacklisted
         video.tags = body.tags
-        console.log(video.tags)
         video
             .save()
             .then(() => {

@@ -77,7 +77,7 @@ class OfficerUpdateDelete extends Component {
     }
     onChangeImage(e) {
         const file = e.target.files[0]
-        this.setState({ image: file, imageChanged: true }, () => { console.log(this.state.image) });
+        this.setState({ image: file, imageChanged: true });
     }
 
     onSubmit = officer => event =>  {
@@ -116,13 +116,12 @@ class OfficerUpdateDelete extends Component {
             else {
                 newOfficer.append('linkedin', this.state.linkedin)
             }
-            if (!this.state.imageChanged){
+            if (!this.state.imageChanged) {
                 newOfficer.append('image', officer.image)
             }
             else {
                 newOfficer.append('image', this.state.image, this.state.image.name)
             }
-
             if (window.confirm("Do you want to update officer: " + officer.name)){
                 api.updatePersonbyID(officer._id, newOfficer).then(res => {
                     console.log(res.data)
