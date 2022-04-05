@@ -63,6 +63,7 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
+            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
         }
         sponsor
             .save()
@@ -124,6 +125,7 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
         data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
         contentType: req.file.mimetype
     }
+    fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
     const sponsor = new Sponsor(body)
     if (!sponsor) {
         return res.status(400).json({ success: false, error: err })
@@ -177,6 +179,7 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
+            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
         }
         sponsor
             .save()
