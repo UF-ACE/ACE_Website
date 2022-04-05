@@ -19,7 +19,7 @@ getVideobyTitle = async (req, res) => { // Find a single video with a given titl
 
 getVideosbyTitle = async (req, res) => {
     let title = req.body.title
-    await Video.find().and([{$text:{$search : title}}, {score :{$meta: "textScore" }}, {blacklisted: false}]).sort({score:{ $meta : 'textScore'}}).exec(function(err, videos) {
+    Video.find().and([{$text:{$search : title}}, {score :{$meta: "textScore" }}, {blacklisted: false}]).sort({score:{ $meta : 'textScore'}}).exec(function(err, videos) {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

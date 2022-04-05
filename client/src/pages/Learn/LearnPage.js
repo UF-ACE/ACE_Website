@@ -4,6 +4,8 @@ import api from "../../api/index.js";
 import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import MultipleSelectChip from '../../features/TagSelect'
+import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box';
 
 
 class LearnPage extends Component {
@@ -13,6 +15,29 @@ class LearnPage extends Component {
       videos: [],
       isLoading: false,
     };
+  }
+
+  searchFunc = e => {
+    this.setState({ isLoading: true })
+    if (e.target.value) {
+      var req = {
+        title: e.target.value
+      }
+      api.getVideosbyTitle(req).then((videos) => {
+        this.setState({
+          videos: videos.data.data,
+          isLoading: false,
+        })
+      })
+    }
+    else {
+      api.getVideosbyBlacklist().then((videos) => {
+        this.setState({
+          videos: videos.data.data,
+          isLoading: false,
+        })
+      })
+    }
   }
 
   componentDidMount = async () => {
@@ -63,6 +88,16 @@ class LearnPage extends Component {
             </h3>
           </Row>
           <Row>
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { m: 1, width: 250 },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField id="outlined-basic" InputLabelProps={{style: {fontWeight: 'bold'}}} label="Search" variant="outlined" onChange={this.searchFunc} color="warning"/>
+            </Box>
             <MultipleSelectChip chipSelect={this}/>
           </Row>
           <Row>
