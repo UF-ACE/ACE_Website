@@ -77,7 +77,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
             error: 'You must provide a body to update a person',
         })
     }
-    Person.findOne({ name: req.params.name }, (err, person) => {
+    await Person.findOne({ name: req.params.name }, (err, person) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -94,6 +94,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype    
             }
+            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
         }
         person
             .save()
@@ -155,7 +156,7 @@ createPerson = async (req, res) => {    // Create a person entry
         data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
         contentType: req.file.mimetype
     }
-    console.log(req.file)
+    fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
     const person = new Person(body)
     if (!person) {
         return res.status(400).json({ success: false, error: err })
@@ -193,7 +194,7 @@ updatePersonbyID = async (req, res) => {
         })
     }
 
-    Person.findOne({ _id: req.params.id }, (err, person) => {
+    await Person.findOne({ _id: req.params.id }, (err, person) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -210,6 +211,7 @@ updatePersonbyID = async (req, res) => {
                 data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
+            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
         }
         person
             .save()

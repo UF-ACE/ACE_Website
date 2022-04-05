@@ -37,7 +37,7 @@ export default function MultipleSelectCheckmarks(props) {
       target: { value },
     } = event;
     // variable "value" is an array of selected tags -> query the database
-    if (value.length == 0) {
+    if (value.length === 0) {
       apis.getVideosbyBlacklist().then((videos) => {
         props.chipSelect.setState({videos: videos.data.data, isLoading: false})
       });

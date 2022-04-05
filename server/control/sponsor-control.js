@@ -47,7 +47,7 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
             error: 'You must provide a body to update a sponsor',
         })
     }
-    Sponsor.findOne({ name: req.params.name }, (err, sponsor) => {
+    await Sponsor.findOne({ name: req.params.name }, (err, sponsor) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -161,7 +161,7 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
         })
     }
 
-    Sponsor.findOne({ _id: req.params.id }, (err, sponsor) => {
+    await Sponsor.findOne({ _id: req.params.id }, (err, sponsor) => {
         if (err) {
             return res.status(404).json({
                 err,

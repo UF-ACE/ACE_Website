@@ -45,7 +45,6 @@ export const getEmails = () => api.get(`/email/db`)
 
 export const login = (username, password) => api.get(`/login/${username}/${password}`)
 export const checkToken = token => api.get(`/token/${token}`)
-export const updateToken = payload => api.put('/token', payload)
 
 const apis = {
     createVideo,
@@ -81,7 +80,6 @@ const apis = {
     getEmails,
     login,
     checkToken,
-    updateToken,
 }
 
 export default apis

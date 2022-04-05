@@ -3,7 +3,6 @@ import api from "../../api"
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import styles from "./LoginPage.css"
-import { v4 as uuidv4 } from 'uuid'
 
 
 class LoginPage extends Component {
@@ -16,6 +15,7 @@ class LoginPage extends Component {
         this.state = {
             username: 'blankUsername',
             password: 'blankPassword',
+            auth: false,
         }
     }
 
@@ -25,18 +25,13 @@ class LoginPage extends Component {
         }
         else {
             api.login(username, password).then(res => {
-                let sessionToken = uuidv4()
-                sessionStorage.setItem('token', sessionToken)
-                let newToken = {
-                    token: sessionToken
+                if (!res.data.success) {
+                    throw new Error("Invalid credentials")
                 }
-                api.updateToken(newToken).then(res => {
-                    this.setState({
-                        username: 'blankUsername',
-                        password: 'blankPassword',
-                    })
+                else {
+                    sessionStorage.setItem('token', res.data.token)
                     window.location.reload()
-                })
+                }
             }).catch(err => {
                 alert('Invalid credentials')
                 this.setState({
@@ -66,9 +61,17 @@ class LoginPage extends Component {
         let insertedUsername = this.state.username;
         this.checkCreds(insertedUsername, insertedPassword);
     }
-
+    componentDidMount = async () => {
+        await api.checkToken(sessionStorage.getItem('token')).then(res => {
+            if (res.data.success) {
+                this.setState({auth: true})
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    }
     render() {
-        if (!sessionStorage.getItem('token')) {   // If the user has not been given a token, display the login page
+        if (!this.state.auth) {   // If the user does not have a valid token, display the login page
             return (
                 <div className="loginpage">
                     <div className="description">

@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import { Button } from "react-bootstrap"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import apis from '../../api/index'
+//import apis from '../../api/index'
 import styles from "./Footer.module.css";
 
 const ContactForm = () => {
+    /*
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('')
@@ -34,6 +35,7 @@ const ContactForm = () => {
             alert("Your response has been recorded.")
         }
     }
+    */
 
     const openGoogleForm = () => {
         window.open("https://forms.gle/wV2grmmgzS5eRorB6", "_blank")
