@@ -2,7 +2,7 @@ const announcementModel = require('../models/announcement-model');
 const Announcement = require('../models/announcement-model');
 const TokenCtrl = require('../models/token-model');
 
-createAnn = async(req, res) => { //Creates an announcement
+createAnnouncement = async(req, res) => { //Creates an announcement
     const auth = await TokenCtrl.checkToken(req.headers.token)
     if (!auth) {
         return res.status(400).json({
