@@ -1,6 +1,5 @@
-const announcementModel = require('../models/announcement-model');
 const Announcement = require('../models/announcement-model');
-const TokenCtrl = require('../models/token-model');
+const TokenCtrl = require('../control/token-control');
 
 createAnnouncement = async(req, res) => { //Creates an announcement
     const auth = await TokenCtrl.checkToken(req.headers.token)
@@ -128,6 +127,12 @@ deleteAnnouncement = async(req, res) => { // Deletes an announcement by its ID
     }).catch(err => console.log(err))
 }
 
-
+module.exports = {
+    createAnnouncement,
+    updateAnnouncement,
+    deleteAnnouncement,
+    getAnnByLatest,
+    getAnnByOldest
+}
 
 

@@ -8,4 +8,4 @@ router.delete('/announcement/:id', announcementCtrl.deleteAnnouncement)
 router.get('/announcement/latest', announcementCtrl.getAnnByLatest)
 router.get('/announcement/oldest', announcementCtrl.getAnnByOldest)
 
-module.exports = router;
+module.exports = router
