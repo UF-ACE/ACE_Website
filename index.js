@@ -10,6 +10,7 @@ const sponsorRouter = require('./server/routes/sponsor-router')
 //const emailRouter = require('./server/routes/email-router')
 const loginRouter = require('./server/routes/login-router')
 const tokenRouter = require('./server/routes/token-router')
+const announcementRouter = require('.server/routes/announcement-router')
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use('/api', sponsorRouter)
 //app.use('/api', emailRouter)
 app.use('/api', loginRouter)
 app.use('/api', tokenRouter)
+app.use('/api', announcementRouter)
 
 app.use(favicon(path.join(__dirname, 'client/build', 'favicon.ico'))); 
 app.use(express.static(path.join(__dirname, 'client/build')))
