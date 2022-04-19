@@ -9,7 +9,7 @@ createAnnouncement = async(req, res) => { //Creates an announcement
             error: 'You must be properly authenticated'
         })
     }
-    const body = req.body;
+    const body = req.body
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -25,7 +25,7 @@ createAnnouncement = async(req, res) => { //Creates an announcement
         .then(() => {
             return res.status(201).json({
                 success: true,
-                id: video._id,
+                id: announcement._id,
                 message: 'Announcement created',
             })
         })
@@ -37,9 +37,8 @@ createAnnouncement = async(req, res) => { //Creates an announcement
         })
 }
 
-
 getAnnByLatest = async(req, res) => { // Return a list of latest announcements
-    await Announcement.find({}, (err, ann) => {
+    await Announcement.find({}, {}, { sort: { createdAt: -1 } },  (err, ann) => {
         if (err) {
             return res.status(400).json({ success: false, error: err})
         }
@@ -50,12 +49,11 @@ getAnnByLatest = async(req, res) => { // Return a list of latest announcements
         }
         return res.status(200).json({success: true, data: ann})
     })
-    .sort({"timestamps": -1}) //Sort by descending order (latest -> oldest)
     .catch(err => console.log(err)) 
 }
 
 getAnnByOldest = async(req, res) => { //Return a list of oldest announcements
-    await Announcement.find( { }, (err, ann) => {
+    await Announcement.find( {}, {}, { sort: { createdAt: 1 } }, (err, ann) => {
         if (err) {
             return res.status(400).json({ success: false, error: err})
         }
@@ -68,7 +66,6 @@ getAnnByOldest = async(req, res) => { //Return a list of oldest announcements
             .status(200)
             .json({success: true, data: ann})
     })
-    .sort({"timestamps": 1}) //Sort by ascending order (oldest -> latest)
     .catch(err => console.log(err))
 }
 
@@ -88,12 +85,14 @@ updateAnnouncement = async(req, res) => { //Updates an announcement by ID
                 message: 'Announcement not found!',
             })
         }
+        console.log(req)
         ann.body = body.body
+        ann
         .save()
         .then(() => {
             return res.status(200).json({
                 success: true,
-                id: video._id,
+                id: ann._id,
                 message: 'Announcement updated!',
             })
         })
@@ -123,7 +122,7 @@ deleteAnnouncement = async(req, res) => { // Deletes an announcement by its ID
                 .status(404)
                 .json({ success: false, error: `Announcement not found` })
         }
-        return res.status(200).json({ success: true, data: video })
+        return res.status(200).json({ success: true, data: ann })
     }).catch(err => console.log(err))
 }
 

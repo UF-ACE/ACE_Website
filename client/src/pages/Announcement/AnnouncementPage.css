@@ -1,0 +1,18 @@
+.announcepage {
+    text-align: center;
+    /*Height of nav bar*/
+    margin-top: 72px;
+    font-family: "Courier New", Courier, monospace;
+    background-color: #384595;
+    color: black;
+    font-weight: 700;
+    overflow-x: hidden;
+    padding-bottom: 300px;
+  }
+
+  .annDisplay {
+    align-items: center;
+    place-content: center;
+    align-content: center;
+    place-items: center;
+  }
