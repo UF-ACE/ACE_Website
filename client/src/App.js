@@ -9,6 +9,7 @@ import AboutPage from "./pages/About/AboutPage.js";
 import Footer from "./features/Footer/Footer.js";
 import LearnPage from "./pages/Learn/LearnPage.js";
 import LoginPage from "./pages/Login/LoginPage.js"
+import AnnouncementPage from './pages/Announcement/AnnouncementPage'
 
 const theme = createTheme({
   palette: {
@@ -49,6 +50,9 @@ function App() {
               </Route>
               <Route path="/Login">
                 <LoginPage />
+              </Route>
+              <Route path="/Announcements">
+                <AnnouncementPage />
               </Route>
             </Switch>
           </div>

@@ -1,0 +1,26 @@
+.Announcement {
+    margin: 25px 100px 25px 150px;
+    align-self: center;
+    padding: 10px;
+    width: 80vw;
+    height: auto;
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    background-color: #bc6100;
+}
+
+.AnnouncementBody {
+    margin: 15px 20px 15px 20px;
+}
+
+.Timestamp {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+}

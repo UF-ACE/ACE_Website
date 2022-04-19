@@ -88,16 +88,19 @@ class LearnPage extends Component {
             </h3>
           </Row>
           <Row>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: 250 },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField id="outlined-basic" InputLabelProps={{style: {fontWeight: 'bold'}}} label="Search" variant="outlined" onChange={this.searchFunc} color="warning"/>
-            </Box>
+              {/* Uncomment the following for a search bar (doesn't work well with the tag filtering
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: 250 },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField id="outlined-basic" InputLabelProps={{style: {fontWeight: 'bold'}}} label="Search" variant="outlined" onChange={this.searchFunc} color="warning"/>
+                </Box>
+               */
+              }
             <MultipleSelectChip chipSelect={this}/>
           </Row>
           <Row>

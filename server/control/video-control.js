@@ -308,7 +308,7 @@ unblacklistVideo = async (req, res) => {  // Blacklists a video identified by da
 }
 
 getVideosbyBlacklist = async (req, res) => {   // Finds all videos (not blacklisted)
-    await Video.find({ blacklisted: false }, (err, videos) => {
+    await Video.find({ blacklisted: false }, {}, { sort: { createdAt: -1 } }, (err, videos) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

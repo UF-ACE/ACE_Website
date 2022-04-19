@@ -46,6 +46,11 @@ export const getEmails = () => api.get(`/email/db`)
 export const login = (username, password) => api.get(`/login/${username}/${password}`)
 export const checkToken = token => api.get(`/token/${token}`)
 
+export const createAnnouncement = payload => api.post(`/announcement`, payload)
+export const getAnnouncements = () => api.get(`/announcement/latest`)
+export const deleteAnnouncement = id => api.delete(`/announcement/${id}`)
+export const updateAnnouncement = (id, payload) => api.put(`/announcement/${id}`, payload)
+
 const apis = {
     createVideo,
     getVideos,
@@ -80,6 +85,10 @@ const apis = {
     getEmails,
     login,
     checkToken,
+    createAnnouncement,
+    getAnnouncements,
+    deleteAnnouncement,
+    updateAnnouncement,
 }
 
 export default apis

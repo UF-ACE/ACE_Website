@@ -33,6 +33,12 @@ class NavigationBar extends Component {
               </NavItem>
               <NavItem>
                 {" "}
+                <Link className="nav-link" to="/Announcements">
+                  Announcements
+                </Link>{" "}
+              </NavItem>
+              <NavItem>
+                {" "}
                 <Link className="nav-link" to="/Login">
                   Login
                 </Link>{" "}
