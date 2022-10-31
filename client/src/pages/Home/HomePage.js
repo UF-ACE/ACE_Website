@@ -17,9 +17,9 @@ function HomePage() {
           {"  "} it!
         </h1>
       </div>
-      {ParallaxContainer(-3,  <HomeYoutube embedId={process.env.REACT_APP_HOME_VIDEO_EMBED_ID} />)}
+      <HomeYoutube embedId={process.env.REACT_APP_HOME_VIDEO_EMBED_ID} />
       <h1 className={styles.h1}>Check out the events coming up this month! </h1>
-      {ParallaxContainer(-3,  <HomeCalendar />)}
+      <HomeCalendar />
     </div>
   );
 }

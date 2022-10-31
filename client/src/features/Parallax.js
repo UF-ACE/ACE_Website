@@ -1,12 +1,11 @@
 import { Parallax } from 'react-scroll-parallax';
-import styles from "../pages/Home/HomePage.module.css";
 
-const ParallaxContainer = (speed, component) => (
+const ParallaxContainer = ({speed, children}) => {
+  return (
     <Parallax speed={speed}>
-        <div className={styles.background_video}>
-          {component}
-        </div>
+        {children}
     </Parallax>
-);
+  )
+};
 
 export default ParallaxContainer;
