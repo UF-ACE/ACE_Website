@@ -28,7 +28,7 @@
 
 Clone the repository
 
-* Current Repository > Add > Clone Repositories > URL > https://github.com/cameron-keene/ACE_Website.git
+* Current Repository > Add > Clone Repositories > URL > https://github.com/UF-ACE/ACE_Website.git
 
 Install project dependencies. From the root directory:
 

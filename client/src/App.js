@@ -10,6 +10,7 @@ import Footer from "./features/Footer/Footer.js";
 import LearnPage from "./pages/Learn/LearnPage.js";
 import LoginPage from "./pages/Login/LoginPage.js"
 import AnnouncementPage from './pages/Announcement/AnnouncementPage'
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const theme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const theme = createTheme({
 
 function App() {
   return (
+    <ParallaxProvider scrollAxis="vertical">
     <ThemeProvider theme={theme}>
       <Router>
         <div className="app">
@@ -60,6 +62,7 @@ function App() {
         </div>
       </Router>
     </ThemeProvider>
+    </ParallaxProvider>
   );
 }
 
