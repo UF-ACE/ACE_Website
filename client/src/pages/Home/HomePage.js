@@ -13,7 +13,7 @@ function HomePage() {
         <h1 className={styles.h1}>
           Forget your class office hours, just{"  "}
           <img className={styles.img} src={logo} alt="ACE Logo" />
-          {"  "} it
+          {"  "} it!
         </h1>
       </div>
       <div className={styles.background_video}>

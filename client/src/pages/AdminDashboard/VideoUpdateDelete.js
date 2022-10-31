@@ -99,7 +99,6 @@ class VideoUpdateDelete extends Component {
             if (!this.state.descChanged){
                 newVideo.description = video.description;
             }
-            
             if (window.confirm("Do you want to update video: " + newVideo.title)){
                 api.updateVideobyID(video._id, newVideo).then(res => {
                     console.log(res.data)

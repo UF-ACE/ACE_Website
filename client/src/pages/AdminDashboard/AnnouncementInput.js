@@ -59,14 +59,16 @@ class AnnouncementInput extends Component {
                     </div>
                 </Row>
                 <Row className="pb-5">
-                    <Col>
-                        <button type="button" className="submit_button" onClick={() => this.submitAnnouncement()}>Submit</button>
-                    </Col>
+                    <div align="right">
+                        <Col>
+                            <button type="button" className="submit_button" onClick={() => this.submitAnnouncement()}>Submit</button>   {/* Bootstrap is so fun and easy to use!! 0__0 */}
+                        </Col>
+                    </div>
                 </Row>
-                <Row className="pb-5">
+                <Row className="pb-1">
                     <h3>Edit Announcements</h3>
-                    <AnnouncementUpdateDelete/>
                 </Row>
+                <AnnouncementUpdateDelete/>
             </div>
         )
     }

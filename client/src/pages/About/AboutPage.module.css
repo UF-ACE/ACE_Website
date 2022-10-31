@@ -1,40 +1,55 @@
 .aboutpage {
-  text-align: center;
-  /*Height of nav bar*/
-  margin-top: 72px;
-  font-family: "Courier New", Courier, monospace;
+  margin-top: 72px; /*Height of nav bar*/
   background-color: #384595;
   color: black;
-  overflow-x: hidden;
 }
 
-.aboutpage h2 {
-  margin-top: 10px;
+.text_area {
+  width: 95%;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text_area h2 {
+  padding-top: 10px;
   font-weight: bold;
+  font-variant: small-caps;
+  font-size: 3rem;
 }
-
-h1,
+h1 {
+  padding-top: 15px;
+  font-weight: bolder;
+}
 h3 {
+  padding-top: 10px;
   font-weight: bold;
 }
 
 .footerSpace {
   padding-bottom: 30px;
+  padding-top: 30px;
 }
 
-.link > * {
-  font-size: "xx-large";
-  color: "#f04e23";
+.about_description {
+  padding-bottom: 30px;
+}
+
+.link a {
+  font-weight: bold;
+  color: #f04e23;
+  font-size: 1.5rem; 
 }
 
 .about_sponsors {
-  padding-top: 30px;
+  padding-top: 15px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding-bottom: 45px;
 }
 .about_officers {
+  padding-top: 15px;
   margin-bottom: 45px;
   display: flex;
   flex-direction: row;
@@ -43,7 +58,8 @@ h3 {
 }
 
 .about_alumni {
-  margin-bottom: 45px;
+  padding-top: 15px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

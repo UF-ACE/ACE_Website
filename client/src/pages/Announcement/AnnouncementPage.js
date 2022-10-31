@@ -1,6 +1,6 @@
 import { Component } from "react";
 import api from "../../api/index"
-import Announcement from "./Announcement"
+import Announcement from "../../features/Announcement"
 import Row from "react-bootstrap/Row";
 import "./AnnouncementPage.css";
 

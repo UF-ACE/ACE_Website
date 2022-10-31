@@ -69,7 +69,7 @@ getAnnByOldest = async(req, res) => { //Return a list of oldest announcements
     .catch(err => console.log(err))
 }
 
-updateAnnouncement = async(req, res) => { //Updates an announcement by ID
+updateAnnouncement = async(req, res) => { // Updates an announcement by ID
     const auth = await TokenCtrl.checkToken(req.headers.token)
     if (!auth) {
         return res.status(400).json({
@@ -77,16 +77,14 @@ updateAnnouncement = async(req, res) => { //Updates an announcement by ID
             error: 'You must be properly authenticated'
         })
     }
-    const body = req.body;
-    await Announcement.findOne( {_id: req.params.id}, (err, ann) => {
+    await Announcement.findOne( { _id: req.params.id }, (err, ann) => {    
         if (err) {
             return res.status(404).json({
                 err,
                 message: 'Announcement not found!',
             })
         }
-        console.log(req)
-        ann.body = body.body
+        ann.body = req.body.body
         ann
         .save()
         .then(() => {
@@ -102,7 +100,7 @@ updateAnnouncement = async(req, res) => { //Updates an announcement by ID
                 message: 'Announcement not updated!',
             })
         })
-    })
+    }).clone()
 }
 
 deleteAnnouncement = async(req, res) => { // Deletes an announcement by its ID 

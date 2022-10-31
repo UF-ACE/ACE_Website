@@ -80,7 +80,7 @@ updateSponsorbyName = async (req, res) => { // Finds and updates a sponsor with 
                     message: 'Sponsor not updated',
                 })
             })
-    })
+    }).clone()
 }
 
 deleteSponsorbyName = async (req, res) => {  // Finds and deletes a sponsor with a given name
@@ -196,7 +196,7 @@ updateSponsorbyID = async (req, res) => { // Update a sponsor based on unique da
                     message: 'Sponsor not updated!',
                 })
             })
-    })
+    }).clone()
 }
 
 deleteSponsorbyID = async (req, res) => {

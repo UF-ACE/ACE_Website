@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./OfficerInput.css"
 import api from "../../api"
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -78,7 +79,7 @@ class AnnouncementUpdateDelete extends Component {
                     console.log(res.data)
                     window.location.reload()
                 }).catch(() => {
-                    alert('Could not update. Ensure that you are properly authenticated')
+                    alert('Could not update. Ensure that you are properly authenticated') 
                 })
             }
         }
@@ -97,8 +98,14 @@ class AnnouncementUpdateDelete extends Component {
                 <div key={announcement._id}>
                     <form onSubmit={this.onSubmit(announcement)}>
                         <ReactQuill theme="snow" defaultValue={announcement.body} onChange={this.onChangeBody} modules={{toolbar: {container: toolbarOptions}}}/>
-                        <button className="submit_button">Update</button>
-                        <button type="button" className="submit_button" onClick={() => this.onDelete(announcement)}>Delete</button>
+                        <Row className="pt-2">
+                            <div align="right">
+                                <Col>
+                                    <button className="submit_button">Update</button>
+                                    <button type="button" className="submit_button" onClick={() => this.onDelete(announcement)}>Delete</button>
+                                </Col>
+                            </div>
+                        </Row>
                     </form>
                 </div>
             </Row>

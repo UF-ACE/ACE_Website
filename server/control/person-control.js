@@ -111,7 +111,7 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
                     message: 'Person not updated',
                 })
             })
-    })
+    }).clone()
 }
 
 deletePersonbyName = async (req, res) => {  // Find and deletes a person with a given name
@@ -193,7 +193,6 @@ updatePersonbyID = async (req, res) => {
             error: 'You must provide a body to update',
         })
     }
-
     await Person.findOne({ _id: req.params.id }, (err, person) => {
         if (err) {
             return res.status(404).json({
@@ -228,7 +227,7 @@ updatePersonbyID = async (req, res) => {
                     message: 'Person not updated!',
                 })
             })
-    })
+    }).clone()
 }
 
 deletePersonbyID = async (req, res) => {

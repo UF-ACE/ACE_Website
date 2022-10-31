@@ -34,7 +34,7 @@ getVideosbyTitle = async (req, res) => {
 
 getVideosbyTag = async (req, res) => {
     let tagList = req.body
-    await Video.find({tags: { "$all" : tagList }, blacklisted: false}, (err, videos) => {
+    await Video.find({tags: { "$all" : tagList }, blacklisted: false}, {}, { sort: { createdAt: -1 } }, (err, videos) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -108,7 +108,7 @@ updateVideobyTitle = async (req, res) => { // Finds and updates a video with a g
                     message: 'Video not updated',
                 })
             })
-    })
+    }).clone()
 }
 
 deleteVideobyTitle = async (req, res) => {  // Finds and deletes a video with a given title
@@ -213,7 +213,7 @@ updateVideobyID = async (req, res) => {
                     message: 'Video not updated!',
                 })
             })
-    })
+    }).clone()
 }
 
 deleteVideobyID = async (req, res) => {
@@ -270,7 +270,7 @@ blacklistVideo = async (req, res) => {  // Blacklists a video identified by data
                     message: 'Video not updated!',
                 })
             })
-    })
+    }).clone()
 }
 
 unblacklistVideo = async (req, res) => {  // Blacklists a video identified by database ID
@@ -304,7 +304,7 @@ unblacklistVideo = async (req, res) => {  // Blacklists a video identified by da
                     message: 'Video not updated!',
                 })
             })
-    })
+    }).clone()
 }
 
 getVideosbyBlacklist = async (req, res) => {   // Finds all videos (not blacklisted)
