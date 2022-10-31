@@ -1,6 +1,7 @@
 import React from "react";
 import HomeCalendar from "../../features/HomeCalendar";
 import HomeYoutube from "../../features/HomeYoutube";
+import ParallaxContainer from "../../features/Parallax";
 import logo from "../../imgs/logo-min.png";
 import styles from "./HomePage.module.css";
 
@@ -16,13 +17,9 @@ function HomePage() {
           {"  "} it
         </h1>
       </div>
-      <div className={styles.background_video}>
-        <HomeYoutube embedId={process.env.REACT_APP_HOME_VIDEO_EMBED_ID} />
-      </div>
-      <h1 className={styles.h1}>Check out the events coming up this month!</h1>
-      <div className={styles.background_video}>
-        <HomeCalendar />
-      </div>
+      {ParallaxContainer(-3,  <HomeYoutube embedId={process.env.REACT_APP_HOME_VIDEO_EMBED_ID} />)}
+      <h1 className={styles.h1}>Check out the events coming up this month! </h1>
+      {ParallaxContainer(-3,  <HomeCalendar />)}
     </div>
   );
 }
