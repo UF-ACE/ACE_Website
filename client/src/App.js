@@ -1,10 +1,9 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBar from "./features/NavigationBar.js";
-import HomePage from "./pages/Home/HomePage.js";
+import HomePage from "./pages/Home/HomePage-Rev.js";
 import AboutPage from "./pages/About/AboutPage.js";
 import Footer from "./features/Footer/Footer.js";
 import LearnPage from "./pages/Learn/LearnPage.js";
@@ -35,11 +34,9 @@ const theme = createTheme({
 function App() {
   return (
     <ParallaxProvider scrollAxis="vertical">
-    <ThemeProvider theme={theme}>
-      <Router>
-        <div className="app">
+      <ThemeProvider theme={theme}>
+        <Router>
           <NavigationBar />
-          <div className="content">
             <Switch>
               <Route exact path="/">
                 <HomePage />
@@ -57,11 +54,9 @@ function App() {
                 <AnnouncementPage />
               </Route>
             </Switch>
-          </div>
-        <Footer />
-        </div>
-      </Router>
-    </ThemeProvider>
+          <Footer />
+        </Router>
+      </ThemeProvider>
     </ParallaxProvider>
   );
 }

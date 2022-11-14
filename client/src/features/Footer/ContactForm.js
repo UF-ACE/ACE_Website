@@ -51,7 +51,7 @@ const ContactForm = () => {
                     className={styles.submit_button}
                     onClick={openGoogleForm}
                 >
-                Contact Form
+                Contact Us
                 </Button>
             </Col>
         </Row>

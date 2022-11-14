@@ -726,6 +726,11 @@
     "mime-types" "~2.1.24"
     "negotiator" "0.6.2"
 
+"animate.css@^4.1.1":
+  "integrity" "sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ=="
+  "resolved" "https://registry.npmjs.org/animate.css/-/animate.css-4.1.1.tgz"
+  "version" "4.1.1"
+
 "ansi-align@^3.0.0":
   "integrity" "sha512-IOfwwBF5iczOjp/WeY4YxyjqAFMQoZufdQWDd19SEExbVLNXqvpzSJ/M7Za4/sCPmQ0+GRquoA7bGcINcxew6w=="
   "resolved" "https://registry.npmjs.org/ansi-align/-/ansi-align-3.0.1.tgz"

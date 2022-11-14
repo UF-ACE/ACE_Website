@@ -1,0 +1,89 @@
+.content_wrapper {
+    min-height: 100vh;
+    margin-top: 72px;
+    background-color: black;
+    background-image: radial-gradient(
+        rgba(0, 150, 0, 0.75), black 120%
+    );
+    color: white;
+    font: 1.3rem Inconsolata, monospace;
+    text-shadow: 0 0 5px #C8C8C8;
+    padding: 2rem;
+}
+.content_wrapper::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 0.05rem,
+        transparent 0.05rem,
+        transparent 0.1rem
+    );
+    pointer-events: none;
+}
+
+.typewriter h1 {
+    width: 42ch;
+    text-align: center;
+    overflow: hidden; 
+    border-right: .15em solid transparent; 
+    white-space: nowrap; 
+    margin: 0 auto; 
+    letter-spacing: .15em; 
+    animation: 
+      typing 3s steps(40, end),
+      blink-caret .5s step-end 8;
+    padding-bottom: 1rem;
+}
+  
+@keyframes typing {
+    from { width: 0 }
+}
+  
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white; }
+}
+
+.mission_para {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.logo_container {
+    display: flex;
+    justify-content: center;
+}
+
+.social_icon {
+    transition: transform .2s;
+    width: 40px;
+    height: 40px;
+}
+  
+.social_icon:hover {
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2); 
+}
+
+.verticalLine {
+    width: 3px; 
+    background-color: #C8C8C8; 
+    height: 300px; 
+    float: left;
+}
+
+.content_img {
+    position: sticky;
+    width: 500px;
+    height: 300px;
+    border: 5px dashed #C8C8C8;
+}

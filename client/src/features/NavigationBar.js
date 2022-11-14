@@ -22,7 +22,7 @@ class NavigationBar extends Component {
               <NavItem>
                 {" "}
                 <Link className="nav-link" to="/About">
-                  About us
+                  About Us
                 </Link>{" "}
               </NavItem>
               <NavItem>
