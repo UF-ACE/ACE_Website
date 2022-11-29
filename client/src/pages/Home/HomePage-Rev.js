@@ -19,7 +19,7 @@ import "animate.css/animate.min.css";
 function HomePage() {
     return(
         <div>
-            <img src={calendarHint} style={{ position: "absolute", marginTop: "15rem", zIndex: "1"}} alt="Link to ACE Event calendar" onClick={() => window.open("https://calendar.google.com/calendar/embed?src=nfcehnee29ov9indk18573qgsc%40group.calendar.google.com&ctz=America%2FNew_York", '_blank')}/>
+            <img src={calendarHint} style={{ position: "absolute", marginTop: "15rem", zIndex: "1" }} alt="Link to ACE Event calendar" onClick={() => window.open("https://calendar.google.com/calendar/embed?src=nfcehnee29ov9indk18573qgsc%40group.calendar.google.com&ctz=America%2FNew_York", '_blank')}/>
             <div className={styles.content_wrapper}>
                 <div className={styles.typewriter}>
                     <h1>Association of Computer Engineers</h1>
