@@ -7,7 +7,7 @@ const HomeYoutube = ({ embedId }) => (
     <iframe
       width="3000"
       height="800"
-      src={`https://www.youtube.com/embed/${embedId}?&autoplay=1&rel=0&controls=0`}
+      src="https://www.youtube.com/embed/BYmwoJtjghs?autoplay=1"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture"
       allowFullScreen
@@ -18,4 +18,5 @@ const HomeYoutube = ({ embedId }) => (
 HomeYoutube.propTypes = {
   embedId: PropTypes.string.isRequired,
 };
+
 export default HomeYoutube;
