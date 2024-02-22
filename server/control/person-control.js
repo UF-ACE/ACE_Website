@@ -91,10 +91,10 @@ updatePersonbyName = async (req, res) => {    // Finds and updates a person base
         person.linkedin = body.linkedin
         if (req.file) {
             person.image = {
-                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                data: fs.readFileSync(path.resolve('../uploads', req.file.filename)),
                 contentType: req.file.mimetype    
             }
-            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
+            fs.unlinkSync(path.resolve('../uploads', req.file.filename))   // Delete the temp file
         }
         person
             .save()
@@ -153,10 +153,10 @@ createPerson = async (req, res) => {    // Create a person entry
         })
     }
     body.image = {
-        data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+        data: fs.readFileSync(path.resolve('../uploads', req.file.filename)),
         contentType: req.file.mimetype
     }
-    fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
+    fs.unlinkSync(path.resolve('../uploads', req.file.filename))   // Delete the temp file
     const person = new Person(body)
     if (!person) {
         return res.status(400).json({ success: false, error: err })
@@ -207,10 +207,10 @@ updatePersonbyID = async (req, res) => {
         person.linkedin = body.linkedin
         if (req.file) {
             person.image = {
-                data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+                data: fs.readFileSync(path.resolve('../uploads', req.file.filename)),
                 contentType: req.file.mimetype
             }
-            fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
+            fs.unlinkSync(path.resolve('../uploads', req.file.filename))   // Delete the temp file
         }
         person
             .save()

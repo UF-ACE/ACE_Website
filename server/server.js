@@ -3,14 +3,14 @@ const cors = require('cors')
 var favicon = require('serve-favicon');
 const path = require('path')
 
-const db = require('./server/db/index')
-const videoRouter = require('./server/routes/video-router')
-const personRouter = require('./server/routes/person-router')    
-const sponsorRouter = require('./server/routes/sponsor-router')
+const db = require('./db/db')
+const videoRouter = require('./routes/video-router')
+const personRouter = require('./routes/person-router')    
+const sponsorRouter = require('./routes/sponsor-router')
 //const emailRouter = require('./server/routes/email-router')
-const loginRouter = require('./server/routes/login-router')
-const tokenRouter = require('./server/routes/token-router')
-const announcementRouter = require('./server/routes/announcement-router')
+const loginRouter = require('./routes/login-router')
+const tokenRouter = require('./routes/token-router')
+const announcementRouter = require('./routes/announcement-router')
 
 const app = express()
 
@@ -28,10 +28,11 @@ app.use('/api', loginRouter)
 app.use('/api', tokenRouter)
 app.use('/api', announcementRouter)
 
-app.use(favicon(path.join(__dirname, 'client/build', 'favicon.ico'))); 
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, '../client/build')))
+app.use(favicon(path.join(__dirname, '../client/build', 'favicon.ico'))); 
+
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+    res.sendFile(path.join(__dirname + '../client/build/index.html'))
 })
 
 const PORT = process.env.PORT || 3000
