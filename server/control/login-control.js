@@ -1,48 +1,52 @@
-const { v4: uuidv4 } = require('uuid');
-const Login = require('../models/login-model')
-const Token = require('../models/token-model')
-var path = require('path')
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-LoginFunc = async (req, res) => { 
-    await Login.findOne({ username: req.params.username }, (err, login) => {
-        if (err) {
-            return res.status(400).json({ success: false, error: err })
+exports.RegisterFunc = async (req, res) => {
+    try {
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+        // Create a new user
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            username: req.body.username,
+            password: hashedPassword,
+            role: 'user'
+        });
+
+        // Save the user to the database
+        await user.save();
+
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.LoginFunc = async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username });
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
         }
 
-        if (!login) {
-            return res
-                .status(404)
-                .json({ success: false, error: 'Username not found' })
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        if (login.password !== req.params.password) {
-            return res.status(400).json({ success: false, error: 'Invalid credentials'})
-        }
-        // Generate new UUID on successful login
-        const newToken = uuidv4()
-        // Update valid token in database with new token
-        Token.findOne({}, {}, {sort: {'created_at' : -1 } }, (err, token) => {
-            if (err) {
-                return res.status(404).json({
-                    err,
-                    message: 'Token not found!',
-                })
-            }
-            token.token = newToken
-            token
-                .save()
-                .catch(error => {
-                    return res.status(404).json({
-                        error,
-                        message: 'Token not updated!',
-                    })
-                })
-        })
-        // Return the new token to the user
-        return res.status(200).json({ success: true, token: newToken })
-    }).catch(err => console.log(err))
-}
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-module.exports = {
-    LoginFunc,
-}
+        res.json({ 
+          token, 
+          user: { 
+            username: user.username, 
+            role: user.role 
+          } 
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

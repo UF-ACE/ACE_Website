@@ -43,7 +43,8 @@ export const sendEmail = payload => api.post(`/email`, payload)
 export const logEmail = payload => api.post(`/email/db`, payload)
 export const getEmails = () => api.get(`/email/db`)
 
-export const login = (username, password) => api.get(`/login/${username}/${password}`)
+export const login = (username, password) => api.post(`/login`, { username, password });
+export const register = userData => api.post(`/register`, userData);
 export const checkToken = token => api.get(`/token/${token}`)
 
 export const createAnnouncement = payload => api.post(`/announcement`, payload)
@@ -84,6 +85,7 @@ const apis = {
     logEmail,
     getEmails,
     login,
+    register,
     checkToken,
     createAnnouncement,
     getAnnouncements,

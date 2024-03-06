@@ -1,119 +1,84 @@
-import AdminPage from "../AdminDashboard/AdminPage";
-import api from "../../api"
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
-import styles from "./LoginPage.css"
-
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import AuthContext from '../../contexts/AuthContext';
+import api from '../../api';
+import { Button } from 'react-bootstrap';
+import './LoginPage.css';
 
 class LoginPage extends Component {
-    constructor (props) {
-        super(props);
-        this.onUsernameChange = this.onUsernameChange.bind(this);
-        this.onPasswordChange = this.onPasswordChange.bind(this);
-        this.onClick = this.onClick.bind(this);
+  static contextType = AuthContext;
 
-        this.state = {
-            username: 'blankUsername',
-            password: 'blankPassword',
-            auth: false,
-        }
-    }
+  state = {
+    username: '',
+    password: '',
+    error: '',
+  };
 
-    checkCreds(username, password) {
-        if (username === 'blankUsername' || password === 'blankPassword') {
-            alert('Please enter a username and password')
-        }
-        else {
-            api.login(username, password).then(res => {
-                if (!res.data.success) {
-                    throw new Error("Invalid credentials")
-                }
-                else {
-                    sessionStorage.setItem('token', res.data.token)
-                    window.location.reload()
-                }
-            }).catch(err => {
-                alert('Invalid credentials')
-                this.setState({
-                    username: 'blankUsername',
-                    password: 'blankPassword',
-                })
-                window.location.reload()
-            })
-        }
-    }
-    onUsernameChange(e) {
-        this.setState({
-            username: e.target.value
-        });
-    }
-    onPasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        });
-    }
-    onSubmit(e){
-        e.preventDefault();
-    }
-    onClick(e){
-        e.preventDefault();
-        let insertedPassword = this.state.password;
-        let insertedUsername = this.state.username;
-        this.checkCreds(insertedUsername, insertedPassword);
-    }
-    componentDidMount = async () => {
-        await api.checkToken(sessionStorage.getItem('token')).then(res => {
-            if (res.data.success) {
-                this.setState({auth: true})
-            }
-        }).catch(err => {
-            console.log(err)
-        })
-    }
-    render() {
-        if (!this.state.auth) {   // If the user does not have a valid token, display the login page
-            return (
-                <div className="loginpage">
-                    <div className="description">
-                            <h1>Login</h1>
-                            <h3>
-                                This page should only be used by ACE admins looking to make changes to the site. Fill out the
-                                following form with authenticated credentials to make such changes.
-                            </h3>
-                    </div>
-                    <div className="input_form mt-5 mb-5">
-                        <form onSubmit = {this.onSubmit}>
-                            <input 
-                                type="text" 
-                                name="name" 
-                                placeholder="Username"
-                                onChange = {this.onUsernameChange}
-                            />
-                            <input 
-                                type="password" 
-                                name="name" 
-                                placeholder="Password"
-                                onChange = {this.onPasswordChange}
-                            />
-                            <Button
-                                variant="secondary"
-                                size="sm"
-                                type="submit"
-                                onClick={this.onClick}
-                                className={styles.submit_button}
-                                >Submit
-                            </Button>
-                        </form>
-                    </div>
-                </div>
-            );
-        }
-        else {
-            return (
-                <AdminPage />
-            )
-        }
+  componentDidMount() {
+    // Example of automatic redirection if already logged in
+    // This requires your AuthContext to have isLoggedIn and userRole state
+    if (this.context.isLoggedIn) {
+      const route = this.context.userRole === 'admin' ? '/AdminDashboard' : '/About';
+      this.props.history.push(route);
     }
   }
-  
-  export default LoginPage;
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const { username, password } = this.state;
+
+    try {
+      const response = await api.login(username, password);
+      // Assuming the response includes the user's role and token
+      this.context.setIsLoggedIn(true);
+      this.context.setUserData(response.data.user);
+      localStorage.setItem('token', response.data.token); // Store the token
+      
+      // Redirect based on user role
+      const route = response.data.user.role === 'admin' ? '/AdminDashboard' : '/user';
+      this.props.history.push(route);
+    } catch (error) {
+      this.setState({ error: 'Invalid username or password.' });
+    }
+  };
+
+  render() {
+    const { username, password, error } = this.state;
+
+    return (
+      <div className="loginpage">
+        <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            value={username}
+            placeholder="Username"
+            onChange={this.handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={this.handleChange}
+            required
+          />
+          <Button type="submit">Login</Button>
+        </form>
+        {/* Link to the registration page */}
+        <p>
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
+      </div>
+    );
+  }
+}
+
+export default withRouter(LoginPage);
