@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,15 +44,15 @@ function App() {
             <div className="app">
               <NavigationBar />
               <div className="content">
-                <Switch>
-                  <Route exact path="/" component={HomePage} />
-                  <Route path="/About" component={AboutPage} />
-                  <Route path="/Learn" component={LearnPage} />
-                  <Route path="/Login" component={LoginPage} />
-                  <Route path="/Announcements" component={AnnouncementPage} />
-                  <Route path="/AdminDashboard" component={AdminPage} />
-                  <Route path="/Register" component={RegisterPage} />
-=                </Switch>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/About" element={<AboutPage />} />
+                  <Route path="/Learn" element={<LearnPage />} />
+                  <Route path="/Login" element={<LoginPage />} />
+                  <Route path="/Announcements" element={<AnnouncementPage />} />
+                  <Route path="/AdminDashboard" element={<AdminPage />} />
+                  <Route path="/Register" element={<RegisterPage />} />
+                </Routes>
               </div>
               <Footer />
             </div>

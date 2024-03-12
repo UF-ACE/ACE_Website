@@ -138,13 +138,6 @@ deletePersonbyName = async (req, res) => {  // Find and deletes a person with a 
 }
 
 createPerson = async (req, res) => {    // Create a person entry
-    const auth = await TokenCtrl.checkToken(req.headers.token)
-    if (!auth) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must be properly authenticated'
-        })
-    }
     const body = req.body
     if (!body) {
         return res.status(400).json({

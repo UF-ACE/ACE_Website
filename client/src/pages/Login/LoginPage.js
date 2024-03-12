@@ -1,65 +1,54 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext, useEffect } from 'react';
 import AuthContext from '../../contexts/AuthContext';
 import api from '../../api';
 import { Button } from 'react-bootstrap';
 import './LoginPage.css';
 
-class LoginPage extends Component {
-  static contextType = AuthContext;
+function LoginPage() {
+  const { isLoggedIn, setIsLoggedIn, setUserData, setUserRole ,userRole } = useContext(AuthContext);
+  const [ username, setUsername ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ error, setError ] = useState('');
+  const navigate = useNavigate();
 
-  state = {
-    username: '',
-    password: '',
-    error: '',
-  };
-
-  componentDidMount() {
-    // Example of automatic redirection if already logged in
-    // This requires your AuthContext to have isLoggedIn and userRole state
-    if (this.context.isLoggedIn) {
-      const route = this.context.userRole === 'admin' ? '/AdminDashboard' : '/About';
-      this.props.history.push(route);
+  useEffect(() => {
+    if (isLoggedIn) {
+      const route = userRole === 'admin' ? '/AdminDashboard' : '/About';
+      navigate(route);
     }
-  }
-
-  handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  }, [isLoggedIn, userRole, navigate]);
+  
+  const handleChange = (e) => {
+    e.target.name === 'username' ? setUsername(e.target.value) : setPassword(e.target.value);
   };
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, password } = this.state;
-
     try {
       const response = await api.login(username, password);
-      // Assuming the response includes the user's role and token
-      this.context.setIsLoggedIn(true);
-      this.context.setUserData(response.data.user);
-      localStorage.setItem('token', response.data.token); // Store the token
-      
-      // Redirect based on user role
-      const route = response.data.user.role === 'admin' ? '/AdminDashboard' : '/user';
-      this.props.history.push(route);
-    } catch (error) {
-      this.setState({ error: 'Invalid username or password.' });
+      setIsLoggedIn(true);
+      setUserData(response.data);
+      setUserRole(response.data.user.role);
+      localStorage.setItem('token', response.data.token);
+      navigate(response.data.user.role === 'admin' ? '/AdminDashboard' : '/About');
+    } catch  (error) {
+      setError('Invalid username or password');
     }
   };
-
-  render() {
-    const { username, password, error } = this.state;
 
     return (
       <div className="loginpage">
         <h2>Login</h2>
         {error && <p className="error">{error}</p>}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             name="username"
             value={username}
             placeholder="Username"
-            onChange={this.handleChange}
+            onChange={handleChange}
             required
           />
           <input
@@ -67,7 +56,7 @@ class LoginPage extends Component {
             name="password"
             value={password}
             placeholder="Password"
-            onChange={this.handleChange}
+            onChange={handleChange}
             required
           />
           <Button type="submit">Login</Button>
@@ -78,7 +67,6 @@ class LoginPage extends Component {
         </p>
       </div>
     );
-  }
-}
+  };
 
-export default withRouter(LoginPage);
+  export default LoginPage;

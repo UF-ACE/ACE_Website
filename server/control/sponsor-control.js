@@ -107,13 +107,8 @@ deleteSponsorbyName = async (req, res) => {  // Finds and deletes a sponsor with
 }
 
 createSponsor = async (req, res) => { // Creates a sponsor entry
-    const auth = await TokenCtrl.checkToken(req.headers.token)
-    if (!auth) {
-        return res.status(400).json({
-            success: false,
-            error: 'You must be properly authenticated'
-        })
-    }
+    // removed auth check for testing, should use auth middleware
+
     const body = req.body
     if (!body) {
         return res.status(400).json({
@@ -122,10 +117,10 @@ createSponsor = async (req, res) => { // Creates a sponsor entry
         })
     }
     body.image = {
-        data: fs.readFileSync(path.resolve('uploads', req.file.filename)),
+        data: fs.readFileSync(path.resolve('../uploads', req.file.filename)),
         contentType: req.file.mimetype
     }
-    fs.unlinkSync(path.resolve('uploads', req.file.filename))   // Delete the temp file
+    fs.unlinkSync(path.resolve('../uploads', req.file.filename))   // Delete the temp file
     const sponsor = new Sponsor(body)
     if (!sponsor) {
         return res.status(400).json({ success: false, error: err })
