@@ -21,6 +21,6 @@ RUN npm install
 
 COPY --from=builder /app/build /app/client/build
 ADD server/ /app/server/
-ADD index.js .
+ADD server/server.js .
 
 CMD ["npm", "start"]

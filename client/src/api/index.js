@@ -2,12 +2,34 @@ import axios from 'axios'
 
 const api = axios.create({ 
     baseURL: '/api',
-    headers: {
-        'token': sessionStorage.getItem('token')
-    }
 })
 
+api.interceptors.request.use(config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+}, error => Promise.reject(error));
 
+// used to get rid of expired tokens but does not seem to work. Might move this
+api.interceptors.response.use(response => response, error => {
+    if (error.response.data?.message?.includes('expired')) {
+        localStorage.removeItem('token');
+
+        // can also clear any other user data from storage
+
+        alert('Your session has expired. Please log in again.');
+        window.location.href = '/Login';
+    }
+    return Promise.reject(error);
+});
+
+
+// currently under one api, for now keep it as such and see what we need
+// to move to other instances.
+
+// Video API
 export const createVideo = payload => api.post(`/video`, payload)
 export const getVideos = () => api.get(`/videos`)
 export const getVideosbyBlacklist = () => api.get(`/videos/BL`)
@@ -21,6 +43,7 @@ export const getVideobyTitle = payload => api.post(`/video/search`, payload)
 export const getVideosbyTitle = payload => api.post(`/videos/search`, payload)
 export const getVideosbyTag = payload => api.post(`videos/tags`, payload)
 
+// Person API
 export const createPerson = payload => api.post(`/person`, payload, { headers: { 'content-type': 'multipart/form-data' } })
 export const getPeople = () => api.get(`/people`)
 export const getPeoplebyOfficer = officer => api.get(`/people/${officer}`)
@@ -31,7 +54,8 @@ export const deletePersonbyName = name => api.delete(`/person/${name}`)
 export const getPersonbyTitle = title => api.get(`/person/${title}`)
 export const getPersonbyEmail = email => api.get(`/person/${email}`)
 
-export const createSponsor = payload => api.post(`/sponsor`, payload)
+// Sponsor API
+export const createSponsor = payload => api.post(`/sponsor`, payload, { headers: { 'content-type': 'multipart/form-data' } })
 export const getSponsors = () => api.get(`/sponsors`)
 export const getSponsorbyName = name => api.get(`/sponsor/${name}`)
 export const updateSponsorbyName = (name, payload) => api.put(`/sponsor/${name}`, payload)
@@ -43,9 +67,12 @@ export const sendEmail = payload => api.post(`/email`, payload)
 export const logEmail = payload => api.post(`/email/db`, payload)
 export const getEmails = () => api.get(`/email/db`)
 
-export const login = (username, password) => api.get(`/login/${username}/${password}`)
+// Authentication API
+export const login = (username, password) => api.post(`/auth/login`, { username, password });
+export const register = userData => api.post(`auth/register`, userData);
 export const checkToken = token => api.get(`/token/${token}`)
 
+// Announcement API
 export const createAnnouncement = payload => api.post(`/announcement`, payload)
 export const getAnnouncements = () => api.get(`/announcement/latest`)
 export const deleteAnnouncement = id => api.delete(`/announcement/${id}`)
@@ -84,6 +111,7 @@ const apis = {
     logEmail,
     getEmails,
     login,
+    register,
     checkToken,
     createAnnouncement,
     getAnnouncements,
